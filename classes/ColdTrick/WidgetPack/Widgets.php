@@ -22,7 +22,6 @@ class Widgets {
 	
 		$return_value[] = 'iframe';
 		$return_value[] = 'free_html';
-		$return_value[] = 'image_slider';
 		$return_value[] = 'twitter_search';
 	
 		return $return_value;

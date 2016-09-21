@@ -9,7 +9,7 @@ elgg_register_event_handler('init', 'system', 'widget_pack_init');
  * @return void
  */
 function widget_pack_init() {
-	
+		
 	// cacheable widget handlers
 	elgg_register_plugin_hook_handler('cacheable_handlers', 'widget_manager', '\ColdTrick\WidgetPack\Widgets::getCacheableWidgets');
 	elgg_register_plugin_hook_handler('entity:url', 'object', '\ColdTrick\WidgetPack\Widgets::getTitleURLs');
@@ -84,7 +84,9 @@ function widget_pack_init() {
 	elgg_extend_view('css/elgg', 'widgets/rss_server/content.css');
 	
 	// image slider
-	elgg_extend_view('css/elgg', 'widgets/image_slider/content.css');
+	elgg_define_js('widgets/image_slider/flexslider', ['src' => elgg_get_simplecache_url('flexslider/jquery.flexslider-min.js')]);
+	
+	elgg_register_simplecache_view('widgets/image_slider/flexslider.css');
 	elgg_register_widget_type([
 		'id' => 'image_slider',
 		'context' => ['index', 'groups'],
