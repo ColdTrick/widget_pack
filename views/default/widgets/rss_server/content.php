@@ -25,7 +25,7 @@ $cache_file = $cache_location . '/' . $widget->getGUID() . '.json';
 if (file_exists($cache_file) && filemtime($cache_file) >= (time() - $rss_cachetimeout)) {
 	$raw_feed_data = file_get_contents($cache_file);
 	
-	elgg_log('Reading RSS server widget content from cache', 'NOTICE');
+	elgg_log('Reading RSS server widget content from cache', 'INFO');
 	$feed_data = @json_decode($raw_feed_data, true);
 }
 
@@ -92,7 +92,7 @@ if (empty($feed_data)) {
 	
 	// write to cache
 	file_put_contents($cache_file, json_encode($feed_data));
-	elgg_log('Writing RSS server widget cache file', 'NOTICE');
+	elgg_log('Writing RSS server widget cache file', 'INFO');
 	
 	// cleanup
 	unset($feed);
