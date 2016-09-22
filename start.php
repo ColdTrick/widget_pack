@@ -1,5 +1,7 @@
 <?php
 
+@include_once(dirname(__FILE__) . '/vendor/autoload.php');
+
 // register default Elgg events
 elgg_register_event_handler('init', 'system', 'widget_pack_init');
 
