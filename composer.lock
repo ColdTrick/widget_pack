@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d4c0c911cc08688145132b7a6bd14d08",
-    "content-hash": "49ae4f7dec191694179e05c3dbb4ac1a",
+    "hash": "6e910a3d063a49f68d5e6f474d4349f5",
+    "content-hash": "385ef1924a2de7954807b7cf2b2c7763",
     "packages": [
         {
             "name": "bower-asset/flexslider-customized",
@@ -53,16 +53,16 @@
         },
         {
             "name": "bower-asset/jquery",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jquery/jquery-dist.git",
-                "reference": "6f02bc382c0529d3b4f68f6b2ad21876642dbbfe"
+                "reference": "1b30f3ad466ebf2714d47eda34dbd7fdf6849fe3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/6f02bc382c0529d3b4f68f6b2ad21876642dbbfe",
-                "reference": "6f02bc382c0529d3b4f68f6b2ad21876642dbbfe",
+                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/1b30f3ad466ebf2714d47eda34dbd7fdf6849fe3",
+                "reference": "1b30f3ad466ebf2714d47eda34dbd7fdf6849fe3",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -251,12 +251,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ColdTrick/releases.git",
-                "reference": "a4ac414e013dc31e0f19c4f729488b86b285b263"
+                "reference": "e5b7e398f81b3e204574fbfda7b910527543bc2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ColdTrick/releases/zipball/a4ac414e013dc31e0f19c4f729488b86b285b263",
-                "reference": "a4ac414e013dc31e0f19c4f729488b86b285b263",
+                "url": "https://api.github.com/repos/ColdTrick/releases/zipball/e5b7e398f81b3e204574fbfda7b910527543bc2e",
+                "reference": "e5b7e398f81b3e204574fbfda7b910527543bc2e",
                 "shasum": ""
             },
             "type": "library",
@@ -270,7 +270,7 @@
                 "release",
                 "travis"
             ],
-            "time": "2016-03-11 12:51:42"
+            "time": "2016-10-05 09:32:34"
         },
         {
             "name": "coldtrick/sniffs",
