@@ -1,2 +1,7 @@
 Version history
 ===============
+
+1.0 (2016-10-06):
+
+- added: moved all widgets from widget_manager to this plugin
+- changed: use bower asset for flexslider library
