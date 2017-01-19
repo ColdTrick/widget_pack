@@ -28,13 +28,6 @@ echo elgg_view_input('select', [
 ]);
 
 echo elgg_view_input('select', [
-	'name' => 'params[show_feed_title]',
-	'label' => elgg_echo('widgets:rss:settings:show_feed_title'),
-	'value' => $widget->show_feed_title,
-	'options_values' => $noyes_options,
-]);
-
-echo elgg_view_input('select', [
 	'name' => 'params[excerpt]',
 	'label' => elgg_echo('widgets:rss:settings:excerpt'),
 	'value' => $widget->excerpt,
