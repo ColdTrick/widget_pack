@@ -1,6 +1,10 @@
 Version history
 ===============
 
+1.0.1 (2017-01-26):
+
+- fixed: replaced deprecated RSS Google Feed API with YQL query
+
 1.0 (2016-10-06):
 
 - added: moved all widgets from widget_manager to this plugin
