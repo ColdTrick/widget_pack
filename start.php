@@ -28,6 +28,9 @@ function widget_pack_init() {
 		}
 	}
 	
+	elgg_register_plugin_hook_handler('view_vars', 'widgets/content_by_tag/display/slim', '\ColdTrick\WidgetPack\Bookmarks::changeEntityURL');
+	elgg_register_plugin_hook_handler('view_vars', 'widgets/content_by_tag/display/simple', '\ColdTrick\WidgetPack\Bookmarks::changeEntityURL');
+	
 	// entity_statistics
 	elgg_register_widget_type([
 		'id' => 'entity_statistics',

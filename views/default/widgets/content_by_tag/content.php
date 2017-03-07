@@ -171,139 +171,37 @@ if ($widget->order_by == 'alpha') {
 
 elgg_push_context('search');
 
+$result = '';
+
 $display_option = $widget->display_option;
-if (in_array($display_option, ['slim','simple'])) {
+if (in_array($display_option, ['slim', 'simple'])) {
 	$entities = elgg_get_entities($options);
 	if ($entities) {
 		$num_highlighted = (int) $widget->highlight_first;
 
-		$show_avatar = true;
-		if ($widget->show_avatar == 'no') {
-			$show_avatar = false;
-		}
-
-		$show_timestamp = true;
-		if ($widget->show_timestamp == 'no') {
-			$show_timestamp = false;
-		}
+		$show_avatar = ($widget->show_avatar !== 'no');
+		$show_timestamp = ($widget->show_timestamp !== 'no');
 		
 		$list_items = '';
 		foreach ($entities as $index => $entity) {
-			$icon = '';
-			$list_item = '';
 			
-			$target = null;
-
-			if (elgg_instanceof($entity, 'object', 'bookmarks')) {
-				$entity_url = $entity->address;
-				if (elgg_is_active_plugin('bookmarks_tools')) {
-					$link_behaviour = elgg_get_plugin_setting('link_behaviour', 'bookmarks_tools');
-					if ((stripos($href, 'http:') === 0) || (stripos($href, 'https:') === 0)) {
-						if (stristr($href, elgg_get_site_url()) === false) {
-							$target = '_blank';
-						}
-					}
-				}
-			} else {
-				$entity_url = $entity->getURL();
+			$list_item = elgg_view("widgets/content_by_tag/display/{$display_option}", [
+				'entity' => $entity,
+				'show_avatar' => $show_avatar,
+				'show_timestamp' => $show_timestamp,
+				'show_highlighted' => ($index < $num_highlighted),
+			]);
+			
+			if (empty($list_item)) {
+				continue;
 			}
 			
-			if ($display_option == 'slim') {
-				// slim
-				if ($index < $num_highlighted) {
-
-					$icon = '';
-					if ($show_avatar) {
-						$icon = elgg_view_entity_icon($entity->getOwnerEntity(), 'small');
-					}
-
-					$text = elgg_view('output/url', [
-						'href' => $entity_url,
-						'text' => $entity->title,
-						'target' => $target,
-					]);
-					$text .= elgg_format_element('br');
-
-					$description = elgg_get_excerpt($entity->description, 170);
-					
-					if ($show_timestamp) {
-						$year = date('Y', $entity->time_created);
-						$month = date('m', $entity->time_created);
-						$day = date('j', $entity->time_created);
-						$day_of_the_week = date('w', $entity->time_created);
-						
-						$short_month = elgg_echo("date:month:short:{$month}", [$day]);
-						$short_day = elgg_echo("date:weekday:short:{$day_of_the_week}");
-						$time = date('G:i:s', $entity->time_created);
-						
-						$text .= elgg_format_element('span', ['title' => "{$short_day}, {$short_month} {$year} {$time}"], "{$short_day}, {$short_month} {$year}");
-						
-						if (!empty($description)) {
-							$text .= ' - ';
-						}
-					}
-					
-					$text .= $description;
-					if (elgg_substr($description, -3, 3) == '...') {
-						$text .= elgg_view('output/url', [
-							'href' => $entity->getURL(),
-							'text' => strtolower(elgg_echo('more')),
-							'class' => 'mls',
-						]);
-					}
-
-					$list_item = elgg_view_image_block($icon, $text);
-				} else {
-					
-					$text = '';
-					if ($show_timestamp) {
-						$year = date('Y', $entity->time_created);
-						$month = date('m', $entity->time_created);
-						$day = date('j', $entity->time_created);
-						$day_of_the_week = date('w', $entity->time_created);
-						
-						$short_month = elgg_echo("date:month:short:{$month}", [$day]);
-						$short_day = elgg_echo("date:weekday:short:{$day_of_the_week}");
-						$time = date('G:i:s', $entity->time_created);
-						
-						$text .= elgg_format_element('span', ['title' => "{$short_day}, {$short_month} {$year} {$time}"], $short_month);
-						$text .= ' - ';
-					}
-					
-					$text .= elgg_view('output/url', [
-						'href' => $entity_url,
-						'text' => $entity->title,
-					]);
-					
-					$list_item = elgg_format_element('div', [], $text);
-				}
-			} else {
-				// simple
-				$owner = $entity->getOwnerEntity();
-
-				$icon = '';
-				if ($show_avatar) {
-					$icon = elgg_view_entity_icon($owner, 'small');
-				}
-				
-				$text = elgg_view('output/url', ['href' => $entity_url, 'text' => $entity->title]);
-				$text .= elgg_format_element('br');
-				$text .= elgg_view('output/url', [
-					'href' => $owner->getURL(),
-					'text' => $owner->name,
-				]);
-
-				if ($show_timestamp) {
-					$text .= elgg_format_element('span', ['class' => 'elgg-quiet mls'], elgg_view_friendly_time($entity->time_created));
-				}
-
-				$list_item = elgg_view_image_block($icon, $text);
-			}
-
 			$list_items .= elgg_format_element('li', ['class' => 'elgg-item'], $list_item);
 		}
-
-		$result .= elgg_format_element('ul', ['class' => 'elgg-list'], $list_items);
+		
+		if (!empty($list_items)) {
+			$result .= elgg_format_element('ul', ['class' => 'elgg-list'], $list_items);
+		}
 	}
 } else {
 	$result = elgg_list_entities($options);
@@ -312,23 +210,26 @@ if (in_array($display_option, ['slim','simple'])) {
 if (empty($result)) {
 	$result = elgg_echo('notfound');
 } elseif ($widget->show_search_link == 'yes' && !empty($widget->tags) && elgg_is_active_plugin('search')) {
-	$tags = $widget->tags;
 	
+	$link_params = [];
+	
+	$tags = $widget->tags;
 	if (elgg_is_active_plugin('search_advanced')) {
-		$tags_text = $tags;
+		$link_params['q'] = $tags;
 	} else {
 		$tags = string_to_tag_array($tags);
-		$tags_text = $tags[0];
+		$link_params['q'] = $tags[0];
 	}
 	
-	$search_postfix = '';
 	if (count($content_type) == 1) {
-		$search_postfix = '&entity_subtype=' . $content_type[0] . '&entity_type=object&search_type=entities';
+		$link_params['entity_subtype'] = $content_type[0];
+		$link_params['entity_type'] = 'object';
+		$link_params['search_type'] = 'entities';
 	}
 	
 	$search_link = elgg_view('output/url', [
-		'text' => elgg_echo('searchtitle', [$tags_text]),
-		'href' => 'search?q=' . $tags_text . $search_postfix,
+		'text' => elgg_echo('searchtitle', [$link_params['q']]),
+		'href' => elgg_http_add_url_query_elements('search', $link_params),
 	]);
 	
 	$result .= elgg_format_element('div', ['class' => 'elgg-widget-more'], $search_link);
