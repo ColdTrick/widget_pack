@@ -162,14 +162,27 @@ class Widgets {
 			return;
 		}
 	
+		$data_found = false;
+		
+		// look for data-widget-id in embed code
 		$pattern = '/data-widget-id=\"(\d+)\"/i';
 		$matches = [];
-		if (!preg_match($pattern, $embed_code, $matches)) {
-			register_error(elgg_echo('widgets:twitter_search:embed_code:error'));
-			return;
+		if (preg_match($pattern, $embed_code, $matches)) {
+			$widget->widget_id = $matches[1];
+			$data_found = true;
 		}
 		
-		$widget->widget_id = $matches[1];
+		
+		$pattern = '/href=["\']?([^"\'>]+)["\']?/i';
+		$matches = [];
+		if (preg_match($pattern, $embed_code, $matches)) {
+			$widget->embed_href = $matches[1];
+			$data_found = true;
+		}
+		
+		if (!$data_found) {
+			register_error(elgg_echo('widgets:twitter_search:embed_code:error'));
+		}
 	}
 	
 	/**
