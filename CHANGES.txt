@@ -1,6 +1,11 @@
 Version history
 ===============
 
+1.1 (2017-03-24):
+
+- changed: content_by_tag content split into separate views
+- changed: updated twitter search to support new twitter publish code
+
 1.0.1 (2017-01-26):
 
 - fixed: replaced deprecated RSS Google Feed API with YQL query
