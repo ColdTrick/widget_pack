@@ -211,4 +211,20 @@ class Widgets {
 			unlink($cache_file);
 		}
 	}
+	
+	/**
+	 * Flush all RSS server widgets cache files
+	 *
+	 * @param string $hook_name    name of the hook
+	 * @param string $entity_type  type of the hook
+	 * @param bool   $return_value current return value
+	 * @param array  $params       hook parameters
+	 *
+	 * @return void
+	 */
+	public static function rssServerFlushAllCache($hook_name, $entity_type, $return_value, $params) {
+	
+		$cache_folder = elgg_get_config('dataroot') . 'widgets/rss';
+		delete_directory($cache_folder);
+	}
 }
