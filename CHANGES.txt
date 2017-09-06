@@ -1,6 +1,10 @@
 Version history
 ===============
 
+1.2 (2017-09-06):
+
+- added: flush all rss source files cache on global cache flush
+
 1.1 (2017-03-24):
 
 - changed: content_by_tag content split into separate views
