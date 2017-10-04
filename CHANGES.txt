@@ -1,6 +1,10 @@
 Version history
 ===============
 
+1.2.1 (2017-10-04):
+
+- fixed: fatal exception on PHP7
+
 1.2 (2017-09-06):
 
 - added: flush all rss source files cache on global cache flush
