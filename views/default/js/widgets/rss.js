@@ -33,10 +33,17 @@ define(['jquery', 'elgg'], function ($, elgg) {
 						if (config.showInLightbox) {
 							var popup_id = wrapper_id + "-" + index;
 							
-							var popup_content = "<div class='hidden'><div id='" + popup_id + "' class='elgg-module elgg-module-info elgg-module-rss-popup'>";
-							popup_content += "<div class='elgg-head'><h3>" + item.title + "</h3></div>";
-							popup_content += "<div class='elgg-body'>" + description + "</div>";
-							popup_content += "</div></div>";
+							var popup_content = "<div class='hidden'>";
+							popup_content += "<div id='" + popup_id + "' class='elgg-module elgg-module-info elgg-module-rss-popup'>";
+							popup_content += "<div class='elgg-head'><h3>";
+							popup_content += "<a href='" + item.link + "' target='_blank'>" + item.title + "</a>";
+							popup_content += "</h3></div>";
+							popup_content += "<div class='elgg-body'>";
+							popup_content += description;
+							popup_content += "<a href='" + item.link + "' target='_blank' class='mls'>" + elgg.echo('widget_pack:readmore') + "</a>";
+							popup_content += "</div>"; // end content
+							popup_content += "</div>"; // end module
+							popup_content += "</div>"; // end wrapper
 							
 							popup_content = popup_content.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1<br />$2');
 							$("body").append(popup_content);
@@ -68,10 +75,17 @@ define(['jquery', 'elgg'], function ($, elgg) {
 						if (config.showInLightbox) {
 							var popup_id = wrapper_id + "-" + index;
 							
-							var popup_content = "<div class='hidden'><div id='" + popup_id + "' class='elgg-module elgg-module-info elgg-module-rss-popup'>";
-							popup_content += "<div class='elgg-head'><h3>" + item.title + "</h3></div>";
-							popup_content += "<div class='elgg-body'>" + description + "</div>";
-							popup_content += "</div></div>";
+							var popup_content = "<div class='hidden'>";
+							popup_content += "<div id='" + popup_id + "' class='elgg-module elgg-module-info elgg-module-rss-popup'>";
+							popup_content += "<div class='elgg-head'><h3>";
+							popup_content += "<a href='" + item.link + "' target='_blank'>" + item.title + "</a>";
+							popup_content += "</h3></div>";
+							popup_content += "<div class='elgg-body'>";
+							popup_content += description;
+							popup_content += "<a href='" + item.link + "' target='_blank' class='mls'>" + elgg.echo('widget_pack:readmore') + "</a>";
+							popup_content += "</div>"; // end content
+							popup_content += "</div>"; // end module
+							popup_content += "</div>"; // end wrapper
 							
 							popup_content = popup_content.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1<br />$2');
 							$("body").append(popup_content);

@@ -176,10 +176,36 @@ foreach ($feed_data['items'] as $index => $item) {
 			'text' => $title_text,
 			'href' => 'javascript:return void(0);',
 			'class' => 'elgg-lightbox',
-			'data-colorbox-opts' => '{"inline": true, "href": "#' . $id . '", "innerWidth": 600}',
+			'data-colorbox-opts' => json_encode([
+				'inline' => true,
+				'href' => "#{$id}",
+				'innerWidth' => 600,
+			]),
 		]);
 		
-		$module = elgg_view_module('rss-popup', elgg_extract('title', $item), $icon . nl2br(elgg_extract('content', $item)), [
+		// lightbox title
+		$module_title = elgg_view('output/url', [
+			'text' => $title_text,
+			'href' => $href,
+			'target' => '_blank',
+		]);
+		
+		// lightbox content
+		$module_content = elgg_extract('content', $item);
+		$module_content .= elgg_view('output/url', [
+			'text' => elgg_echo('widget_pack:readmore'),
+			'href' => $href,
+			'target' => '_blank',
+			'class' => 'mls',
+		]);
+		
+		$module_text = $icon;
+		$module_text .= elgg_view('output/longtext', [
+			'value' => $module_content,
+		]);
+		
+		// lightbox
+		$module = elgg_view_module('rss-popup', $module_title, $module_text, [
 			'id' => $id,
 			'class' => 'elgg-module-info',
 		]);
@@ -194,7 +220,12 @@ foreach ($feed_data['items'] as $index => $item) {
 	}
 	
 	if ($excerpt) {
-		$content .= elgg_format_element('div', ['class' => 'elgg-content'], $icon . elgg_view('output/longtext', ['value' => elgg_extract('excerpt', $item)]));
+		$content .= elgg_format_element('div', [
+			'class' => 'elgg-content',
+		], $icon . elgg_view('output/longtext', [
+				'value' => elgg_extract('excerpt', $item),
+			])
+		);
 	}
 	
 	if ($post_date) {

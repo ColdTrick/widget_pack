@@ -4,7 +4,9 @@ return [
 
 	'widget_pack:settings:disable_free_html_filter' => "Disable HTML filtering for Free HTML widgets on index (ADMIN ONLY)",
 	'widgets:not_configured' => "This widget is not yet configured",
-		
+	
+	'widget_pack:readmore' => "Read more",
+	
 	// index_login
 	'widgets:index_login:description' => "Show a login box",
 	'widgets:index_login:welcome' => "<b>%s</b> welcome on the <b>%s</b> community",

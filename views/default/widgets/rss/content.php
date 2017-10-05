@@ -37,5 +37,15 @@ echo elgg_format_element('div', [
 	'data-show-item-icon' => $show_item_icon,
 	'data-show-in-lightbox' => $show_in_lightbox,
 ]);
+echo elgg_format_element('div', [
+// 	'id' => 'widget-rss-' . $widget->guid,
+	'data-feed-url' => $feed_url,
+	'data-limit' => $limit,
+	'data-post-date' => $post_date,
+	'data-show-feed-title' => $show_feed_title,
+	'data-show-excerpt' => $excerpt,
+	'data-show-item-icon' => $show_item_icon,
+	'data-show-in-lightbox' => $show_in_lightbox,
+]);
 
 echo elgg_format_element('script', [], 'require(["widgets/rss"], function (rss) { rss("#widget-rss-' . $widget->guid . '"); });');

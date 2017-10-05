@@ -1,10 +1,11 @@
 <?php
 /**
- * This file was created by Translation Editor v5.1
- * On 2016-09-16 08:30
+ * This file was created by Translation Editor v6.0
+ * On 2017-10-05 12:06
  */
 
 return array (
+  'widget_pack:readmore' => 'Lees meer',
   'widget_pack:settings:disable_free_html_filter' => 'Schakel HTML filtering voor vrije HTML widgets uit op de voorpagina (ADMIN ONLY)',
   'widgets:rss_server:name' => 'RSS Feed',
   'widgets:rss_server:description' => 'Toon een RSS feed (server side ophalen)',
