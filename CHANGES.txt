@@ -1,6 +1,10 @@
 Version history
 ===============
 
+1.3 (2017-10-19):
+
+- added: read more link in RSS lightbox
+
 1.2.1 (2017-10-04):
 
 - fixed: fatal exception on PHP7
