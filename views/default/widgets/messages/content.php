@@ -7,10 +7,7 @@ if (!elgg_is_logged_in()) {
 
 $widget = elgg_extract('entity', $vars);
 	
-$max_messages = sanitise_int($widget->max_messages, false);
-if (empty($max_messages)) {
-	$max_messages = 5;
-}
+$max_messages = sanitise_int($widget->max_messages, false) ?: 5;
 
 $options = [
 	'type' => 'object',
@@ -25,7 +22,7 @@ if ($widget->only_unread != 'no') {
 	$options['metadata_name_value_pairs']['readYet'] = 0;
 }
 
-$messages = elgg_get_entities_from_metadata($options);
+$messages = elgg_get_entities($options);
 if ($messages) {
 	$list = '';
 	foreach ($messages as $message) {
@@ -57,6 +54,6 @@ if ($messages) {
 }
 
 echo elgg_format_element('div', ['class' => 'elgg-widget-more'], elgg_view('output/url', [
-	'href' => 'messages/compose',
+	'href' => elgg_generate_url('add:object:messages'),
 	'text' => elgg_echo('messages:add'),
 ]));

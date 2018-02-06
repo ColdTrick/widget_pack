@@ -30,7 +30,7 @@ switch ($like_type) {
 		// liked by user
 		
 		$options['annotation_owner_guids'] = [$widget->owner_guid];
-		$entities = elgg_get_entities_from_annotations($options);
+		$entities = elgg_get_entities($options);
 		break;
 	case 'most_liked':
 		// most liked in specific container

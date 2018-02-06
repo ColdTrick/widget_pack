@@ -17,7 +17,8 @@ echo elgg_format_element('script', [], 'require(["widgets/user_search"]);');
 $q = sanitise_string(get_input('q'));
 
 echo elgg_view('input/form', [
-	'body' => elgg_view('input/text', [
+	'body' => elgg_view_field([
+		'#type' => 'text',
 		'name' => 'q',
 		'title' => elgg_echo('search'),
 		'value' => $q,
@@ -37,11 +38,8 @@ $result = [];
 $dbprefix = elgg_get_config('dbprefix');
 $hidden = access_show_hidden_entities(true);
 
-$entities = elgg_get_entities_from_relationship([
+$entities = elgg_search([
 	'type' => 'user',
-	'relationship' => 'member_of_site',
-	'relationship_guid' => elgg_get_site_entity()->getGUID(),
-	'inverse_relationship' => true,
 	'joins' => ["JOIN {$dbprefix}users_entity ue ON e.guid = ue.guid"],
 	'wheres' => ["((ue.username LIKE '%{$q}%') OR (ue.email LIKE '%{$q}%') OR (ue.name LIKE '%{$q}%'))"],
 ]);

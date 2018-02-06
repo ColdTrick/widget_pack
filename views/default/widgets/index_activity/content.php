@@ -1,10 +1,7 @@
 <?php
 $widget = elgg_extract('entity', $vars);
 
-$count = sanitise_int($widget->activity_count, false);
-if (empty($count)) {
-	$count = 10;
-}
+$count = sanitise_int($widget->activity_count, false) ?: 10;
 
 $activity_content = $widget->activity_content;
 if ($activity_content) {

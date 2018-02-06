@@ -1,24 +1,22 @@
 <?php
 
+use Elgg\Database\QueryBuilder;
+use Elgg\Database\Clauses\OrderByClause;
+
 $widget = elgg_extract('entity', $vars);
 
-$count = sanitise_int($widget->member_count, false);
-if (empty($count)) {
-	$count = 8;
-}
+$count = sanitise_int($widget->member_count, false) ?: 8;
 
 $options = [
 	'type' => 'user',
 	'limit' => $count,
-	'relationship' => 'member_of_site',
-	'relationship_guid' => elgg_get_site_entity()->getGUID(),
-	'inverse_relationship' => true,
-	'wheres' => ['ue.last_action >= ' . (time() - 600)],
-	'joins' => ['JOIN ' . elgg_get_config('dbprefix') . 'users_entity ue ON e.guid = ue.guid'],
-	'order_by' => 'ue.last_action desc',
+	'wheres' => [function(QueryBuilder $qb) {
+		return $qb->compare('e.last_action', '>=', (time() - 600), ELGG_VALUE_INTEGER);
+	}],
+	'order_by' => [new OrderByClause('last_action', 'desc')],
 	'full_view' => false,
 	'pagination' => false,
-	'list_type' => 'users',
+	'list_type' => 'gallery',
 	'gallery_class' => 'elgg-gallery-users',
 	'size' => 'small',
 	'no_results' => elgg_echo('widgets:index_members_online:no_result'),
@@ -28,4 +26,4 @@ if ($widget->user_icon == 'yes') {
 	$options['metadata_name'] = 'icontime';
 }
 
-echo elgg_list_entities_from_relationship($options);
+echo elgg_list_entities($options);

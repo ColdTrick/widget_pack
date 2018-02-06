@@ -27,13 +27,14 @@ foreach ($entity_stats as $k => $entry) {
 			}
 		}
 		
-		$options_values[$a] = $key;
+		$options_values[$key] = $a;
 	}
 }
 
-echo elgg_view_input('checkboxes', [
+echo elgg_view_field([
+	'#type' => 'checkboxes',
+	'#label' => elgg_echo('widgets:entity_statistics:settings:selected_entities'),
 	'name' => 'params[selected_entities]',
-	'label' => elgg_echo('widgets:entity_statistics:settings:selected_entities'),
-	'options' => $options_values,
+	'options_values' => $options_values,
 	'value' => $widget->selected_entities,
 ]);

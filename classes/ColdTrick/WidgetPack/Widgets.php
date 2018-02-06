@@ -42,7 +42,7 @@ class Widgets {
 			return;
 		}
 		
-		if (elgg_get_plugin_setting('disable_free_html_filter', 'widget_pack') !== 'yes') {
+		if (elgg_get_plugin_setting('disable_free_html_filter', 'widget_pack') == 'no') {
 			return;
 		}
 		
@@ -117,20 +117,17 @@ class Widgets {
 		
 		switch($widget->handler) {
 			case 'index_activity':
-				return '/activity';
-				break;
+				return elgg_generate_url('default:river');
 			case 'messages':
 				$user = elgg_get_logged_in_user_entity();
 				if ($user) {
-					return '/messages/inbox/' . $user->username;
+					return elgg_generate_url('collection:object:messages:owner', [
+						'username' => $user->username,
+					]);
 				}
-				break;
 			case 'index_members_online':
 			case 'index_members':
-				if (elgg_is_active_plugin('members')) {
-					return '/members';
-				}
-				break;
+				return elgg_generate_url('collection:user:user');
 		}
 	}
 	
