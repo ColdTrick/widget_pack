@@ -4,10 +4,7 @@ $widget = elgg_extract('entity', $vars);
 
 $feed_url = $widget->rssfeed;
 
-$limit = $widget->rss_count;
-if (empty($limit)) {
-	$limit = 4;
-}
+$limit = $widget->rss_count ?: 4;
 
 $post_date = ($widget->post_date !== 'no');
 $show_feed_title = ($widget->show_feed_title == 'yes');
@@ -48,4 +45,4 @@ echo elgg_format_element('div', [
 	'data-show-in-lightbox' => $show_in_lightbox,
 ]);
 
-echo elgg_format_element('script', [], 'require(["widgets/rss"], function (rss) { rss("#widget-rss-' . $widget->guid . '"); });');
+echo elgg_format_element('script', [], 'require(["widgets/rss/content"], function (rss) { rss("#widget-rss-' . $widget->guid . '"); });');

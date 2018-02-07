@@ -17,6 +17,10 @@ return [
 		],
 	],
 	'widgets' => [
+		'content_by_tag' => [
+			'context' => ['profile', 'dashboard', 'index', 'groups'],
+			'multiple' => true,
+		],
 		'entity_statistics' => [
 			'context' => ['index'],
 		],
@@ -24,27 +28,7 @@ return [
 			'context' => ['profile', 'dashboard', 'index', 'groups'],
 			'multiple' => true,
 		],
-		'index_login' => [
-			'name' => elgg_echo('login'),
-			'context' => ['index'],
-		],
-// 		'likes' => [
-// 			'context' => ['index', 'groups', 'profile', 'dashboard'],
-// 			'multiple' => true,
-// 		],
 		'iframe' => [
-			'context' => ['profile', 'dashboard', 'index', 'groups'],
-			'multiple' => true,
-		],
-		'rss' => [
-			'context' => ['profile', 'dashboard', 'index', 'groups'],
-			'multiple' => true,
-		],
-		'rss_server' => [
-			'context' => ['index'],
-			'multiple' => true,
-		],
-		'content_by_tag' => [
 			'context' => ['profile', 'dashboard', 'index', 'groups'],
 			'multiple' => true,
 		],
@@ -57,17 +41,36 @@ return [
 			'context' => ['index'],
 			'multiple' => true,
 		],
-		'twitter_search' => [
-			'context' => ['profile', 'dashboard', 'index', 'groups'],
+		'index_login' => [
+			'name' => elgg_echo('login'),
+			'context' => ['index'],
+		],
+		'index_members' => [
+			'context' => ['index'],
 			'multiple' => true,
 		],
 		'index_members_online' => [
 			'context' => ['index'],
 			'multiple' => true,
 		],
-		'index_members' => [
+// 		'likes' => [
+// 			'context' => ['index', 'groups', 'profile', 'dashboard'],
+// 			'multiple' => true,
+// 		],
+		'rss' => [
+			'context' => ['profile', 'dashboard', 'index', 'groups'],
+			'multiple' => true,
+		],
+		'rss_server' => [
 			'context' => ['index'],
 			'multiple' => true,
+		],
+		'twitter_search' => [
+			'context' => ['profile', 'dashboard', 'index', 'groups'],
+			'multiple' => true,
+		],
+		'user_search' => [
+			'context' => ['admin'],
 		],
 	],
 ];

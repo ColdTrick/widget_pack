@@ -2,56 +2,59 @@
 
 $widget = elgg_extract('entity', $vars);
 
-$rss_count = sanitise_int($widget->rss_count, false);
-if (empty($rss_count)) {
-	$rss_count = 4;
-}
-
-$yesno_options = [
-	'yes' => elgg_echo('option:yes'),
-	'no' => elgg_echo('option:no'),
-];
-
-$noyes_options = array_reverse($yesno_options);
-
-echo elgg_view_input('text', [
+echo elgg_view_field([
+	'#type' => 'text',
+	'#label' => elgg_echo('widgets:rss:settings:rssfeed'),
 	'name' => 'params[rssfeed]',
-	'label' => elgg_echo('widgets:rss:settings:rssfeed'),
 	'value' => $widget->rssfeed,
 ]);
 
-echo elgg_view_input('select', [
-	'name' => 'params[rss_count]',
+echo elgg_view('object/widget/edit/num_display', [
+	'name' => 'rss_count',
 	'label' => elgg_echo('widgets:rss:settings:rss_count'),
-	'value' => $rss_count,
-	'options' => range(1,10),
+	'entity' => $widget,
+	'default' => 4,
+	'min' => 1,
+	'max' => 10,
 ]);
 
-echo elgg_view_input('select', [
+echo elgg_view_field([
+	'#type' => 'checkbox',
+	'#label' => elgg_echo('widgets:rss:settings:excerpt'),
 	'name' => 'params[excerpt]',
-	'label' => elgg_echo('widgets:rss:settings:excerpt'),
-	'value' => $widget->excerpt,
-	'options_values' => $yesno_options,
+	'checked' => $widget->excerpt !== 'no',
+	'default' => 'no',
+	'value' => 'yes',
+	'switch' => true,
 ]);
 
-echo elgg_view_input('select', [
+echo elgg_view_field([
+	'#type' => 'checkbox',
+	'#label' => elgg_echo('widgets:rss:settings:show_item_icon'),
 	'name' => 'params[show_item_icon]',
-	'label' => elgg_echo('widgets:rss:settings:show_item_icon'),
-	'value' => $widget->show_item_icon,
-	'options_values' => $noyes_options,
+	'checked' => $widget->show_item_icon === 'yes',
+	'default' => 'no',
+	'value' => 'yes',
+	'switch' => true,
 ]);
 
-echo elgg_view_input('select', [
+echo elgg_view_field([
+	'#type' => 'checkbox',
+	'#label' => elgg_echo('widgets:rss:settings:post_date'),
 	'name' => 'params[post_date]',
-	'label' => elgg_echo('widgets:rss:settings:post_date'),
-	'value' => $widget->post_date,
-	'options_values' => $yesno_options,
+	'checked' => $widget->post_date !== 'no',
+	'default' => 'no',
+	'value' => 'yes',
+	'switch' => true,
 ]);
 
-echo elgg_view_input('select', [
+echo elgg_view_field([
+	'#type' => 'checkbox',
+	'#label' => elgg_echo('widgets:rss:settings:show_in_lightbox'),
 	'name' => 'params[show_in_lightbox]',
-	'label' => elgg_echo('widgets:rss:settings:show_in_lightbox'),
-	'value' => $widget->show_in_lightbox,
-	'options_values' => $noyes_options,
+	'checked' => $widget->show_in_lightbox === 'yes',
+	'default' => 'no',
+	'value' => 'yes',
+	'switch' => true,
 ]);
 	

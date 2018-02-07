@@ -68,7 +68,7 @@ return [
 	'widgets:content_by_tag:display_option:normal' => "Normal",
 	'widgets:content_by_tag:display_option:simple' => "Simple",
 	'widgets:content_by_tag:display_option:slim' => "Slim (single line)",
-	'widgets:content_by_tag:highlight_first' => "Number of highlighted items (slim only)",
+	'widgets:content_by_tag:highlight_first' => "Number of highlighted items",
 	'widgets:content_by_tag:show_search_link' => "Show search link",
 	'widgets:content_by_tag:show_search_link:disclaimer' => "Search results may vary from widget content",
 	'widgets:content_by_tag:show_avatar' => "Show user avatar",

@@ -62,7 +62,7 @@ return array (
   'widgets:content_by_tag:display_option:normal' => 'Normaal',
   'widgets:content_by_tag:display_option:simple' => 'Simpel',
   'widgets:content_by_tag:display_option:slim' => 'Klein (enkele regel)',
-  'widgets:content_by_tag:highlight_first' => 'Aantal uitgelichte items (alleen in kleine weergave)',
+  'widgets:content_by_tag:highlight_first' => 'Aantal uitgelichte items',
   'widgets:content_by_tag:show_search_link' => 'Toon zoek link',
   'widgets:content_by_tag:show_search_link:disclaimer' => 'Zoekresultaten kunnen afwijken van de widget inhoud',
   'widgets:content_by_tag:name' => 'Artikelen met tag',

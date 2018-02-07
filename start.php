@@ -27,7 +27,9 @@ function widget_pack_init() {
 	elgg_register_event_handler('cache:flush', 'system', '\ColdTrick\WidgetPack\Widgets::rssServerFlushAllCache');
 	
 	// image slider
-	elgg_define_js('widgets/image_slider/flexslider', ['src' => elgg_get_simplecache_url('flexslider/jquery.flexslider-min.js')]);
+	elgg_define_js('widgets/image_slider/flexslider', [
+		'src' => elgg_get_simplecache_url('flexslider/jquery.flexslider-min.js'),
+	]);
 	elgg_register_simplecache_view('widgets/image_slider/flexslider.css');
 	
 	// messages
@@ -60,6 +62,12 @@ function widget_pack_content_by_tag_get_supported_content() {
 		'questions' => 'question',
 		'static' => 'static',
 	];
+	
+	foreach ($result as $plugin => $subtype) {
+		if (!elgg_is_active_plugin($plugin)) {
+			unset($result[$plugin]);
+		}
+	}
 	
 	return elgg_trigger_plugin_hook('supported_content', 'widgets:content_by_tag', $result, $result);
 }
