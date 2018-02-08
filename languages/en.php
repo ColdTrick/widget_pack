@@ -135,4 +135,10 @@ return [
 	"widgets:iframe:description" => "Show an url in an iframe",
 	"widgets:iframe:settings:iframe_url" => "Enter the iframe URL",
 	"widgets:iframe:settings:iframe_height" => "Enter the (optional) iframe height (in pixels)",
+	
+	// register widget
+	'widgets:register:name' => "Register",
+	'widgets:register:description' => "Show a register box",
+	'widgets:register:loggedout' => "You need to be logged out to use this widget",
+	
 ];

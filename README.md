@@ -28,6 +28,7 @@ Widgets
  - activity
  - image slider
  - community stats
+ - register (shows site registration form)
  
 ### Admin widgets
 

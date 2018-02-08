@@ -57,6 +57,9 @@ return [
 // 			'context' => ['index', 'groups', 'profile', 'dashboard'],
 // 			'multiple' => true,
 // 		],
+		'register' => [
+			'context' => ['index'],
+		],
 		'rss' => [
 			'context' => ['profile', 'dashboard', 'index', 'groups'],
 			'multiple' => true,
