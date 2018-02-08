@@ -59,7 +59,7 @@ class Widgets {
 			
 		$advanced_context = elgg_trigger_plugin_hook('advanced_context', 'widget_manager', ['entity' => $widget], ['index']);
 		if (is_array($advanced_context) && in_array($widget->context, $advanced_context)) {
-			elgg_unregister_plugin_hook_handler('validate', 'input', 'htmlawed_filter_tags');
+			elgg_unregister_plugin_hook_handler('validate', 'input', '_elgg_htmlawed_filter_tags');
 		}
 	}
 	
@@ -148,7 +148,7 @@ class Widgets {
 		}
 		
 		$widget = elgg_extract('widget', $params);
-		if (!elgg_instanceof($widget, 'object', 'widget')) {
+		if (!$widget instanceof \ElggWidget) {
 			return;
 		}
 		
@@ -168,7 +168,6 @@ class Widgets {
 			$widget->widget_id = $matches[1];
 			$data_found = true;
 		}
-		
 		
 		$pattern = '/href=["\']?([^"\'>]+)["\']?/i';
 		$matches = [];
@@ -195,11 +194,11 @@ class Widgets {
 	public static function rssServerFlushCacheOnSave($hook_name, $entity_type, $return_value, $params) {
 	
 		$widget = elgg_extract('widget', $params);
-		if (!elgg_instanceof($widget, 'object', 'widget')) {
+		if (!$widget instanceof \ElggWidget) {
 			return;
 		}
 	
-		if ($widget->handler != 'rss_server') {
+		if ($widget->handler !== 'rss_server') {
 			return;
 		}
 	

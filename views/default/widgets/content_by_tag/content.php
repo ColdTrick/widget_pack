@@ -94,21 +94,21 @@ if (!empty($values)) {
 // }
 
 // excluded tags
-$excluded_values = string_to_tag_array($widget->excluded_tags);
-if ($excluded_values) {
-	// and value_id not in
-	$value_ids = [];
+// $excluded_values = string_to_tag_array($widget->excluded_tags);
+// if ($excluded_values) {
+// 	// and value_id not in
+// 	$value_ids = [];
 	
-	foreach ($excluded_values as $excluded_value) {
-		$value_ids += elgg_get_metastring_id($excluded_value, false);
-	}
+// 	foreach ($excluded_values as $excluded_value) {
+// 		$value_ids += elgg_get_metastring_id($excluded_value, false);
+// 	}
 	
-	if (!empty($values_where)) {
-		$values_where .= ' AND ';
-	}
+// 	if (!empty($values_where)) {
+// 		$values_where .= ' AND ';
+// 	}
 	
-	$values_where .= "e.guid NOT IN (SELECT DISTINCT entity_guid FROM {$dbprefix}metadata WHERE name_id IN (" . implode(",", $name_ids) . ") AND value_id IN (" . implode(",", $value_ids) . "))";
-}
+// 	$values_where .= "e.guid NOT IN (SELECT DISTINCT entity_guid FROM {$dbprefix}metadata WHERE name_id IN (" . implode(",", $name_ids) . ") AND value_id IN (" . implode(",", $value_ids) . "))";
+// }
 
 // owner_guids
 if (!is_array($widget->owner_guids)) {
@@ -141,7 +141,7 @@ if (in_array($display_option, ['slim', 'simple'])) {
 	$options['item_view'] = "widgets/content_by_tag/display/{$display_option}";
 	$options['show_avatar'] = $show_avatar;
 	$options['show_timestamp'] = $show_timestamp;
-	$options['show_highlighted'] = ($index < $num_highlighted);
+// 	$options['show_highlighted'] = ($index < $num_highlighted);
 }
 
 $result = elgg_list_entities($options);

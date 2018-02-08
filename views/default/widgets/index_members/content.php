@@ -2,10 +2,7 @@
 
 $widget = elgg_extract('entity', $vars);
 
-$count = sanitise_int($widget->member_count , false);
-if (empty($count)) {
-	$count = 8;
-}
+$count = sanitise_int($widget->member_count , false) ?: 8;
 
 $options = [
 	'type' => 'user',

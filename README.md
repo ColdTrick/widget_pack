@@ -17,6 +17,7 @@ Widgets
  - Content (blog, file, pages, bookmarks) by tag
  - rss
  - free html
+ - iframe
  - messages
  
 ### Index widgets
