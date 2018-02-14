@@ -16,42 +16,15 @@ $options = [
 	'owner_guid' => elgg_get_logged_in_user_guid(),
 	'full_view' => false,
 	'limit' => $max_messages,
+	'item_view' => 'widgets/messages/item',
+	'no_results' => elgg_echo('messages:nomessages'),
 ];
 
 if ($widget->only_unread != 'no') {
 	$options['metadata_name_value_pairs']['readYet'] = 0;
 }
 
-$messages = elgg_get_entities($options);
-if ($messages) {
-	$list = '';
-	foreach ($messages as $message) {
-		$icon = '';
-		$user = get_user($message->fromId);
-		if (!empty($user)) {
-			$icon = elgg_view_entity_icon($user, 'tiny');
-		}
-
-		if ($message->readYet) {
-			$class = 'message read';
-		} else {
-			$class = 'message unread';
-		}
-		
-		$body = elgg_format_element('div', [], elgg_view('output/url', [
-			'href' => $message->getURL(),
-			'text' => $message->title,
-			'is_trusted' => true,
-		]));
-		$body .= elgg_format_element('div', ['class' => 'elgg-subtext'], elgg_view_friendly_time($message->time_created));
-		
-		$list .= elgg_format_element('li', [], elgg_view_image_block($icon, $body, ['class' => $class]));
-	}
-
-	echo elgg_format_element('ul', ['class' => 'elgg-list'], $list);
-} else {
-	echo elgg_echo('messages:nomessages');
-}
+echo elgg_list_entities($options);
 
 echo elgg_format_element('div', ['class' => 'elgg-widget-more'], elgg_view('output/url', [
 	'href' => elgg_generate_url('add:object:messages'),
