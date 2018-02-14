@@ -44,6 +44,7 @@ $entities = elgg_search([
 	],
 	'partial_match' => true,
 	'query' => $q,
+	'widget' => 'user_search', // used to get info into hook to determine if email is searchable
 ]);
 access_show_hidden_entities($hidden);
 

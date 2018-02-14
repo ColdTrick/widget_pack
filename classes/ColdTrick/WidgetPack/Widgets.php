@@ -2,6 +2,8 @@
 
 namespace ColdTrick\WidgetPack;
 
+use Elgg\Hook;
+
 class Widgets {
 		
 	/**
@@ -221,5 +223,30 @@ class Widgets {
 	
 		$cache_folder = elgg_get_config('dataroot') . 'widgets/rss';
 		delete_directory($cache_folder);
+	}
+	
+	/**
+	 * Expands the allowable searchable fields for the user search widget
+	 *
+	 * @param \Elgg\Hook $hook Hook
+	 *
+	 * @return array
+	 */
+	public static function userSearchByEmail(\Elgg\Hook $hook) {
+		if ($hook->getParam('widget') !== 'user_search') {
+			return;
+		}
+		
+		$value = (array) $hook->getValue();
+		
+		$defaults = [
+			'metadata' => [],
+		];
+		
+		$value = array_merge($defaults, $value);
+		
+		$value['metadata'][] = 'email';
+		
+		return $value;
 	}
 }

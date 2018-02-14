@@ -16,6 +16,7 @@ function widget_pack_init() {
 	elgg_register_plugin_hook_handler('cacheable_handlers', 'widget_manager', '\ColdTrick\WidgetPack\Widgets::getCacheableWidgets');
 	elgg_register_plugin_hook_handler('entity:url', 'object', '\ColdTrick\WidgetPack\Widgets::getTitleURLs');
 	elgg_register_plugin_hook_handler('format', 'friendly:time', '\ColdTrick\WidgetPack\Widgets::rssFriendlyTime');
+	elgg_register_plugin_hook_handler('search:fields', 'user', 'ColdTrick\WidgetPack\Widgets::userSearchByEmail');
 	elgg_register_plugin_hook_handler('view_vars', 'widgets/content_by_tag/display/simple', '\ColdTrick\WidgetPack\Bookmarks::changeEntityURL');
 	elgg_register_plugin_hook_handler('view_vars', 'widgets/content_by_tag/display/slim', '\ColdTrick\WidgetPack\Bookmarks::changeEntityURL');
 	elgg_register_plugin_hook_handler('widget_settings', 'rss_server', '\ColdTrick\WidgetPack\Widgets::rssServerFlushCacheOnSave');
