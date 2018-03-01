@@ -2,7 +2,7 @@
 
 $widget = elgg_extract('entity', $vars);
 
-$cache_location = elgg_get_config('dataroot') . 'widgets/rss';
+$cache_location = elgg_get_cache_path() . 'simplepie';
 if (!file_exists($cache_location)) {
 	mkdir($cache_location, 0755, true);
 }
@@ -14,24 +14,19 @@ if (empty($feed_url)) {
 	return;
 }
 
-$rss_cachetimeout = sanitise_int($widget->rss_cachetimeout, false);
-if (empty($rss_cachetimeout)) {
-	$rss_cachetimeout = 3600;
-}
+$rss_cachetimeout = sanitise_int($widget->rss_cachetimeout, false) ?: 3600;
 
 // check local cached data
-$feed_data = false;
-$cache_file = $cache_location . '/' . $widget->getGUID() . '.json';
-if (file_exists($cache_file) && filemtime($cache_file) >= (time() - $rss_cachetimeout)) {
-	$raw_feed_data = file_get_contents($cache_file);
-	
-	elgg_log('Reading RSS server widget content from cache', 'INFO');
-	$feed_data = @json_decode($raw_feed_data, true);
+$cache_key = "rss_cache_{$widget->guid}";
+$feed_data = elgg_load_system_cache($cache_key);
+
+$cache_ts = elgg_extract('cache_ts', $feed_data, 0);
+if ($cache_ts < (time() - $rss_cachetimeout)) {
+	$feed_data = false;
 }
 
 // did we have cached data
 if (empty($feed_data)) {
-
 	$limit = (int) $widget->rss_count;
 	if ($limit < 1) {
 		$limit = 4;
@@ -50,7 +45,7 @@ if (empty($feed_data)) {
 		'title_href' => $feed->get_permalink(),
 		'items' => [],
 	];
-	
+		
 	foreach ($feed->get_items(0, $limit) as $index => $item) {
 		$feed_item = [
 			'title' => $item->get_title(),
@@ -91,8 +86,8 @@ if (empty($feed_data)) {
 	}
 	
 	// write to cache
-	file_put_contents($cache_file, json_encode($feed_data));
-	elgg_log('Writing RSS server widget cache file', 'INFO');
+	$feed_data['cache_ts'] = time();
+	elgg_save_system_cache($cache_key, $feed_data);
 	
 	// cleanup
 	unset($feed);

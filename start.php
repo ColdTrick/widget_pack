@@ -19,14 +19,11 @@ function widget_pack_init() {
 	elgg_register_plugin_hook_handler('search:fields', 'user', 'ColdTrick\WidgetPack\Widgets::userSearchByEmail');
 	elgg_register_plugin_hook_handler('view_vars', 'widgets/content_by_tag/display/simple', '\ColdTrick\WidgetPack\Bookmarks::changeEntityURL');
 	elgg_register_plugin_hook_handler('view_vars', 'widgets/content_by_tag/display/slim', '\ColdTrick\WidgetPack\Bookmarks::changeEntityURL');
-	elgg_register_plugin_hook_handler('widget_settings', 'rss_server', '\ColdTrick\WidgetPack\Widgets::rssServerFlushCacheOnSave');
 	elgg_register_plugin_hook_handler('widget_settings', 'twitter_search', '\ColdTrick\WidgetPack\Widgets::twitterSearchGetWidgetID');
 	
 	elgg_extend_view('css/elgg', 'widgets/rss/content.css');
 	elgg_extend_view('css/elgg', 'widgets/rss_server/content.css');
-	
-	elgg_register_event_handler('cache:flush', 'system', '\ColdTrick\WidgetPack\Widgets::rssServerFlushAllCache');
-	
+		
 	// image slider
 	elgg_define_js('widgets/image_slider/flexslider', [
 		'src' => elgg_get_simplecache_url('flexslider/jquery.flexslider-min.js'),

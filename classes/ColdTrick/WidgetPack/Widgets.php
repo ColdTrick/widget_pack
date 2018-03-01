@@ -184,48 +184,6 @@ class Widgets {
 	}
 	
 	/**
-	 * Listen to the widget settings save of the RSS server widget
-	 *
-	 * @param string $hook_name    name of the hook
-	 * @param string $entity_type  type of the hook
-	 * @param bool   $return_value current return value
-	 * @param array  $params       hook parameters
-	 *
-	 * @return void
-	 */
-	public static function rssServerFlushCacheOnSave($hook_name, $entity_type, $return_value, $params) {
-	
-		$widget = elgg_extract('widget', $params);
-		if (!$widget instanceof \ElggWidget) {
-			return;
-		}
-	
-		if ($widget->handler !== 'rss_server') {
-			return;
-		}
-	
-		$cache_file = elgg_get_config('dataroot') . 'widgets/rss/' . $widget->getGUID() . '.json';
-		if (file_exists($cache_file)) {
-			unlink($cache_file);
-		}
-	}
-	
-	/**
-	 * Flush all RSS server widgets cache files
-	 *
-	 * @param string $event  the name of the event
-	 * @param string $type   the type of the event
-	 * @param mixed  $object supplied object
-	 *
-	 * @return void
-	 */
-	public static function rssServerFlushAllCache($event, $type, $object) {
-	
-		$cache_folder = elgg_get_config('dataroot') . 'widgets/rss';
-		delete_directory($cache_folder);
-	}
-	
-	/**
 	 * Expands the allowable searchable fields for the user search widget
 	 *
 	 * @param \Elgg\Hook $hook Hook
