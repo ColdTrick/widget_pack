@@ -108,14 +108,12 @@ if ($widget->order_by == 'alpha') {
 }
 
 if (in_array($display_option, ['slim', 'simple'])) {
-	$num_highlighted = (int) $widget->highlight_first;
 	$show_avatar = ($widget->show_avatar !== 'no');
 	$show_timestamp = ($widget->show_timestamp !== 'no');
 	
 	$options['item_view'] = "widgets/content_by_tag/display/{$display_option}";
 	$options['show_avatar'] = $show_avatar;
 	$options['show_timestamp'] = $show_timestamp;
-// 	$options['show_highlighted'] = ($index < $num_highlighted);
 }
 
 $result = elgg_list_entities($options);

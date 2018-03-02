@@ -106,15 +106,6 @@ echo elgg_view_field([
 $display_options = '';
 
 $content = elgg_view_field([
-	'#type' => 'number',
-	'#label' => elgg_echo('widgets:content_by_tag:highlight_first'),
-	'name' => 'params[highlight_first]',
-	'value' => $widget->highlight_first,
-]);
-
-$display_options .= elgg_format_element('div', ['class' => 'widgets-content-by-tag-display-options-slim'], $content);
-
-$content = elgg_view_field([
 	'#type' => 'checkbox',
 	'#label' => elgg_echo('widgets:content_by_tag:show_avatar'),
 	'name' => 'params[show_avatar]',

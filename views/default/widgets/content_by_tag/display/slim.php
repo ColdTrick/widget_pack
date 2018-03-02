@@ -3,7 +3,6 @@
  * Show the slim (single line) version of an entity
  *
  * @uses $vars['entity']           the entity to show, should be an instance of ElggObject
- * @uses $vars['show_highlighted'] show this entity as highlighted (default: false)
  * @uses $vars['show_timestamp']   show the entity timestamp (default: true)
  * @uses $vars['entity_timestamp'] the entity timestamp to show (default: time_created)
  * @uses $vars['entity_url']       the entity url to show (default: $entity->getURL())
@@ -11,11 +10,6 @@
 
 $entity = elgg_extract('entity', $vars);
 if (!($entity instanceof ElggObject)) {
-	return;
-}
-
-if ((bool) elgg_extract('show_highlighted', $vars, false)) {
-	echo elgg_view('widgets/content_by_tag/display/slim_highlighted', $vars);
 	return;
 }
 
