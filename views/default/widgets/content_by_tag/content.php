@@ -13,7 +13,8 @@ $count = sanitise_int($widget->content_count, false) ?: 8;
 
 $object_subtypes = $widget->content_type;
 if (empty($object_subtypes)) {
-	$object_subtypes = array_shift(widget_pack_content_by_tag_get_supported_content());
+	$supported_types = widget_pack_content_by_tag_get_supported_content();
+	$object_subtypes = array_shift($supported_types);
 }
 
 $tags_option = $widget->tags_option;
