@@ -1,5 +1,9 @@
 <?php
 
+use Elgg\Database\QueryBuilder;
+use Elgg\Database\Clauses\JoinClause;
+use Elgg\Database\Clauses\MetadataWhereClause;
+
 $widget = elgg_extract('entity', $vars);
 $result = '';
 
@@ -17,12 +21,16 @@ if (!in_array($tags_option,['and', 'or'])) {
 	$tags_option = 'and';
 }
 
+$tag_names = elgg_extract('tag_names', $vars, ['tags', 'universal_categories']);
+
 $options = [
 	'type' => 'object',
 	'subtypes' => $object_subtypes,
 	'limit' => $count,
 	'full_view' => false,
 	'pagination' => false,
+	'wheres' => [],
+	'joins' => [],
 	'preload_owners' => true,
 	'preload_containers' => true,
 ];
@@ -30,85 +38,51 @@ $options = [
 // do not include container object in results
 $container = $widget->getContainerEntity();
 if ($container instanceof \ElggObject) {
-	$options['wheres'] = [
-		function(QueryBuilder $qb) {
-			return $qb->compare('e.guid', '!=', $container->guid, ELGG_VALUE_INTEGER);
-		},
-	];
+	$options['wheres'][] = function(QueryBuilder $qb) {
+		return $qb->compare('e.guid', '!=', $container->guid, ELGG_VALUE_INTEGER);
+	};
 }
 
 $values = string_to_tag_array($widget->tags);
-
 if (!empty($values)) {
-	$options['metadata_names'] = ['tags', 'universal_categories'];
-	$options['metadata_values'] = $values;
+	$options['metadata_name_value_pairs'] = [];
+	if ($tags_option === 'or') {
+		$options['metadata_name_value_pairs'][] = [
+			'name' => $tag_names,
+			'value' => $values,
+		];
+	} else {
+		foreach($values as $index => $value) {
+			$alias = "tag_where_{$index}";
+			
+			$on = function (QueryBuilder $qb, $joined_alias, $main_alias) {
+				return $qb->compare("$joined_alias.entity_guid", '=', "$main_alias.guid");
+			};
+			
+			$options['joins'][] = new JoinClause(QueryBuilder::TABLE_METADATA, $alias, $on);
+			
+			$options['wheres'][] = function(QueryBuilder $qb) use ($alias, $value, $tag_names) {
+				$md = new MetadataWhereClause();
+				$md->names = $tag_names;
+				$md->values = $value;
+				return $md->prepare($qb, $alias);
+			};
+		}
+	}
 }
 
-
-// get names wheres and joins
-// $names_where = '';
-// $values_where = '';
-
-// $name_ids = [];
-// $names = ['tags', 'universal_categories'];
-
-// foreach ($names as $name) {
-// 	$name_ids[] = elgg_get_metastring_id($name);
-// }
-
-// $values = string_to_tag_array($widget->tags);
-
-// if (!empty($values)) {
-// 	$names_str = implode(',', $name_ids);
-// 	$names_where = "(n_table.name_id IN ($names_str))";
-	
-// 	$value_ids = [];
-// 	foreach ($values as $value) {
-// 		$value_ids[] = elgg_get_metastring_id($value, false);
-// 	}
-	
-// 	$values_where .= '(';
-// 	foreach ($value_ids as $i => $value_id) {
-// 		$value_id = implode(',', $value_id);
-		
-// 		if ($i !== 0) {
-// 			if ($tags_option == 'and') {
-// 				// AND
-				
-// 				if ($i > 2) {
-// 					// max 3 ANDs
-// 					break;
-// 				}
-				
-// 				$joins[] = "JOIN {$dbprefix}metadata n_table{$i} on e.guid = n_table{$i}.entity_guid";
-				
-// 				$values_where .= " AND (n_table{$i}.name_id IN ($names_str) AND n_table{$i}.value_id IN ({$value_id}))";
-// 			} else {
-// 				$values_where .= " OR (n_table.value_id IN ({$value_id}))";
-// 			}
-// 		} else {
-// 			$values_where .= "(n_table.value_id IN ({$value_id}))";
-// 		}
-// 	}
-// 	$values_where .= ')';
-// }
-
 // excluded tags
-// $excluded_values = string_to_tag_array($widget->excluded_tags);
-// if ($excluded_values) {
-// 	// and value_id not in
-// 	$value_ids = [];
-	
-// 	foreach ($excluded_values as $excluded_value) {
-// 		$value_ids += elgg_get_metastring_id($excluded_value, false);
-// 	}
-	
-// 	if (!empty($values_where)) {
-// 		$values_where .= ' AND ';
-// 	}
-	
-// 	$values_where .= "e.guid NOT IN (SELECT DISTINCT entity_guid FROM {$dbprefix}metadata WHERE name_id IN (" . implode(",", $name_ids) . ") AND value_id IN (" . implode(",", $value_ids) . "))";
-// }
+$excluded_values = string_to_tag_array($widget->excluded_tags);
+if ($excluded_values) {
+	$options['wheres'][] = function(QueryBuilder $qb, $main_alias) use ($tag_names, $excluded_values) {
+		$subquery = $qb->subquery('metadata', 'ex_tags');
+		$subquery->select('DISTINCT entity_guid')
+			->where($qb->compare('ex_tags.name', 'IN', $tag_names, ELGG_VALUE_STRING))
+			->andWhere($qb->compare('ex_tags.value', 'IN', $excluded_values, ELGG_VALUE_STRING));
+
+		return $qb->compare("{$main_alias}.guid", "NOT IN", $subquery->getSQL());
+	};
+}
 
 // owner_guids
 if (!is_array($widget->owner_guids)) {
