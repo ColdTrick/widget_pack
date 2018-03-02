@@ -107,6 +107,7 @@ if ($widget->order_by == 'alpha') {
 	];
 }
 
+$display_option = $widget->display_option;
 if (in_array($display_option, ['slim', 'simple'])) {
 	$show_avatar = ($widget->show_avatar !== 'no');
 	$show_timestamp = ($widget->show_timestamp !== 'no');
@@ -114,6 +115,7 @@ if (in_array($display_option, ['slim', 'simple'])) {
 	$options['item_view'] = "widgets/content_by_tag/display/{$display_option}";
 	$options['show_avatar'] = $show_avatar;
 	$options['show_timestamp'] = $show_timestamp;
+	$options['item_class'] = "widgets-content-by-tag-{$display_option}";
 }
 
 $result = elgg_list_entities($options);

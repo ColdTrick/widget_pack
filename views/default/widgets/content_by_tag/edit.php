@@ -115,7 +115,7 @@ $content = elgg_view_field([
 	'switch' => true,
 ]);
 
-$display_options .= elgg_format_element('div', ['class' => 'widgets-content-by-tag-display-options-simple widgets-content-by-tag-display-options-slim'], $content);
+$display_options .= elgg_format_element('div', ['class' => 'widgets-content-by-tag-display-options-simple'], $content);
 
 $content = elgg_view_field([
 	'#type' => 'checkbox',

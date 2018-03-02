@@ -13,9 +13,8 @@ if (!($entity instanceof ElggObject)) {
 	return;
 }
 
-$text = '';
+$title = '';
 if ((bool) elgg_extract('show_timestamp', $vars, true)) {
-	
 	$entity_timestamp = (int) elgg_extract('entity_timestamp', $vars, $entity->time_created);
 	
 	$year = date('Y', $entity_timestamp);
@@ -27,14 +26,19 @@ if ((bool) elgg_extract('show_timestamp', $vars, true)) {
 	$short_day = elgg_echo("date:weekday:short:{$day_of_the_week}");
 	$time = date('G:i:s', $entity_timestamp);
 	
-	$text .= elgg_format_element('span', ['title' => "{$short_day}, {$short_month} {$year} {$time}"], $short_month);
-	$text .= ' - ';
+	$title .= elgg_format_element('span', ['title' => "{$short_day}, {$short_month} {$year} {$time}"], $short_month);
+	$title .= ' - ';
 }
 
-$text .= elgg_view('output/url', [
+$title .= elgg_view('output/url', [
+	'text' => elgg_get_excerpt($entity->getDisplayName(), 100),
 	'href' => elgg_extract('entity_url', $vars, $entity->getURL()),
-	'text' => $entity->getDisplayName(),
-	'is_trusted' => true,
 ]);
 
-echo elgg_format_element('div', [], $text);
+echo elgg_view('object/elements/summary', [
+	'entity' => $entity,
+	'title' => $title,
+	'tags' => false,
+	'metadata' => false,
+	'subtitle' => false,
+]);

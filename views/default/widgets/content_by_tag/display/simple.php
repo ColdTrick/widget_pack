@@ -14,30 +14,32 @@ if (!($entity instanceof ElggObject)) {
 	return;
 }
 
-// simple
-$owner = $entity->getOwnerEntity();
-
 $icon = '';
 if ((bool) elgg_extract('show_avatar', $vars, true)) {
+	$owner = $entity->getOwnerEntity();
 	$icon = elgg_view_entity_icon($owner, 'small');
 }
 
-$text = elgg_view('output/url', [
-	'href' => elgg_extract('entity_url', $vars, $entity->getURL()),
-	'text' => $entity->getDisplayName(),
-	'is_trusted' => true,
-]);
-$text .= elgg_format_element('br');
-$text .= elgg_view('output/url', [
-	'href' => $owner->getURL(),
-	'text' => $owner->getDisplayName(),
-	'is_trusted' => true,
-]);
+$imprint = elgg_view('object/elements/imprint/byline', $vars);
 
 if ((bool) elgg_extract('show_timestamp', $vars, true)) {
-	$friendly_time = elgg_view_friendly_time((int) elgg_extract('entity_timestamp', $vars, $entity->time_created));
-	
-	$text .= elgg_format_element('span', ['class' => 'elgg-quiet mls'], $friendly_time);
+	$vars['time'] = elgg_extract('entity_timestamp', $vars, $entity->time_created);
+	$imprint .= elgg_view('object/elements/imprint/time', $vars);
 }
 
-echo elgg_view_image_block($icon, $text);
+$imprint = elgg_format_element('div', ['class' => 'elgg-listing-imprint'], $imprint);
+
+$subtitle = elgg_format_element('div', [
+	'class' => [
+		'elgg-listing-summary-subtitle',
+		'elgg-subtext',
+	]
+], $imprint);
+
+echo elgg_view('object/elements/summary', [
+	'entity' => $entity,
+	'tags' => false,
+	'metadata' => false,
+	'subtitle' => $subtitle,
+	'icon' => $icon,
+]);
