@@ -39,7 +39,7 @@ $options = [
 // do not include container object in results
 $container = $widget->getContainerEntity();
 if ($container instanceof \ElggObject) {
-	$options['wheres'][] = function(QueryBuilder $qb) {
+	$options['wheres'][] = function(QueryBuilder $qb) use ($container) {
 		return $qb->compare('e.guid', '!=', $container->guid, ELGG_VALUE_INTEGER);
 	};
 }
