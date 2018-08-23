@@ -106,13 +106,14 @@ class Widgets {
 	 * @return string
 	 */
 	public static function getTitleURLs($hook, $type, $return, $params) {
+		
 		if ($return) {
 			// someone else provided already a result
 			return;
 		}
 		
 		$widget = elgg_extract('entity', $params);
-		if (!($widget instanceof \ElggWidget)) {
+		if (!$widget instanceof \ElggWidget) {
 			// not a widget
 			return;
 		}
@@ -130,6 +131,9 @@ class Widgets {
 			case 'index_members_online':
 			case 'index_members':
 				return elgg_generate_url('collection:user:user');
+			case 'friends_of':
+				$owner = $widget->getOwnerEntity();
+				return elgg_generate_url('collection:friends_of:owner', ['username' => $owner->username]);
 		}
 	}
 	

@@ -140,4 +140,8 @@ return [
 	'widgets:register:description' => "Show a register box",
 	'widgets:register:loggedout' => "You need to be logged out to use this widget",
 	
+	// Friends of widget
+	'widgets:friends_of:name' => "Friends of",
+	'widgets:friends_of:description' => "Show who made you a friend",
+	'widgets:friends_of:num_display' => "Number of users to show",
 ];

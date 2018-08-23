@@ -28,6 +28,10 @@ return [
 			'context' => ['profile', 'dashboard', 'index', 'groups'],
 			'multiple' => true,
 		],
+		'friends_of' => [
+			'context' => ['profile', 'dashboard'],
+			'required_plugin' => ['friends'],
+		],
 		'iframe' => [
 			'context' => ['profile', 'dashboard', 'index', 'groups'],
 			'multiple' => true,
