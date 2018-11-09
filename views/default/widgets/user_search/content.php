@@ -28,7 +28,6 @@ echo elgg_view('input/form', [
 		'value' => $widget->guid,
 	]),
 	'class' => 'widget-user-search-form',
-	'onsubmit' => 'return false;',
 	'action' => false,
 ]);
 
