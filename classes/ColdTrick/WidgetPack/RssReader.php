@@ -49,6 +49,11 @@ class RssReader {
 			$curl_options[CURLOPT_PROXYUSERPWD] = $proxy_username;
 		}
 		
+		// disable ssl verification
+		if (elgg_get_plugin_setting('rss_verify_ssl', 'widget_pack') === 'no') {
+			$curl_options[CURLOPT_SSL_VERIFYPEER] = false;
+		}
+		
 		// did we have additional settings
 		if (!empty($curl_options)) {
 			self::$reader->set_curl_options($curl_options);

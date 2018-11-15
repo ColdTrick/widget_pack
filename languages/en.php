@@ -12,6 +12,8 @@ return [
 	'widget_pack:settings:rss:proxy_port' => "Proxy port",
 	'widget_pack:settings:rss:proxy_username' => "Proxy username",
 	'widget_pack:settings:rss:proxy_password' => "Proxy password",
+	'widget_pack:settings:rss:verify_ssl' => "Verify SSL certificate",
+	'widget_pack:settings:rss:verify_ssl:help' => "If you have problems with SSL certificate verification, you can disable it here.",
 	
 	// index_login
 	'widgets:index_login:description' => "Show a login box",

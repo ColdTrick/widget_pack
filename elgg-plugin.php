@@ -11,6 +11,7 @@ return [
 	'bootstrap' => Bootstrap::class,
 	'settings' => [
 		'disable_free_html_filter' => 'no',
+		'rss_verify_ssl' => 'yes',
 	],
 	'views' => [
 		'default' => [

@@ -45,5 +45,15 @@ $rss_server .= elgg_view_field([
 	'value' => $plugin->rss_proxy_password,
 	'always_empty' => false,
 ]);
+$rss_server .= elgg_view_field([
+	'#type' => 'checkbox',
+	'#label' => elgg_echo('widget_pack:settings:rss:verify_ssl'),
+	'#help' => elgg_echo('widget_pack:settings:rss:verify_ssl:help'),
+	'name' => 'params[rss_verify_ssl]',
+	'default' => 'no',
+	'value' => 'yes',
+	'checked' => $plugin->rss_verify_ssl === 'yes',
+	'switch' => true,
+]);
 
 echo elgg_view_module('info', elgg_echo('widget_pack:settings:rss:title'), $rss_server);
