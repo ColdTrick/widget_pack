@@ -1,11 +1,17 @@
 <?php
 
 return [
-
-	'widget_pack:settings:disable_free_html_filter' => "Disable HTML filtering for Free HTML widgets on index (ADMIN ONLY)",
-	'widgets:not_configured' => "This widget is not yet configured",
 	
 	'widget_pack:readmore' => "Read more",
+	
+	// plugin settings
+	'widget_pack:settings:disable_free_html_filter' => "Disable HTML filtering for Free HTML widgets on index (ADMIN ONLY)",
+	'widget_pack:settings:rss:title' => "RSS reader settings",
+	'widget_pack:settings:rss:description' => "Below you can configure a few settings with regards to the RSS server widget reader.",
+	'widget_pack:settings:rss:proxy_host' => "Proxy host",
+	'widget_pack:settings:rss:proxy_port' => "Proxy port",
+	'widget_pack:settings:rss:proxy_username' => "Proxy username",
+	'widget_pack:settings:rss:proxy_password' => "Proxy password",
 	
 	// index_login
 	'widgets:index_login:description' => "Show a login box",
@@ -106,6 +112,7 @@ return [
 	"widgets:entity_statistics:settings:selected_entities" => "Select the entities you wish to show",
 
 	// messages widget
+	"widgets:messages:name" => "Messages",
 	"widgets:messages:description" => "Shows your latest messages",
 	"widgets:messages:not_logged_in" => "You need to be logged in to use this widget",
 	"widgets:messages:settings:only_unread" => "Only show unread messages",

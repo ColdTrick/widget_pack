@@ -1,5 +1,8 @@
 <?php
 
+use ColdTrick\WidgetPack\RssReader;
+
+/* @var $widget ElggWidget */
 $widget = elgg_extract('entity', $vars);
 
 $cache_location = elgg_get_cache_path() . 'simplepie';
@@ -14,7 +17,10 @@ if (empty($feed_url)) {
 	return;
 }
 
-$rss_cachetimeout = sanitise_int($widget->rss_cachetimeout, false) ?: 3600;
+$rss_cachetimeout = (int) $widget->rss_cachetimeout;
+if ($rss_cachetimeout < 1) {
+	$rss_cachetimeout = 3600;
+}
 
 // check local cached data
 $cache_key = "rss_cache_{$widget->guid}";
@@ -33,7 +39,7 @@ if (empty($feed_data)) {
 	}
 	
 	// read the rss from the source
-	$feed = new SimplePie();
+	$feed = RssReader::getReader();
 	$feed->set_feed_url($feed_url);
 	$feed->set_cache_location($cache_location);
 	$feed->set_cache_duration($rss_cachetimeout);

@@ -1,5 +1,6 @@
 <?php
 
+use ColdTrick\WidgetPack\Bootstrap;
 
 $composer_path = '';
 if (is_dir(__DIR__ . '/vendor')) {
@@ -7,6 +8,7 @@ if (is_dir(__DIR__ . '/vendor')) {
 }
 
 return [
+	'bootstrap' => Bootstrap::class,
 	'settings' => [
 		'disable_free_html_filter' => 'no',
 	],
@@ -61,6 +63,10 @@ return [
 // 			'context' => ['index', 'groups', 'profile', 'dashboard'],
 // 			'multiple' => true,
 // 		],
+		'messages' => [
+			'context' => ['dashboard', 'index'],
+			'required_plugin' => ['messages'],
+		],
 		'register' => [
 			'context' => ['index'],
 		],

@@ -1,11 +1,14 @@
 <?php
 
+use ColdTrick\WidgetPack\ContentByTag;
+
+/* @var $widget ElggWidget */
 $widget = elgg_extract('entity', $vars);
 
 $content_type = $widget->content_type;
 
 $content_options_values = [];
-foreach (widget_pack_content_by_tag_get_supported_content() as $plugin => $subtype) {
+foreach (ContentByTag::getSupportedContent() as $plugin => $subtype) {
 	$content_options_values[$subtype] = elgg_echo("item:object:{$subtype}");
 }
 

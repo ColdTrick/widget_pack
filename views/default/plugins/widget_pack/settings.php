@@ -1,4 +1,6 @@
 <?php
+
+/* @var $plugin ElggPlugin */
 $plugin = elgg_extract('entity', $vars);
 
 echo elgg_view_field([
@@ -10,3 +12,38 @@ echo elgg_view_field([
 	'value' => 'yes',
 	'switch' => true,
 ]);
+
+// Rss server settings
+$rss_server = elgg_view('output/longtext', [
+	'value' => elgg_echo('widget_pack:settings:rss:description'),
+]);
+$rss_server .= elgg_view_field([
+	'#type' => 'text',
+	'#label' => elgg_echo('widget_pack:settings:rss:proxy_host'),
+	'name' => 'params[rss_proxy_host]',
+	'value' => $plugin->rss_proxy_host,
+]);
+
+$rss_server .= elgg_view_field([
+	'#type' => 'number',
+	'#label' => elgg_echo('widget_pack:settings:rss:proxy_port'),
+	'name' => 'params[rss_proxy_port]',
+	'value' => $plugin->rss_proxy_port,
+	'min' => 0,
+	'max' => 65535,
+]);
+$rss_server .= elgg_view_field([
+	'#type' => 'text',
+	'#label' => elgg_echo('widget_pack:settings:rss:proxy_username'),
+	'name' => 'params[rss_proxy_username]',
+	'value' => $plugin->rss_proxy_username,
+]);
+$rss_server .= elgg_view_field([
+	'#type' => 'password',
+	'#label' => elgg_echo('widget_pack:settings:rss:proxy_password'),
+	'name' => 'params[rss_proxy_password]',
+	'value' => $plugin->rss_proxy_password,
+	'always_empty' => false,
+]);
+
+echo elgg_view_module('info', elgg_echo('widget_pack:settings:rss:title'), $rss_server);

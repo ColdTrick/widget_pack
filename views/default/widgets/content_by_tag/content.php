@@ -3,7 +3,9 @@
 use Elgg\Database\QueryBuilder;
 use Elgg\Database\Clauses\JoinClause;
 use Elgg\Database\Clauses\MetadataWhereClause;
+use ColdTrick\WidgetPack\ContentByTag;
 
+/* @var $widget ElggWidget */
 $widget = elgg_extract('entity', $vars);
 $result = '';
 
@@ -13,7 +15,7 @@ $count = sanitise_int($widget->content_count, false) ?: 8;
 
 $object_subtypes = $widget->content_type;
 if (empty($object_subtypes)) {
-	$supported_types = widget_pack_content_by_tag_get_supported_content();
+	$supported_types = ContentByTag::getSupportedContent();
 	$object_subtypes = array_shift($supported_types);
 }
 
