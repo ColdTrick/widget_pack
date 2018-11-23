@@ -211,4 +211,21 @@ class Widgets {
 		
 		return $value;
 	}
+	
+	/**
+	 * Invalidate cached data from the rss feed
+	 *
+	 * @param \Elgg\Hook $hook Hook 'widget_settings', 'rss_server'
+	 *
+	 * @return void
+	 */
+	public static function rssServerInvalidateCache(\Elgg\Hook $hook) {
+		
+		$widget = $hook->getParam('widget');
+		if (!$widget instanceof \ElggWidget || $widget->handler !== 'rss_server') {
+			return;
+		}
+		
+		elgg_delete_system_cache("rss_cache_{$widget->guid}");
+	}
 }

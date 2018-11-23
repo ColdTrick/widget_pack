@@ -20,6 +20,8 @@ class Bootstrap extends DefaultPluginBootstrap {
 			'src' => elgg_get_simplecache_url('flexslider/jquery.flexslider-min.js'),
 		]);
 		elgg_register_simplecache_view('widgets/image_slider/flexslider.css');
+		
+		$this->registerPluginHooks();
 	}
 	
 	/**
@@ -30,13 +32,14 @@ class Bootstrap extends DefaultPluginBootstrap {
 	protected function registerPluginHooks() {
 		$hooks = $this->elgg()->hooks;
 		
-		$hook->registerHandler('action', 'widgets/save', __NAMESPACE__ . '\Widgets::disableFreeHTMLInputFilter');
-		$hook->registerHandler('cacheable_handlers', 'widget_manager', __NAMESPACE__ . '\Widgets::getCacheableWidgets');
-		$hook->registerHandler('entity:url', 'object', __NAMESPACE__ . '\Widgets::getTitleURLs');
-		$hook->registerHandler('format', 'friendly:time', __NAMESPACE__ . '\Widgets::rssFriendlyTime');
-		$hook->registerHandler('search:fields', 'user', 'ColdTrick\WidgetPack\Widgets::userSearchByEmail');
-		$hook->registerHandler('view_vars', 'widgets/content_by_tag/display/simple', __NAMESPACE__ . '\Bookmarks::changeEntityURL');
-		$hook->registerHandler('view_vars', 'widgets/content_by_tag/display/slim', __NAMESPACE__ . '\Bookmarks::changeEntityURL');
-		$hook->registerHandler('widget_settings', 'twitter_search', __NAMESPACE__ . '\Widgets::twitterSearchGetWidgetID');
+		$hooks->registerHandler('action', 'widgets/save', __NAMESPACE__ . '\Widgets::disableFreeHTMLInputFilter');
+		$hooks->registerHandler('cacheable_handlers', 'widget_manager', __NAMESPACE__ . '\Widgets::getCacheableWidgets');
+		$hooks->registerHandler('entity:url', 'object', __NAMESPACE__ . '\Widgets::getTitleURLs');
+		$hooks->registerHandler('format', 'friendly:time', __NAMESPACE__ . '\Widgets::rssFriendlyTime');
+		$hooks->registerHandler('search:fields', 'user', __NAMESPACE__ . '\Widgets::userSearchByEmail');
+		$hooks->registerHandler('view_vars', 'widgets/content_by_tag/display/simple', __NAMESPACE__ . '\Bookmarks::changeEntityURL');
+		$hooks->registerHandler('view_vars', 'widgets/content_by_tag/display/slim', __NAMESPACE__ . '\Bookmarks::changeEntityURL');
+		$hooks->registerHandler('widget_settings', 'rss_server', __NAMESPACE__ . '\Widgets::rssServerInvalidateCache');
+		$hooks->registerHandler('widget_settings', 'twitter_search', __NAMESPACE__ . '\Widgets::twitterSearchGetWidgetID');
 	}
 }
