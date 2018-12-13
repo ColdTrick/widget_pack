@@ -32,7 +32,7 @@ class Bootstrap extends DefaultPluginBootstrap {
 	protected function registerPluginHooks() {
 		$hooks = $this->elgg()->hooks;
 		
-		$hooks->registerHandler('action', 'widgets/save', __NAMESPACE__ . '\Widgets::disableFreeHTMLInputFilter');
+		$hooks->registerHandler('action:validate', 'widgets/save', __NAMESPACE__ . '\Widgets::disableFreeHTMLInputFilter');
 		$hooks->registerHandler('cacheable_handlers', 'widget_manager', __NAMESPACE__ . '\Widgets::getCacheableWidgets');
 		$hooks->registerHandler('entity:url', 'object', __NAMESPACE__ . '\Widgets::getTitleURLs');
 		$hooks->registerHandler('format', 'friendly:time', __NAMESPACE__ . '\Widgets::rssFriendlyTime');
