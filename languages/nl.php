@@ -1,10 +1,25 @@
 <?php
 /**
- * This file was created by Translation Editor v6.0
- * On 2017-10-05 12:06
+ * This file was created by Translation Editor v7.0-beta
+ * On 2018-12-14 17:08
  */
 
 return array (
+  'widget_pack:settings:rss:title' => 'RSS reader instellingen',
+  'widget_pack:settings:rss:description' => 'Hieronder kun je een aantal instellingen doen ten behoeve van de RSS server widget.',
+  'widget_pack:settings:rss:proxy_host' => 'Proxy host',
+  'widget_pack:settings:rss:proxy_port' => 'Proxy poort',
+  'widget_pack:settings:rss:proxy_username' => 'Proxy gebruikersnaam',
+  'widget_pack:settings:rss:proxy_password' => 'Proxy wachtwoord',
+  'widget_pack:settings:rss:verify_ssl' => 'Verifieer SSL certificaat',
+  'widget_pack:settings:rss:verify_ssl:help' => 'Indien je de SSL verificatie wilt uitschakelen kan dat hier.',
+  'widgets:messages:name' => 'Inbox',
+  'widgets:register:name' => 'Registreren',
+  'widgets:register:description' => 'Toont een registratie formulier',
+  'widgets:register:loggedout' => 'Je moet zijn uitgelogd om deze widget te kunnen gebruiken',
+  'widgets:friends_of:name' => 'Vrienden van',
+  'widgets:friends_of:description' => 'Toont wie je hebben aangemerkt als vriend',
+  'widgets:friends_of:num_display' => 'Aantal gebruikers om te tonen',
   'widget_pack:readmore' => 'Lees meer',
   'widget_pack:settings:disable_free_html_filter' => 'Schakel HTML filtering voor vrije HTML widgets uit op de voorpagina (ADMIN ONLY)',
   'widgets:rss_server:name' => 'RSS Feed',
@@ -46,7 +61,6 @@ return array (
   'widgets:free_html:name' => 'Vrije HTML',
   'widgets:free_html:description' => 'Geef je eigen HTML inhoud op',
   'widgets:free_html:settings:html_content' => 'Geeft op welke HTML er getoond moet worden',
-  'widgets:not_configured' => 'Deze widget is nog niet geconfigureerd',
   'widgets:rss:name' => 'RSS feed',
   'widgets:rss:description' => 'Toon een RSS feed',
   'widgets:rss:error:notset' => 'Geen RSS feed URL opgegeven',
@@ -80,14 +94,10 @@ return array (
   'widgets:twitter_search:not_configured' => 'Deze widget is nog niet geconfigureerd',
   'widgets:image_slider:name' => 'Image Slider',
   'widgets:image_slider:description' => 'Toon een Image Slider',
-  'widgets:image_slider:seconds_per_slide' => 'Seconden per slide',
-  'widgets:image_slider:slider_height' => 'Hoogte van de slides (pixels)',
-  'widgets:image_slider:overlay_color' => 'Overlay kleur (hex)',
   'widgets:image_slider:title' => 'Slide',
   'widgets:image_slider:label:url' => 'Afbeelding URL',
   'widgets:image_slider:label:text' => 'Tekst',
   'widgets:image_slider:label:link' => 'Link',
-  'widgets:image_slider:label:direction' => 'Richting',
   'widgets:index_login:description' => 'Toon een aanmeld scherm',
   'widgets:index_login:welcome' => '<b>%s</b> welkom op de <b>%s</b> community',
   'widgets:index_members:name' => 'Leden',
@@ -96,7 +106,6 @@ return array (
   'widgets:index_members:no_result' => 'Geen gebruikers gevonden',
   'widgets:index_members_online:name' => 'Online leden',
   'widgets:index_members_online:description' => 'Toon de online leden van je site',
-  'widgets:index_members_online:member_count' => 'Hoeveel leden wil je tonen',
   'widgets:index_members_online:user_icon' => 'Moeten de gebruikers een profielicoon hebben',
   'widgets:index_members_online:no_result' => 'Geen gebruikers gevonden',
   'widgets:index_activity:description' => 'Toon de laatste activiteit van de community',

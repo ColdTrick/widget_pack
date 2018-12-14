@@ -80,7 +80,7 @@ echo '<th>' . elgg_echo('username') . '</th>';
 echo '<th>' . elgg_echo('email') . '</th>';
 echo '<th>' . elgg_echo('validated') . '</th>';
 echo '<th>' . elgg_echo('enabled') . '</th>';
-echo '<th>' . elgg_echo('time_created') . '</th>';
+echo '<th>' . elgg_echo('table_columns:fromView:time_created') . '</th>';
 echo '</tr><tr>';
 echo implode('</tr><tr>', $result);
 echo '</tr></table>';

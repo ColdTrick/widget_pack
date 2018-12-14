@@ -28,7 +28,6 @@ return [
 	// index_memebers_online
 	'widgets:index_members_online:name' => "Online members",
 	'widgets:index_members_online:description' => "Show the online members of your site",
-	'widgets:index_members_online:member_count' => "How many members to show",
 	'widgets:index_members_online:user_icon' => "Must the users have a profileicon",
 	'widgets:index_members_online:no_result' => "No users found",
 
@@ -38,14 +37,10 @@ return [
 	// image_slider
 	'widgets:image_slider:name' => "Image Slider",
 	'widgets:image_slider:description' => "Show an Image Slider",
-	'widgets:image_slider:seconds_per_slide' => "Seconds per slide",
-	'widgets:image_slider:slider_height' => "Height of slides (pixels)",
-	'widgets:image_slider:overlay_color' => "Overlay Color (hex)",
 	'widgets:image_slider:title' => "Slide",
 	'widgets:image_slider:label:url' => "Image url",
 	'widgets:image_slider:label:text' => "Text",
 	'widgets:image_slider:label:link' => "Link",
-	'widgets:image_slider:label:direction' => "Direction",
 
 	// twitter_search
 	'widgets:twitter_search:name' => "Twitter search",
