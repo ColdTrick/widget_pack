@@ -44,12 +44,10 @@ return [
 			'multiple' => true,
 		],
 		'index_activity' => [
-			'name' => elgg_echo('activity'),
 			'context' => ['index'],
 			'multiple' => true,
 		],
 		'index_login' => [
-			'name' => elgg_echo('login'),
 			'context' => ['index'],
 		],
 		'index_members' => [

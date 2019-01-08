@@ -16,6 +16,7 @@ return [
 	'widget_pack:settings:rss:verify_ssl:help' => "If you have problems with SSL certificate verification, you can disable it here.",
 	
 	// index_login
+	'widgets:index_login:name' => "Login",
 	'widgets:index_login:description' => "Show a login box",
 	'widgets:index_login:welcome' => "<b>%s</b> welcome on the <b>%s</b> community",
 
@@ -32,6 +33,7 @@ return [
 	'widgets:index_members_online:no_result' => "No users found",
 
 	// index_activity
+	'widgets:index_activity:name' => "Activity",
 	'widgets:index_activity:description' => "Show the latest activity on your site",
 
 	// image_slider
