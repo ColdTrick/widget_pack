@@ -23,6 +23,7 @@ echo elgg_view_field([
 	'#label' => elgg_echo('widgets:rss:settings:rss_cachetimeout'),
 	'name' => 'params[rss_cachetimeout]',
 	'value' => $widget->rss_cachetimeout,
+	'min' => 0,
 ]);
 
 echo elgg_view_field([
@@ -37,9 +38,19 @@ echo elgg_view_field([
 
 echo elgg_view_field([
 	'#type' => 'checkbox',
+	'#label' => elgg_echo('widgets:rss_server:settings:show_source'),
+	'name' => 'params[show_source]',
+	'checked' => $widget->show_source === 'yes',
+	'default' => 'no',
+	'value' => 'yes',
+	'switch' => true,
+]);
+
+echo elgg_view_field([
+	'#type' => 'checkbox',
 	'#label' => elgg_echo('widgets:rss_server:settings:show_author'),
 	'name' => 'params[show_author]',
-	'checked' => $widget->show_author !== 'no',
+	'checked' => $widget->show_author === 'yes',
 	'default' => 'no',
 	'value' => 'yes',
 	'switch' => true,
@@ -49,7 +60,7 @@ echo elgg_view_field([
 	'#type' => 'checkbox',
 	'#label' => elgg_echo('widgets:rss:settings:excerpt'),
 	'name' => 'params[excerpt]',
-	'checked' => $widget->excerpt !== 'no',
+	'checked' => $widget->excerpt === 'yes',
 	'default' => 'no',
 	'value' => 'yes',
 	'switch' => true,

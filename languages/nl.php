@@ -25,6 +25,7 @@ return array (
   'widgets:rss_server:name' => 'RSS Feed',
   'widgets:rss_server:description' => 'Toon een RSS feed (server side ophalen)',
   'widgets:rss_server:settings:show_author' => 'Toon auteur voor item',
+  'widgets:rss_server:settings:show_source' => 'Toon bron voor item',
   'widgets:iframe:name' => 'Iframe',
   'widgets:iframe:description' => 'Toon een url in een iframe',
   'widgets:iframe:settings:iframe_url' => 'Geef de iframe URL op',

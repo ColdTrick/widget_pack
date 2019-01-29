@@ -58,6 +58,7 @@ if (empty($feed_data)) {
 			'href' => $item->get_permalink(),
 			'icon' => '',
 			'author' => '',
+			'source' => '',
 			'content' => $item->get_content(),
 			'excerpt' => $item->get_description(),
 			'timestamp' => $item->get_date('U'),
@@ -70,6 +71,16 @@ if (empty($feed_data)) {
 					$feed_item['icon_url'] = $enclosure->link;
 					break;
 				}
+			}
+		}
+		
+		$source = $item->get_source();
+		if (!empty($source)) {
+			$feed_item['source'] = $source->get_title();
+		} else {
+			$source_tags = $item->get_item_tags(SIMPLEPIE_NAMESPACE_RSS_20, 'source');
+			if (!empty($source_tags)) {
+				$feed_item['source'] = $item->sanitize($source_tags[0]['data'], SIMPLEPIE_CONSTRUCT_TEXT);
 			}
 		}
 		
@@ -107,19 +118,20 @@ if (empty($feed_data) || empty($feed_data['items'])) {
 
 // get widget settings
 $post_date = ($widget->post_date !== 'no');
-$show_feed_title = ($widget->show_feed_title == 'yes');
-$excerpt = ($widget->excerpt == 'yes');
-$show_item_icon = ($widget->show_item_icon == 'yes');
+$show_feed_title = ($widget->show_feed_title === 'yes');
+$excerpt = ($widget->excerpt === 'yes');
+$show_item_icon = ($widget->show_item_icon === 'yes');
 
 $show_in_lightbox = false;
-if ($widget->show_in_lightbox == 'yes') {
+if ($widget->show_in_lightbox === 'yes') {
 	elgg_load_js('lightbox');
 	elgg_load_css('lightbox');
 
 	$show_in_lightbox = true;
 }
 
-$show_author = ($widget->show_author == 'yes');
+$show_source = ($widget->show_source === 'yes');
+$show_author = ($widget->show_author === 'yes');
 
 // proccess data
 if ($show_feed_title) {
@@ -136,11 +148,8 @@ if ($show_feed_title) {
 }
 
 // proccess items
-echo '<ul class="widget-rss-server-result elgg-list">';
-
+$lis = [];
 foreach ($feed_data['items'] as $index => $item) {
-	echo '<li class="elgg-item">';
-	
 	$title_text = elgg_extract('title', $item);
 	$href = elgg_extract('href', $item);
 	
@@ -160,6 +169,13 @@ foreach ($feed_data['items'] as $index => $item) {
 				'href' => $href,
 				'target' => '_blank',
 			]);
+		}
+	}
+	
+	if ($show_source) {
+		$source = elgg_extract('source', $item);
+		if (!empty($source)) {
+			$title_text .= " ({$source})";
 		}
 	}
 	
@@ -237,10 +253,12 @@ foreach ($feed_data['items'] as $index => $item) {
 		$content .= elgg_format_element('div', ['class' => 'elgg-subtext'], $time);
 	}
 	
-	echo $title;
-	echo $content;
-	
-	echo '</li>';
+	$lis[] = elgg_format_element('li', ['class' => 'elgg-item'], $title . $content);
 }
 
-echo '</ul>';
+if (empty($lis)) {
+	echo elgg_echo('notfound');
+	return;
+}
+
+echo elgg_format_element('ul', ['class' => ['elgg-list', 'widget-rss-server-result']], implode(PHP_EOL, $lis));

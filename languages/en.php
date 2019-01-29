@@ -99,6 +99,7 @@ return [
 	'widgets:rss_server:name' => "RSS Feed",
 	'widgets:rss_server:description' => "Show a RSS feed (fetching it server-side)",
 	'widgets:rss_server:settings:show_author' => "Show item author",
+	'widgets:rss_server:settings:show_source' => "Show item source",
 
 	// Free HTML
 	'widgets:free_html:name' => "Free HTML",
