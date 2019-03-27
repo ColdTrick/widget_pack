@@ -1,6 +1,21 @@
 Version history
 ===============
 
+2.0 (2019-03-27):
+
+- added: friends_of widget
+- added: option to show rss source
+- added: proxy support in rss server widget
+- added: register widget (moved from profile manager)
+- changed: minimal requirement bumped to Elgg 3.0
+- changed: more updates for Elgg 3.0
+- changed: rss_server widgets now use system_cache
+- changed: some small changes for Elgg 3.0
+- changed: updated for Elgg 3
+- fixed: invalidate cache on rss_server widget settings save
+- fixed: user search can process data
+- removed: content_by_tag display options no longer support a highlighted
+
 1.3 (2017-10-19):
 
 - added: read more link in RSS lightbox
