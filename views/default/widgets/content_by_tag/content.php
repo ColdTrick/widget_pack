@@ -36,6 +36,7 @@ $options = [
 	'joins' => [],
 	'preload_owners' => true,
 	'preload_containers' => true,
+	
 ];
 
 // do not include container object in results
@@ -53,6 +54,7 @@ if (!empty($values)) {
 		$options['metadata_name_value_pairs'][] = [
 			'name' => $tag_names,
 			'value' => $values,
+			'case_sensitive' => false,
 		];
 	} else {
 		foreach($values as $index => $value) {
@@ -68,6 +70,7 @@ if (!empty($values)) {
 				$md = new MetadataWhereClause();
 				$md->names = $tag_names;
 				$md->values = $value;
+				$md->case_sensitive = false;
 				return $md->prepare($qb, $alias);
 			};
 		}
