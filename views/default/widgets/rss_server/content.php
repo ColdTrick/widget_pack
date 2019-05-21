@@ -24,7 +24,7 @@ if ($rss_cachetimeout < 1) {
 
 // check local cached data
 $cache_key = "rss_cache_{$widget->guid}";
-$feed_data = elgg_load_system_cache($cache_key);
+// $feed_data = elgg_load_system_cache($cache_key);
 
 $cache_ts = elgg_extract('cache_ts', $feed_data, 0);
 if ($cache_ts < (time() - $rss_cachetimeout)) {
@@ -187,18 +187,6 @@ foreach ($feed_data['items'] as $index => $item) {
 	}
 	
 	if ($show_in_lightbox) {
-		$id = 'widget-rss-server-' . $widget->getGUID() . '-item-' . $index;
-		
-		$title = elgg_view('output/url', [
-			'text' => $title_text,
-			'href' => 'javascript:return void(0);',
-			'class' => 'elgg-lightbox',
-			'data-colorbox-opts' => json_encode([
-				'inline' => true,
-				'href' => "#{$id}",
-				'innerWidth' => 600,
-			]),
-		]);
 		
 		// lightbox title
 		$module_title = elgg_view('output/url', [
@@ -222,12 +210,21 @@ foreach ($feed_data['items'] as $index => $item) {
 		]);
 		
 		// lightbox
-		$module = elgg_view_module('rss-popup', $module_title, $module_text, [
-			'id' => $id,
-			'class' => 'elgg-module-info',
+		$lightbox_content = elgg_view_module('rss-popup', $module_title, $module_text, [
+			'class' => ['elgg-module-info', 'clearfix'],
 		]);
 		
-		$content .= elgg_format_element('div', ['class' => 'hidden'], $module);
+		$title = elgg_view('output/url', [
+			'text' => $title_text,
+			'href' => false,
+			'class' => 'elgg-lightbox',
+			'data-colorbox-opts' => json_encode([
+				'html' => $lightbox_content,
+				'innerWidth' => 600,
+				'fastIframe' => false,
+			]),
+		]);
+		
 	} else {
 		$title = elgg_view('output/url', [
 			'text' => $title_text,

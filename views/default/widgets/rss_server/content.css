@@ -8,6 +8,7 @@
 }
 
 .elgg-module-rss-popup .widgets-rss-server-feed-item-image {
+	height: 150px;
 	max-height: 150px;
 	max-width: 150px;
 }
