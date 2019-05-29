@@ -1,6 +1,10 @@
 Version history
 ===============
 
+2.0.2 (2019-05-29):
+
+- changed: no longer match tags case sensitive in content_by_tag widget
+
 2.0.1 (2019-03-28):
 
 - several small chores/fixes
