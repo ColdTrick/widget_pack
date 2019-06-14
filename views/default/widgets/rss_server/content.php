@@ -24,7 +24,7 @@ if ($rss_cachetimeout < 1) {
 
 // check local cached data
 $cache_key = "rss_cache_{$widget->guid}";
-// $feed_data = elgg_load_system_cache($cache_key);
+$feed_data = elgg_load_system_cache($cache_key);
 
 $cache_ts = elgg_extract('cache_ts', $feed_data, 0);
 if ($cache_ts < (time() - $rss_cachetimeout)) {
