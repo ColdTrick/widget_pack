@@ -1,6 +1,10 @@
 Version history
 ===============
 
+2.0.3 (2019-07-11):
+
+- fixed: use cached data for rss_server feed data
+
 2.0.2 (2019-05-29):
 
 - changed: no longer match tags case sensitive in content_by_tag widget
