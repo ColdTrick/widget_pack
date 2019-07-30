@@ -9,15 +9,12 @@ class Widgets {
 	/**
 	 * Returns an array of cacheable widget handlers
 	 *
-	 * @param string $hook_name    name of the hook
-	 * @param string $entity_type  type of the hook
-	 * @param bool   $return_value current return value
-	 * @param array  $params       hook parameters
+	 * @param \Elgg\Hook $hook 'cacheable_handlers', 'widget_manager'
 	 *
 	 * @return bool
 	 */
-	public static function getCacheableWidgets($hook_name, $entity_type, $return_value, $params) {
-	
+	public static function getCacheableWidgets(\Elgg\Hook $hook) {
+		$return_value = $hook->getValue();
 		if (!is_array($return_value)) {
 			return $return_value;
 		}
@@ -32,14 +29,11 @@ class Widgets {
 	/**
 	 * Function that unregisters html validation for admins to be able to save freehtml widgets with special html
 	 *
-	 * @param string $hook_name    name of the hook
-	 * @param string $entity_type  type of the hook
-	 * @param string $return_value current return value
-	 * @param array  $params       hook parameters
+	 * @param \Elgg\Hook $hook 'action:validate', 'widgets/save'
 	 *
 	 * @return void
 	 */
-	public static function disableFreeHTMLInputFilter($hook_name, $entity_type, $return_value, $params) {
+	public static function disableFreeHTMLInputFilter(\Elgg\Hook $hook) {
 		if (!elgg_is_admin_logged_in()) {
 			return;
 		}
@@ -48,10 +42,8 @@ class Widgets {
 			return;
 		}
 		
-		$guid = get_input('guid');
-		$widget = get_entity($guid);
-	
-		if (!($widget instanceof \ElggWidget)) {
+		$widget = get_entity(get_input('guid'));
+		if (!$widget instanceof \ElggWidget) {
 			return;
 		}
 		
@@ -68,15 +60,12 @@ class Widgets {
 	/**
 	 * Returns a rss widget specific date_time notation
 	 *
-	 * @param string $hook_name    name of the hook
-	 * @param string $entity_type  type of the hook
-	 * @param string $return_value current return value
-	 * @param array  $params       hook parameters
+	 * @param \Elgg\Hook $hook 'format', 'friendly:time'
 	 *
 	 * @return string
 	 */
-	public static function rssFriendlyTime($hook_name, $entity_type, $return_value, $params) {
-		if (empty($params['time'])) {
+	public static function rssFriendlyTime(\Elgg\Hook $hook) {
+		if (empty($hook->getParam('time'))) {
 			return;
 		}
 	
@@ -84,7 +73,7 @@ class Widgets {
 			return;
 		}
 	
-		$date_info = getdate($params['time']);
+		$date_info = getdate($hook->getParam('time'));
 	
 		$date_array = [
 			elgg_echo('date:weekday:' . $date_info['wday']),
@@ -98,21 +87,18 @@ class Widgets {
 	/**
 	 * Returns urls for widget titles
 	 *
-	 * @param string $hook   name of the hook
-	 * @param string $type   type of the hook
-	 * @param string $return current return value
-	 * @param array  $params hook parameters
+	 * @param \Elgg\Hook $hook 'entity:url', 'object'
 	 *
 	 * @return string
 	 */
-	public static function getTitleURLs($hook, $type, $return, $params) {
-		
+	public static function getTitleURLs(\Elgg\Hook $hook) {
+		$return = $hook->getValue();
 		if ($return) {
 			// someone else provided already a result
 			return;
 		}
 		
-		$widget = elgg_extract('entity', $params);
+		$widget = $hook->getEntityParam();
 		if (!$widget instanceof \ElggWidget) {
 			// not a widget
 			return;
@@ -140,20 +126,13 @@ class Widgets {
 	/**
 	 * Strips data-widget-id from submitted script code and saves that
 	 *
-	 * @param string $hook   name of the hook
-	 * @param string $type   type of the hook
-	 * @param string $return current return value
-	 * @param array  $params hook parameters
+	 * @param \Elgg\Hook $hook 'widget_settings', 'twitter_search'
 	 *
 	 * @return void
 	 */
-	public static function twitterSearchGetWidgetID($hook, $type, $return, $params) {
+	public static function twitterSearchGetWidgetID(\Elgg\Hook $hook) {
 		
-		if ($type !== 'twitter_search') {
-			return;
-		}
-		
-		$widget = elgg_extract('widget', $params);
+		$widget = $hook->getParam('widget');
 		if (!$widget instanceof \ElggWidget) {
 			return;
 		}
