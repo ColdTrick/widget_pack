@@ -124,9 +124,6 @@ $show_item_icon = ($widget->show_item_icon === 'yes');
 
 $show_in_lightbox = false;
 if ($widget->show_in_lightbox === 'yes') {
-	elgg_load_js('lightbox');
-	elgg_load_css('lightbox');
-
 	$show_in_lightbox = true;
 }
 
