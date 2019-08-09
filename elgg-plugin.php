@@ -12,6 +12,7 @@ return [
 	'settings' => [
 		'disable_free_html_filter' => 'no',
 		'rss_verify_ssl' => 'yes',
+		'rss_cron' => 'no',
 	],
 	'views' => [
 		'default' => [

@@ -14,6 +14,8 @@ return [
 	'widget_pack:settings:rss:proxy_password' => "Proxy password",
 	'widget_pack:settings:rss:verify_ssl' => "Verify SSL certificate",
 	'widget_pack:settings:rss:verify_ssl:help' => "If you have problems with SSL certificate verification, you can disable it here.",
+	'widget_pack:settings:rss:cron' => "Use the cron to fetch RSS feeds periodically",
+	'widget_pack:settings:rss:cron:help' => "If your users experience reduced performance while looking at widget pages with RSS widgets, this setting could help reduce the effect on your users.",
 	
 	// index_login
 	'widgets:index_login:name' => "Login",

@@ -34,6 +34,7 @@ class Bootstrap extends DefaultPluginBootstrap {
 		
 		$hooks->registerHandler('action:validate', 'widgets/save', __NAMESPACE__ . '\Widgets::disableFreeHTMLInputFilter');
 		$hooks->registerHandler('cacheable_handlers', 'widget_manager', __NAMESPACE__ . '\Widgets::getCacheableWidgets');
+		$hooks->registerHandler('cron', 'fiveminute', __NAMESPACE__ . '\Cron::fetchRssServerWidgets');
 		$hooks->registerHandler('entity:url', 'object', __NAMESPACE__ . '\Widgets::getTitleURLs');
 		$hooks->registerHandler('format', 'friendly:time', __NAMESPACE__ . '\Widgets::rssFriendlyTime');
 		$hooks->registerHandler('search:fields', 'user', __NAMESPACE__ . '\Widgets::userSearchByEmail');

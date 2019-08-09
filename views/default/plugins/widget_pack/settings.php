@@ -55,5 +55,15 @@ $rss_server .= elgg_view_field([
 	'checked' => $plugin->rss_verify_ssl === 'yes',
 	'switch' => true,
 ]);
+$rss_server .= elgg_view_field([
+	'#type' => 'checkbox',
+	'#label' => elgg_echo('widget_pack:settings:rss:cron'),
+	'#help' => elgg_echo('widget_pack:settings:rss:cron:help'),
+	'name' => 'params[rss_cron]',
+	'default' => 'no',
+	'value' => 'yes',
+	'checked' => $plugin->rss_cron === 'yes',
+	'switch' => true,
+]);
 
 echo elgg_view_module('info', elgg_echo('widget_pack:settings:rss:title'), $rss_server);

@@ -1,10 +1,12 @@
 <?php
 /**
- * This file was created by Translation Editor v7.0-beta
- * On 2018-12-14 17:08
+ * This file was created by Translation Editor v7.0.3
+ * On 2019-08-09 16:54
  */
 
 return array (
+  'widget_pack:settings:rss:cron' => 'Gebruik de cron om periodiek de RSS feeds op te halen',
+  'widget_pack:settings:rss:cron:help' => 'Als de gebruikers verminderde performance ondervinden op widget pagina\'s met RSS widgets, kan deze instelling helpen in het reduceren van het effect op de gebruikers.',
   'widget_pack:settings:rss:title' => 'RSS reader instellingen',
   'widget_pack:settings:rss:description' => 'Hieronder kun je een aantal instellingen doen ten behoeve van de RSS server widget.',
   'widget_pack:settings:rss:proxy_host' => 'Proxy host',
