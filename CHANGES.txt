@@ -1,6 +1,10 @@
 Version history
 ===============
 
+2.1 (2019-08-22):
+
+- added: option to prefetch rss server widgets feeds
+
 2.0.3 (2019-07-11):
 
 - fixed: use cached data for rss_server feed data
