@@ -9,9 +9,10 @@ use ColdTrick\WidgetPack\ContentByTag;
 $widget = elgg_extract('entity', $vars);
 $result = '';
 
-$dbprefix = elgg_get_config('dbprefix');
-
-$count = sanitise_int($widget->content_count, false) ?: 8;
+$count = (int) $widget->content_count;
+if ($count < 1) {
+	$count = 8;;
+}
 
 $object_subtypes = $widget->content_type;
 if (empty($object_subtypes)) {
@@ -142,7 +143,7 @@ $link_params = [
 ];
 
 if (count($object_subtypes) == 1) {
-	$link_params['entity_subtype'] = $content_type[0];
+	$link_params['entity_subtype'] = $object_subtypes[0];
 	$link_params['entity_type'] = 'object';
 	$link_params['search_type'] = 'entities';
 }
