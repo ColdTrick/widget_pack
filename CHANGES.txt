@@ -1,6 +1,10 @@
 Version history
 ===============
 
+2.1.1 (2019-10-15):
+
+- several small chores/fixes
+
 2.1 (2019-08-22):
 
 - added: option to prefetch rss server widgets feeds
