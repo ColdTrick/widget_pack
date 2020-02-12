@@ -3,6 +3,7 @@
 namespace ColdTrick\WidgetPack;
 
 use Elgg\Hook;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Widgets {
 		
@@ -206,5 +207,41 @@ class Widgets {
 		}
 		
 		elgg_delete_system_cache("rss_cache_{$widget->guid}");
+	}
+	
+	/**
+	 * Saves images uploaded by the image_slider widget
+	 *
+	 * @param \Elgg\Hook $hook Hook 'widget_settings', 'image_slider'
+	 *
+	 * @return void
+	 */
+	public static function saveImageSliderImages(\Elgg\Hook $hook) {
+		$widget = $hook->getParam('widget');
+		if (!$widget instanceof \ElggWidget || $widget->handler !== 'image_slider') {
+			return;
+		}
+		
+		$files = _elgg_services()->request->files->all();
+		foreach ($files as $name => $file) {
+			if (!$file instanceof UploadedFile || !$file->isValid()) {
+				continue;
+			}
+			
+			if (stristr($name, 'slider_image_') === false) {
+				continue;
+			}
+			
+			$widget->saveIconFromUploadedFile($name, $name);
+		}
+		
+		foreach (_elgg_services()->request->getParams(false) as $name => $value) {
+			if ((stristr($name, 'slider_image_') === false) || empty($value)) {
+				continue;
+			}
+						
+			$icon_name = str_ireplace('_remove', '', $name);
+			$widget->deleteIcon($icon_name);
+		}
 	}
 }

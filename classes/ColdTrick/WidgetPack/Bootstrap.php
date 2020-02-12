@@ -40,6 +40,7 @@ class Bootstrap extends DefaultPluginBootstrap {
 		$hooks->registerHandler('search:fields', 'user', __NAMESPACE__ . '\Widgets::userSearchByEmail');
 		$hooks->registerHandler('view_vars', 'widgets/content_by_tag/display/simple', __NAMESPACE__ . '\Bookmarks::changeEntityURL');
 		$hooks->registerHandler('view_vars', 'widgets/content_by_tag/display/slim', __NAMESPACE__ . '\Bookmarks::changeEntityURL');
+		$hooks->registerHandler('widget_settings', 'image_slider', __NAMESPACE__ . '\Widgets::saveImageSliderImages');
 		$hooks->registerHandler('widget_settings', 'rss_server', __NAMESPACE__ . '\Widgets::rssServerInvalidateCache');
 		$hooks->registerHandler('widget_settings', 'twitter_search', __NAMESPACE__ . '\Widgets::twitterSearchGetWidgetID');
 	}

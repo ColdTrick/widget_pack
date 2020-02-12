@@ -4,6 +4,7 @@
 
 global $IMAGE_SLIDER_CSS_LOADED;
 
+/** @var $widget \ElggWidget */
 $widget = elgg_extract('entity', $vars);
 
 $max_slider_options = (int) elgg_extract('max_slider_options', $vars, 5);
@@ -12,7 +13,15 @@ $object_id = 'slider_' . $widget->getGUID();
 
 $configured_slides = [];
 for ($i = 1; $i <= $max_slider_options; $i++) {
+
 	$url = $widget->{'slider_' . $i . '_url'};
+	if ($widget->hasIcon('master', "slider_image_{$i}")) {
+		$url = $widget->getIconURL([
+			'size' => 'master',
+			'type' => "slider_image_{$i}",
+		]);
+	}
+		
 	if (!empty($url)) {
 		
 		$text = $widget->{'slider_' . $i . '_text'};

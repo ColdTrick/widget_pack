@@ -101,6 +101,7 @@ return array (
   'widgets:image_slider:label:url' => 'Afbeelding URL',
   'widgets:image_slider:label:text' => 'Tekst',
   'widgets:image_slider:label:link' => 'Link',
+  'widgets:image_slider:label:file' => "of bestand",
   'widgets:index_login:name' => 'Aanmelden',
   'widgets:index_login:description' => 'Toon een aanmeld scherm',
   'widgets:index_login:welcome' => '<b>%s</b> welkom op de <b>%s</b> community',

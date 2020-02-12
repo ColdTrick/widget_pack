@@ -45,6 +45,7 @@ return [
 	'widgets:image_slider:label:url' => "Image url",
 	'widgets:image_slider:label:text' => "Text",
 	'widgets:image_slider:label:link' => "Link",
+	'widgets:image_slider:label:file' => "or file",
 
 	// twitter_search
 	'widgets:twitter_search:name' => "Twitter search",
