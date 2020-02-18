@@ -1,6 +1,10 @@
 Version history
 ===============
 
+2.2 (2020-02-18):
+
+- added: you can upload images in the image slider widget
+
 2.1.1 (2019-10-15):
 
 - several small chores/fixes
