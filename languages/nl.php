@@ -1,10 +1,11 @@
 <?php
 /**
- * This file was created by Translation Editor v7.0.3
- * On 2019-08-09 16:54
+ * This file was created by Translation Editor v7.0.4
+ * On 2020-05-18 13:15
  */
 
 return array (
+  'widgets:user_search:validated' => 'Gevalideerd',
   'widget_pack:settings:rss:cron' => 'Gebruik de cron om periodiek de RSS feeds op te halen',
   'widget_pack:settings:rss:cron:help' => 'Als de gebruikers verminderde performance ondervinden op widget pagina\'s met RSS widgets, kan deze instelling helpen in het reduceren van het effect op de gebruikers.',
   'widget_pack:settings:rss:title' => 'RSS reader instellingen',
@@ -101,7 +102,7 @@ return array (
   'widgets:image_slider:label:url' => 'Afbeelding URL',
   'widgets:image_slider:label:text' => 'Tekst',
   'widgets:image_slider:label:link' => 'Link',
-  'widgets:image_slider:label:file' => "of bestand",
+  'widgets:image_slider:label:file' => 'of bestand',
   'widgets:index_login:name' => 'Aanmelden',
   'widgets:index_login:description' => 'Toon een aanmeld scherm',
   'widgets:index_login:welcome' => '<b>%s</b> welkom op de <b>%s</b> community',
