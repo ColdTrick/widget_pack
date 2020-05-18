@@ -138,6 +138,7 @@ return [
 	// user search widget
 	"widgets:user_search:name" => "User Search",
 	"widgets:user_search:description" => "Search all user on your site (including disabled and unvalidated users)",
+	"widgets:user_search:validated" => "Validated",
 
 	// iframe widget
 	"widgets:iframe:name" => "Iframe",
