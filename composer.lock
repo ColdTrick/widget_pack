@@ -4,21 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a587065d4748ded7264050d08a333862",
+    "content-hash": "597c1ead8d0591d0fe91632136b6b2a0",
     "packages": [
         {
             "name": "bower-asset/flexslider-customized",
             "version": "2.6.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/fossecode/FlexSlider.git",
+                "url": "git@github.com:CPekko/FlexSlider.git",
                 "reference": "415a129020afc132c261056f6546b752ec3e003a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fossecode/FlexSlider/zipball/415a129020afc132c261056f6546b752ec3e003a",
-                "reference": "415a129020afc132c261056f6546b752ec3e003a",
-                "shasum": ""
+                "url": "https://api.github.com/repos/CPekko/FlexSlider/zipball/415a129020afc132c261056f6546b752ec3e003a",
+                "reference": "415a129020afc132c261056f6546b752ec3e003a"
             },
             "require": {
                 "bower-asset/jquery": ">=1.11.3"
@@ -61,8 +60,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/9e8ec3d10fad04748176144f108d7355662ae75e",
-                "reference": "9e8ec3d10fad04748176144f108d7355662ae75e",
-                "shasum": ""
+                "reference": "9e8ec3d10fad04748176144f108d7355662ae75e"
             },
             "type": "bower-asset-library",
             "extra": {
@@ -386,5 +384,6 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

@@ -22,12 +22,13 @@
 	},
 	"repositories": [
 		{
-            "type": "composer",
-            "url": "https://asset-packagist.org"
+			"type": "composer",
+			"url": "https://asset-packagist.org"
 		}
 	],
 	"config": {
 		"fxp-asset": {
-                    "enabled": false
-        }	
+			"enabled": false
+		}
+	}
 }
