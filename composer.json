@@ -19,5 +19,15 @@
 	},
 	"conflict": {
 		"elgg/elgg": "<3.0"
-	}
+	},
+	"repositories": [
+		{
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+		}
+	],
+	"config": {
+		"fxp-asset": {
+                    "enabled": false
+        }	
 }
