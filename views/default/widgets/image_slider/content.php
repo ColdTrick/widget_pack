@@ -17,7 +17,7 @@ for ($i = 1; $i <= $max_slider_options; $i++) {
 	$url = $widget->{'slider_' . $i . '_url'};
 	if ($widget->hasIcon('master', "slider_image_{$i}")) {
 		$url = $widget->getIconURL([
-			'size' => 'master',
+			'size' => 'widget',
 			'type' => "slider_image_{$i}",
 		]);
 	}

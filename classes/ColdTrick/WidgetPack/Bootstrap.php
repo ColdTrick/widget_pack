@@ -36,6 +36,11 @@ class Bootstrap extends DefaultPluginBootstrap {
 		$hooks->registerHandler('cacheable_handlers', 'widget_manager', __NAMESPACE__ . '\Widgets::getCacheableWidgets');
 		$hooks->registerHandler('cron', 'fiveminute', __NAMESPACE__ . '\Cron::fetchRssServerWidgets');
 		$hooks->registerHandler('entity:url', 'object', __NAMESPACE__ . '\Widgets::getTitleURLs');
+		$hooks->registerHandler('entity:slider_image_1:sizes', 'object', __NAMESPACE__ . '\Widgets::getImageSliderIconSizes');
+		$hooks->registerHandler('entity:slider_image_2:sizes', 'object', __NAMESPACE__ . '\Widgets::getImageSliderIconSizes');
+		$hooks->registerHandler('entity:slider_image_3:sizes', 'object', __NAMESPACE__ . '\Widgets::getImageSliderIconSizes');
+		$hooks->registerHandler('entity:slider_image_4:sizes', 'object', __NAMESPACE__ . '\Widgets::getImageSliderIconSizes');
+		$hooks->registerHandler('entity:slider_image_5:sizes', 'object', __NAMESPACE__ . '\Widgets::getImageSliderIconSizes');
 		$hooks->registerHandler('format', 'friendly:time', __NAMESPACE__ . '\Widgets::rssFriendlyTime');
 		$hooks->registerHandler('search:fields', 'user', __NAMESPACE__ . '\Widgets::userSearchByEmail');
 		$hooks->registerHandler('view_vars', 'widgets/content_by_tag/display/simple', __NAMESPACE__ . '\Bookmarks::changeEntityURL');

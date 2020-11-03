@@ -244,4 +244,25 @@ class Widgets {
 			$widget->deleteIcon($icon_name);
 		}
 	}
+	
+	/**
+	 * Return image_slider widget icon sizes
+	 *
+	 * @param \Elgg\Hook $hook Hook 'entity:{$type}:sizes', 'object'
+	 *
+	 * @return void
+	 */
+	public static function getImageSliderIconSizes(\Elgg\Hook $hook) {
+		$result = $hook->getValue();
+		
+		$result['widget'] = [
+			'w' => 500,
+			'h' => 500,
+			'square' => false,
+			'upscale' => false,
+			'crop' => false,
+		];
+		
+		return $result;
+	}
 }
