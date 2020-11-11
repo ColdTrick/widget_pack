@@ -1,6 +1,10 @@
 Version history
 ===============
 
+2.2.2 (2020-11-11):
+
+- several small chores/fixes
+
 2.2.1 (2020-05-26):
 
 - changed: use asset-packagist for bower assets
