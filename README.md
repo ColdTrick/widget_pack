@@ -1,7 +1,7 @@
 Widget Pack
 ===========
 
-![Elgg 3.0](https://img.shields.io/badge/Elgg-3.0-green.svg)
+![Elgg 4.0](https://img.shields.io/badge/Elgg-4.0-green.svg)
 [![Build Status](https://scrutinizer-ci.com/g/ColdTrick/widget_pack/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ColdTrick/widget_pack/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ColdTrick/widget_pack/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ColdTrick/widget_pack/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/coldtrick/widget_pack/v/stable.svg)](https://packagist.org/packages/coldtrick/widget_pack)

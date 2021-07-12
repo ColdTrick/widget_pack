@@ -90,7 +90,7 @@ if (!isset($IMAGE_SLIDER_CSS_LOADED)) {
 }
 ?>
 <script type='text/javascript'>
-	require(['jquery', 'widgets/image_slider/flexslider'], function($, flex) {
+	require(['jquery', 'flexslider/jquery.flexslider-min.js'], function($, flex) {
     	$('#<?php echo $object_id; ?> .flexslider').flexslider({
     		slideshow: true,
     		pauseOnHover: true,

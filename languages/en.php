@@ -6,14 +6,6 @@ return [
 	
 	// plugin settings
 	'widget_pack:settings:disable_free_html_filter' => "Disable HTML filtering for Free HTML widgets on index (ADMIN ONLY)",
-	'widget_pack:settings:rss:title' => "RSS reader settings",
-	'widget_pack:settings:rss:description' => "Below you can configure a few settings with regards to the RSS server widget reader.",
-	'widget_pack:settings:rss:proxy_host' => "Proxy host",
-	'widget_pack:settings:rss:proxy_port' => "Proxy port",
-	'widget_pack:settings:rss:proxy_username' => "Proxy username",
-	'widget_pack:settings:rss:proxy_password' => "Proxy password",
-	'widget_pack:settings:rss:verify_ssl' => "Verify SSL certificate",
-	'widget_pack:settings:rss:verify_ssl:help' => "If you have problems with SSL certificate verification, you can disable it here.",
 	'widget_pack:settings:rss:cron' => "Use the cron to fetch RSS feeds periodically",
 	'widget_pack:settings:rss:cron:help' => "If your users experience reduced performance while looking at widget pages with RSS widgets, this setting could help reduce the effect on your users.",
 	

@@ -1,14 +1,17 @@
 <?php
 
-use ColdTrick\WidgetPack\Bootstrap;
-
 $composer_path = '';
 if (is_dir(__DIR__ . '/vendor')) {
 	$composer_path = __DIR__ . '/';
 }
 
 return [
-	'bootstrap' => Bootstrap::class,
+	'plugin' => [
+		'version' => '2.2.2',
+		'dependencies' => [
+			'widget_manager' => [],
+		],
+	],
 	'settings' => [
 		'disable_free_html_filter' => 'no',
 		'rss_verify_ssl' => 'yes',
@@ -18,6 +21,91 @@ return [
 		'default' => [
 			'flexslider/' => $composer_path . 'vendor/bower-asset/flexslider-customized',
 			'widgets/image_slider/fonts/' => $composer_path . 'vendor/bower-asset/flexslider-customized/fonts',
+		],
+	],
+	'view_extensions' => [
+		'elgg.css' => [
+			'widgets/rss/content.css' => [],
+			'widgets/rss_server/content.css' => [],
+		],
+	],
+	'view_options' => [
+		'widgets/image_slider/flexslider.css' => ['simplecache' => true],
+	],
+	'hooks' => [
+		'action:validate' => [
+			'widgets/save' =>[
+				'ColdTrick\WidgetPack\Widgets::disableFreeHTMLInputFilter' => [],
+			],
+		],
+		'cacheable_handlers' => [
+			'widget_manager' =>[
+				'ColdTrick\WidgetPack\Widgets::getCacheableWidgets' => [],
+			],
+		],
+		'cron' => [
+			'fiveminute' => [
+				'ColdTrick\WidgetPack\Cron::fetchRssServerWidgets' => [],
+			],
+		],
+		'entity:url' => [
+			'object' => [
+				'ColdTrick\WidgetPack\Widgets::getTitleURLs' => [],
+			],
+		],
+		'entity:slider_image_1:sizes' => [
+			'object' => [
+				'ColdTrick\WidgetPack\Widgets::getImageSliderIconSizes' => [],
+			],
+		],
+		'entity:slider_image_2:sizes' => [
+			'object' => [
+				'ColdTrick\WidgetPack\Widgets::getImageSliderIconSizes' => [],
+			],
+		],
+		'entity:slider_image_3:sizes' => [
+			'object' => [
+				'ColdTrick\WidgetPack\Widgets::getImageSliderIconSizes' => [],
+			],
+		],
+		'entity:slider_image_4:sizes' => [
+			'object' => [
+				'ColdTrick\WidgetPack\Widgets::getImageSliderIconSizes' => [],
+			],
+		],
+		'entity:slider_image_5:sizes' => [
+			'object' => [
+				'ColdTrick\WidgetPack\Widgets::getImageSliderIconSizes' => [],
+			],
+		],
+		'format' => [
+			'friendly:time' => [
+				'ColdTrick\WidgetPack\Widgets::rssFriendlyTime' => [],
+			],
+		],
+		'search:fields' => [
+			'user' => [
+				'ColdTrick\WidgetPack\Widgets::userSearchByEmail' => [],
+			],
+		],
+		'view_vars' => [
+			'widgets/content_by_tag/display/simple' => [
+				'ColdTrick\WidgetPack\Bookmarks::changeEntityURL' => [],
+			],
+			'widgets/content_by_tag/display/slim' => [
+				'ColdTrick\WidgetPack\Bookmarks::changeEntityURL' => [],
+			],
+		],
+		'widget_settings' => [
+			'image_slider' => [
+				'ColdTrick\WidgetPack\Widgets::saveImageSliderImages' => [],
+			],
+			'rss_server' => [
+				'ColdTrick\WidgetPack\Widgets::rssServerInvalidateCache' => [],
+			],
+			'twitter_search' => [
+				'ColdTrick\WidgetPack\Widgets::twitterSearchGetWidgetID' => [],
+			],
 		],
 	],
 	'widgets' => [
@@ -59,10 +147,6 @@ return [
 			'context' => ['index'],
 			'multiple' => true,
 		],
-// 		'likes' => [
-// 			'context' => ['index', 'groups', 'profile', 'dashboard'],
-// 			'multiple' => true,
-// 		],
 		'messages' => [
 			'context' => ['dashboard', 'index'],
 			'required_plugin' => ['messages'],
