@@ -11,7 +11,7 @@ $result = '';
 
 $count = (int) $widget->content_count;
 if ($count < 1) {
-	$count = 8;;
+	$count = 8;
 }
 
 $object_subtypes = $widget->content_type;
@@ -87,7 +87,7 @@ if ($excluded_values) {
 			->where($qb->compare('ex_tags.name', 'IN', $tag_names, ELGG_VALUE_STRING))
 			->andWhere($qb->compare('ex_tags.value', 'IN', $excluded_values, ELGG_VALUE_STRING));
 
-		return $qb->compare("{$main_alias}.guid", "NOT IN", $subquery->getSQL());
+		return $qb->compare("{$main_alias}.guid", 'NOT IN', $subquery->getSQL());
 	};
 }
 

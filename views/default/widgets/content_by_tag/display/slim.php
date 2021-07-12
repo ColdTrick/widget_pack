@@ -9,7 +9,7 @@
  */
 
 $entity = elgg_extract('entity', $vars);
-if (!($entity instanceof ElggObject)) {
+if (!$entity instanceof \ElggObject) {
 	return;
 }
 

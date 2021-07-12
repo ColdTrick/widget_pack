@@ -11,7 +11,7 @@ $result = '';
 foreach ($entity_stats as $k => $entry) {
 	arsort($entry);
 	foreach ($entry as $a => $b) {
-		$key = $k . "|" . $a;
+		$key = $k . '|' . $a;
 		if (!empty($selected_entities) && !in_array($key, $selected_entities)) {
 			continue;
 		}
@@ -19,7 +19,7 @@ foreach ($entity_stats as $k => $entry) {
 		if ($a == '__base__') {
 			$a = elgg_echo("item:{$k}");
 			if ($k == 'user') {
-				$b .= " (" . elgg_echo("admin:users:online") . " " . find_active_users(["seconds" => 600, "count" => true])  . ")";
+				$b .= ' (' . elgg_echo('admin:users:online') . ' ' . find_active_users(['seconds' => 600, 'count' => true])  . ')';
 			}
 		} else {
 			if (empty($a)) {

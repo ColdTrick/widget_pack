@@ -12,9 +12,9 @@ if (empty($widget)) {
 	}
 }
 
-echo elgg_format_element('script', [], 'require(["widgets/user_search/content"]);');
+elgg_require_js('widgets/user_search/content');
 
-$q = sanitise_string(get_input('q'));
+$q = get_input('q');
 
 echo elgg_view('input/form', [
 	'body' => elgg_view_field([
@@ -35,17 +35,17 @@ if (empty($q)) {
 	return;
 }
 
-$hidden = access_show_hidden_entities(true);
-$entities = elgg_search([
-	'type' => 'user',
-	'fields' => [
-		'metadata' => ['username', 'email', 'name'],
-	],
-	'partial_match' => true,
-	'query' => $q,
-	'widget' => 'user_search', // used to get info into hook to determine if email is searchable
-]);
-access_show_hidden_entities($hidden);
+$entities = elgg_call(ELGG_SHOW_DISABLED_ENTITIES, function() use ($q) {
+	return elgg_search([
+		'type' => 'user',
+		'fields' => [
+			'metadata' => ['username', 'email', 'name'],
+		],
+		'partial_match' => true,
+		'query' => $q,
+		'widget' => 'user_search', // used to get info into hook to determine if email is searchable
+	]);
+});
 
 if (empty($entities)) {
 	echo elgg_echo('notfound');
@@ -61,7 +61,7 @@ foreach ($entities as $entity) {
 	$entity_data[] = $entity->username;
 	$entity_data[] = $entity->email;
 	
-	if (elgg_get_user_validation_status($entity->guid) !== false) {
+	if ($entity->isValidated()) {
 		$entity_data[] = elgg_echo('option:yes');
 	} else {
 		$entity_data[] = elgg_echo('option:no');

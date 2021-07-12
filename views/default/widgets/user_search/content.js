@@ -1,4 +1,4 @@
-define(['jquery', 'elgg', 'elgg/Ajax'], function ($, elgg, Ajax) {
+define(['jquery', 'elgg/Ajax'], function ($, Ajax) {
 	$(document).on('submit', '.widget-user-search-form', function(){
 		var ajax = new Ajax();
 		

@@ -6,7 +6,7 @@ echo elgg_view_field([
 	'#type' => 'plaintext',
 	'#label' => elgg_echo('widgets:twitter_search:embed_code'),
 	'#help' => elgg_view('output/url', [
-		'href' => 'https://twitter.com/settings/widgets',
+		'href' => 'https://publish.twitter.com/',
 		'target' => '_blank',
 		'text' => elgg_echo('widgets:twitter_search:embed_code:help'),
 	]),
@@ -18,7 +18,7 @@ echo elgg_view_field([
 	'#type' => 'text',
 	'#label' => elgg_echo('widgets:twitter_search:height'),
 	'name' => 'params[height]',
-	'value' => sanitise_int($widget->height, false),
+	'value' => (int) $widget->height,
 	'size' => 4,
 	'maxlength' => 4,
 ]);

@@ -22,12 +22,12 @@ class RssReader {
 		
 		self::$reader = new \SimplePie();
 		
+		$proxy_config = elgg_get_config('proxy', []);
+		
 		// load curl settings
 		$curl_options = [
 			CURLOPT_SSL_VERIFYPEER => elgg_extract('verify_ssl', $proxy_config, true),
 		];
-				
-		$proxy_config = elgg_get_config('proxy', []);
 		
 		// proxy host
 		$proxy_host = elgg_extract('host', $proxy_config);

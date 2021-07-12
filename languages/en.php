@@ -112,21 +112,6 @@ return [
 	"widgets:messages:not_logged_in" => "You need to be logged in to use this widget",
 	"widgets:messages:settings:only_unread" => "Only show unread messages",
 
-	// likes widget
-	"widgets:likes:name" => "Likes",
-	"widgets:likes:description" => "Shows information about liked content",
-	"widgets:likes:settings:interval" => "Interval",
-	"widgets:likes:settings:interval:week" => "Last week",
-	"widgets:likes:settings:interval:month" => "Last month",
-	"widgets:likes:settings:interval:3month" => "Last 3 months",
-	"widgets:likes:settings:interval:halfyear" => "Last half year",
-	"widgets:likes:settings:interval:year" => "Last year",
-	"widgets:likes:settings:interval:unlimited" => "Unlimited",
-	"widgets:likes:settings:like_type" => "Content Type",
-	"widgets:likes:settings:like_type:user_likes" => "Recently liked by you",
-	"widgets:likes:settings:like_type:most_liked" => "Content with the most likes",
-	"widgets:likes:settings:like_type:recently_liked" => "Content that is recently liked",
-
 	// user search widget
 	"widgets:user_search:name" => "User Search",
 	"widgets:user_search:description" => "Search all user on your site (including disabled and unvalidated users)",

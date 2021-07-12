@@ -2,7 +2,7 @@
 
 $widget = elgg_extract('entity', $vars);
 
-$height = sanitise_int($widget->height, false);
+$height = (int) $widget->height;
 
 $widget_id = $widget->widget_id;
 $embed_href = $widget->embed_href;

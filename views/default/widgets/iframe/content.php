@@ -7,7 +7,7 @@ if (empty($url)) {
 	return;
 }
 
-$height = sanitize_int($widget->iframe_height, true);
+$height = (int) $widget->iframe_height;
 if (empty($height)) {
 	$height = '100%';
 } else {

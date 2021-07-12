@@ -14,7 +14,6 @@ return [
 	],
 	'settings' => [
 		'disable_free_html_filter' => 'no',
-		'rss_verify_ssl' => 'yes',
 		'rss_cron' => 'no',
 	],
 	'views' => [
@@ -25,7 +24,6 @@ return [
 	],
 	'view_extensions' => [
 		'elgg.css' => [
-			'widgets/rss/content.css' => [],
 			'widgets/rss_server/content.css' => [],
 		],
 	],
@@ -120,10 +118,6 @@ return [
 			'context' => ['profile', 'dashboard', 'index', 'groups'],
 			'multiple' => true,
 		],
-		'friends_of' => [
-			'context' => ['profile', 'dashboard'],
-			'required_plugin' => ['friends'],
-		],
 		'iframe' => [
 			'context' => ['profile', 'dashboard', 'index', 'groups'],
 			'multiple' => true,
@@ -153,10 +147,6 @@ return [
 		],
 		'register' => [
 			'context' => ['index'],
-		],
-		'rss' => [
-			'context' => ['profile', 'dashboard', 'index', 'groups'],
-			'multiple' => true,
 		],
 		'rss_server' => [
 			'context' => ['index'],

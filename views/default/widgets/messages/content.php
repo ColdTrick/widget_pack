@@ -7,7 +7,7 @@ if (!elgg_is_logged_in()) {
 
 $widget = elgg_extract('entity', $vars);
 	
-$max_messages = sanitise_int($widget->max_messages, false) ?: 5;
+$max_messages = (int) $widget->max_messages ?: 5;
 
 $options = [
 	'type' => 'object',
