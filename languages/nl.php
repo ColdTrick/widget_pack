@@ -1,29 +1,17 @@
 <?php
 /**
- * This file was created by Translation Editor v7.0.4
- * On 2020-05-18 13:15
+ * This file was created by Translation Editor v8.0
+ * On 2021-07-12 17:25
  */
 
 return array (
   'widgets:user_search:validated' => 'Gevalideerd',
   'widget_pack:settings:rss:cron' => 'Gebruik de cron om periodiek de RSS feeds op te halen',
   'widget_pack:settings:rss:cron:help' => 'Als de gebruikers verminderde performance ondervinden op widget pagina\'s met RSS widgets, kan deze instelling helpen in het reduceren van het effect op de gebruikers.',
-  'widget_pack:settings:rss:title' => 'RSS reader instellingen',
-  'widget_pack:settings:rss:description' => 'Hieronder kun je een aantal instellingen doen ten behoeve van de RSS server widget.',
-  'widget_pack:settings:rss:proxy_host' => 'Proxy host',
-  'widget_pack:settings:rss:proxy_port' => 'Proxy poort',
-  'widget_pack:settings:rss:proxy_username' => 'Proxy gebruikersnaam',
-  'widget_pack:settings:rss:proxy_password' => 'Proxy wachtwoord',
-  'widget_pack:settings:rss:verify_ssl' => 'Verifieer SSL certificaat',
-  'widget_pack:settings:rss:verify_ssl:help' => 'Indien je de SSL verificatie wilt uitschakelen kan dat hier.',
   'widgets:messages:name' => 'Inbox',
   'widgets:register:name' => 'Registreren',
   'widgets:register:description' => 'Toont een registratie formulier',
   'widgets:register:loggedout' => 'Je moet zijn uitgelogd om deze widget te kunnen gebruiken',
-  'widgets:friends_of:name' => 'Vrienden van',
-  'widgets:friends_of:description' => 'Toont wie je hebben aangemerkt als vriend',
-  'widgets:friends_of:num_display' => 'Aantal gebruikers om te tonen',
-  'widget_pack:readmore' => 'Lees meer',
   'widget_pack:settings:disable_free_html_filter' => 'Schakel HTML filtering voor vrije HTML widgets uit op de voorpagina (ADMIN ONLY)',
   'widgets:rss_server:name' => 'RSS Feed',
   'widgets:rss_server:description' => 'Toon een RSS feed (server side ophalen)',
@@ -37,19 +25,6 @@ return array (
   'widgets:content_by_tag:owner_guids:description' => 'Zoek een gebruiker welke de auteur is van de content. Laat leeg indien je niet wilt limiteren op auteur',
   'widgets:content_by_tag:container_guids' => 'Toon alleen content van de volgende groepen',
   'widgets:content_by_tag:container_guids:description' => 'Zoek naar een groep waar de content is geplaatst. Laat leeg indien je niet wilt limiteren op basis van een groep.',
-  'widgets:likes:name' => 'Likes',
-  'widgets:likes:description' => 'Toont informatie over content "Liked" content',
-  'widgets:likes:settings:interval' => 'Interval',
-  'widgets:likes:settings:interval:week' => 'Laatste week',
-  'widgets:likes:settings:interval:month' => 'Laatste maand',
-  'widgets:likes:settings:interval:3month' => 'Laatste 3 maanden',
-  'widgets:likes:settings:interval:halfyear' => 'Laatste half jaar',
-  'widgets:likes:settings:interval:year' => 'Laatste jaar',
-  'widgets:likes:settings:interval:unlimited' => 'Oneindig',
-  'widgets:likes:settings:like_type' => 'Content Type',
-  'widgets:likes:settings:like_type:user_likes' => 'Recent leuk gevonden door jou',
-  'widgets:likes:settings:like_type:most_liked' => 'Content met de meeste likes',
-  'widgets:likes:settings:like_type:recently_liked' => 'Content die recent is geliked',
   'widgets:content_by_tag:show_avatar' => 'Toon avatar van gebruiker',
   'widgets:content_by_tag:show_timestamp' => 'Toon tijdstip van content',
   'widgets:content_by_tag:excluded_tags' => 'Uit te sluiten tags',
@@ -95,7 +70,6 @@ return array (
   'widgets:twitter_search:name' => 'Twitter zoekopdracht',
   'widgets:twitter_search:description' => 'Toon een zoekopdracht op Twitter',
   'widgets:twitter_search:height' => 'Widget hoogte (pixels)',
-  'widgets:twitter_search:not_configured' => 'Deze widget is nog niet geconfigureerd',
   'widgets:image_slider:name' => 'Image Slider',
   'widgets:image_slider:description' => 'Toon een Image Slider',
   'widgets:image_slider:title' => 'Slide',

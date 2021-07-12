@@ -8,7 +8,7 @@ $widget_id = $widget->widget_id;
 $embed_href = $widget->embed_href;
 
 if (empty($widget_id) && empty($embed_href)) {
-	echo elgg_echo('widgets:twitter_search:not_configured');
+	echo elgg_echo('widgets:not_configured');
 	return;
 }
 

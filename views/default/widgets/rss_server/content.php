@@ -195,7 +195,7 @@ foreach ($feed_data['items'] as $index => $item) {
 		// lightbox content
 		$module_content = elgg_extract('content', $item);
 		$module_content .= elgg_view('output/url', [
-			'text' => elgg_echo('widget_pack:readmore'),
+			'text' => elgg_echo('read_more'),
 			'href' => $href,
 			'target' => '_blank',
 			'class' => 'mls',

@@ -2,8 +2,6 @@
 
 return [
 	
-	'widget_pack:readmore' => "Read more",
-	
 	// plugin settings
 	'widget_pack:settings:disable_free_html_filter' => "Disable HTML filtering for Free HTML widgets on index (ADMIN ONLY)",
 	'widget_pack:settings:rss:cron' => "Use the cron to fetch RSS feeds periodically",
@@ -47,7 +45,6 @@ return [
 	'widgets:twitter_search:embed_code:help' => "Create a widget on Twitter.com and paste your embed code here",
 	'widgets:twitter_search:embed_code:error' => "Could not extract the widget id from the embed code",
 	'widgets:twitter_search:height' => "Widget height (pixels)",
-	'widgets:twitter_search:not_configured' => "This widget is not yet configured",
 
 	// content_by_tag
 	'widgets:content_by_tag:name' => "Content by tag",
@@ -127,9 +124,4 @@ return [
 	'widgets:register:name' => "Register",
 	'widgets:register:description' => "Show a register box",
 	'widgets:register:loggedout' => "You need to be logged out to use this widget",
-	
-	// Friends of widget
-	'widgets:friends_of:name' => "Friends of",
-	'widgets:friends_of:description' => "Show who made you a friend",
-	'widgets:friends_of:num_display' => "Number of users to show",
 ];
