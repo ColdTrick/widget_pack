@@ -118,9 +118,6 @@ class Widgets {
 			case 'index_members_online':
 			case 'index_members':
 				return elgg_generate_url('collection:user:user');
-			case 'friends_of':
-				$owner = $widget->getOwnerEntity();
-				return elgg_generate_url('collection:friends_of:owner', ['username' => $owner->username]);
 			case 'start_discussion':
 				$owner = $widget->getOwnerEntity();
 				if ($owner instanceof \ElggGroup) {
