@@ -124,4 +124,16 @@ return [
 	'widgets:register:name' => "Register",
 	'widgets:register:description' => "Show a register box",
 	'widgets:register:loggedout' => "You need to be logged out to use this widget",
+	
+	// quick start discussion
+	'widgets:start_discussion:name' => "Start a discussion",
+	'widgets:start_discussion:description' => "Quickly start a discussion in a selected group",
+	
+	'widgets:start_discussion:login_required' => "In order to use this widget you need to be logged in",
+	'widgets:start_discussion:membership_required' => "You must be a member of at least one group in order to use this widget. You can find interesting groups %shere%s.",
+	'widgets:start_discussion:not_enabled' => "Non of your groups have discussions enabled.",
+	
+	'widgets:start_discussion:quick_start:group' => "Select a group for this discussion",
+	'widgets:start_discussion:quick_start:group:required' => "Please select a group",
+	
 ];

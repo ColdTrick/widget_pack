@@ -121,6 +121,13 @@ class Widgets {
 			case 'friends_of':
 				$owner = $widget->getOwnerEntity();
 				return elgg_generate_url('collection:friends_of:owner', ['username' => $owner->username]);
+			case 'start_discussion':
+				$owner = $widget->getOwnerEntity();
+				if ($owner instanceof \ElggGroup) {
+					return elgg_generate_url('add:object:discussion', [
+						'guid' => $owner->guid,
+					]);
+				}
 		}
 	}
 	

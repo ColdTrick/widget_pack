@@ -152,6 +152,9 @@ return [
 			'context' => ['index'],
 			'multiple' => true,
 		],
+		'start_discussion' => [
+			'context' => ['index', 'dashboard', 'groups'],
+		],
 		'twitter_search' => [
 			'context' => ['profile', 'dashboard', 'index', 'groups'],
 			'multiple' => true,
