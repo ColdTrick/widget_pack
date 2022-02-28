@@ -67,7 +67,7 @@ if (empty($feed_data)) {
 		$enclosures = $item->get_enclosures();
 		if (!empty($enclosures)) {
 			foreach ($enclosures as $enclosure) {
-				if (strpos($enclosure->type, 'image/') !== false) {
+				if (strpos((string) $enclosure->type, 'image/') !== false) {
 					$feed_item['icon_url'] = $enclosure->link;
 					break;
 				}
