@@ -1,6 +1,10 @@
 Version history
 ===============
 
+3.1 (2022-03-30):
+
+- added: start_discussion widget from discussion tools
+
 3.0 (2021-09-27):
 
 - changed: updated for Elgg 4
