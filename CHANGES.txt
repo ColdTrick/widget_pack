@@ -1,6 +1,10 @@
 Version history
 ===============
 
+4.0 (2022-06-01):
+
+- changed: increased minimal Elgg version to 4.2
+
 3.1 (2022-03-30):
 
 - added: start_discussion widget from discussion tools
