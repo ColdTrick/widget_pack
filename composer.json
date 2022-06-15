@@ -18,7 +18,7 @@
 		"coldtrick/sniffs": "dev-master"
 	},
 	"conflict": {
-		"elgg/elgg": "<4.0"
+		"elgg/elgg": "<4.2"
 	},
 	"repositories": [
 		{
@@ -29,6 +29,9 @@
 	"config": {
 		"fxp-asset": {
 			"enabled": false
+		},
+		"allow-plugins": {
+			"composer/installers": true
 		}
 	}
 }

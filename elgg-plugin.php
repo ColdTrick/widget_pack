@@ -7,7 +7,7 @@ if (is_dir(__DIR__ . '/vendor')) {
 
 return [
 	'plugin' => [
-		'version' => '3.1',
+		'version' => '4.0',
 		'dependencies' => [
 			'widget_manager' => [],
 		],

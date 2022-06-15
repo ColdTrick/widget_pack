@@ -1,10 +1,17 @@
 <?php
 /**
- * This file was created by Translation Editor v8.0
- * On 2021-07-12 17:25
+ * This file was created by Translation Editor v9.0.2
+ * On 2022-05-31 14:06
  */
 
 return array (
+  'widgets:start_discussion:name' => 'Start een discussie',
+  'widgets:start_discussion:description' => 'Start eenvoudig een discussie in een geselecteerde groep',
+  'widgets:start_discussion:login_required' => 'Om gebruik te kunnen maken van deze widget moet je zijn aangemeld',
+  'widgets:start_discussion:membership_required' => 'Om gebruik te kunnen maken van deze widget moet je lid zijn van ten minste één groep. %sHier%s kun je interessante groepen vinden.',
+  'widgets:start_discussion:not_enabled' => 'Geen van je groepen heeft discussies ingeschakeld.',
+  'widgets:start_discussion:quick_start:group' => 'Selecteer een groep voor deze discussie',
+  'widgets:start_discussion:quick_start:group:required' => 'Selecteer een groep',
   'widgets:user_search:validated' => 'Gevalideerd',
   'widget_pack:settings:rss:cron' => 'Gebruik de cron om periodiek de RSS feeds op te halen',
   'widget_pack:settings:rss:cron:help' => 'Als de gebruikers verminderde performance ondervinden op widget pagina\'s met RSS widgets, kan deze instelling helpen in het reduceren van het effect op de gebruikers.',

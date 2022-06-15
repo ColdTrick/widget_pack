@@ -167,7 +167,7 @@ class Widgets {
 		}
 		
 		if (!$data_found) {
-			register_error(elgg_echo('widgets:twitter_search:embed_code:error'));
+			elgg_register_error_message(elgg_echo('widgets:twitter_search:embed_code:error'));
 		}
 	}
 	
