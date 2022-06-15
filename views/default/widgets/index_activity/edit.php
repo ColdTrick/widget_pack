@@ -4,18 +4,13 @@ $widget = elgg_extract('entity', $vars);
 
 $contents = [];
 
-$registered_entities = elgg_get_config('registered_entities');
+$registered_entities = elgg_entity_types_with_capability('searchable');;
 
 if (!empty($registered_entities)) {
 	foreach ($registered_entities as $type => $ar) {
-		if (count($registered_entities[$type])) {
-			foreach ($registered_entities[$type] as $subtype) {
-				$keyname = 'item:' . $type . ':' . $subtype;
-				$contents[elgg_echo($keyname)] = "{$type},{$subtype}";
-			}
-		} else {
-			$keyname = 'item:' . $type;
-			$contents[elgg_echo($keyname)] = "{$type},";
+		foreach ($ar as $subtype) {
+			$keyname = 'item:' . $type . ':' . $subtype;
+			$contents[elgg_echo($keyname)] = "{$type},{$subtype}";
 		}
 	}
 }
