@@ -1,6 +1,10 @@
 Version history
 ===============
 
+4.0.1 (2022-06-22):
+
+- fixed: index_activity widget filter options now show a list again
+
 4.0 (2022-06-01):
 
 - changed: increased minimal Elgg version to 4.2
