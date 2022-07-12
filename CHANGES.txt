@@ -1,6 +1,10 @@
 Version history
 ===============
 
+4.0.2 (2022-07-12):
+
+- several small chores/fixes
+
 4.0.1 (2022-06-22):
 
 - fixed: index_activity widget filter options now show a list again
