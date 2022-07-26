@@ -1,6 +1,9 @@
 <?php
+use Elgg\Database\QueryBuilder;
+use Elgg\Values;
+				
 // Get entity statistics
-$entity_stats = get_entity_statistics();
+$entity_stats = elgg_get_entity_statistics();
 $selected_entities = (array) $vars['entity']->selected_entities;
 
 if (empty($entity_stats)) {
@@ -19,7 +22,16 @@ foreach ($entity_stats as $k => $entry) {
 		if ($a == '__base__') {
 			$a = elgg_echo("item:{$k}");
 			if ($k == 'user') {
-				$b .= ' (' . elgg_echo('admin:users:online') . ' ' . find_active_users(['seconds' => 600, 'count' => true])  . ')';
+				$count = elgg_count_entities([
+					'type' => 'user',
+					'wheres' => [
+						function(QueryBuilder $qb, $main_alias) {
+							return $qb->compare("{$main_alias}.last_action", '>=', Values::normalizeTimestamp('-10 minutes'), ELGG_VALUE_TIMESTAMP);
+						}
+					],
+				]);
+				
+				$b .= ' (' . elgg_echo('admin:users:online') . ' ' . $count  . ')';
 			}
 		} else {
 			if (empty($a)) {

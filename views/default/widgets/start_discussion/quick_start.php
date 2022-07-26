@@ -13,9 +13,12 @@ echo elgg_view('output/url', [
 	'text' => elgg_echo('add:object:discussion'),
 	'icon' => 'plus',
 	'href' => false,
-	'rel' => 'toggle',
 	'data-toggle-selector' => "#start-discussion-quick-start-wrapper-{$wrapper_id}",
-	'class' => 'elgg-button elgg-button-action',
+	'class' => [
+		'elgg-button',
+		'elgg-button-action',
+		'elgg-toggle',
+	],
 ]);
 
 // start the form

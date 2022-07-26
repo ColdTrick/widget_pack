@@ -2,7 +2,7 @@
 
 $widget = elgg_extract('entity', $vars);
 
-$entity_stats = get_entity_statistics();
+$entity_stats = elgg_get_entity_statistics();
 
 $options_values = [];
 foreach ($entity_stats as $k => $entry) {

@@ -7,7 +7,6 @@ use ColdTrick\WidgetPack\ContentByTag;
 
 /* @var $widget ElggWidget */
 $widget = elgg_extract('entity', $vars);
-$result = '';
 
 $count = (int) $widget->content_count;
 if ($count < 1) {
@@ -37,7 +36,7 @@ $options = [
 	'joins' => [],
 	'preload_owners' => true,
 	'preload_containers' => true,
-	
+	'no_results' => true,
 ];
 
 // do not include container object in results
@@ -48,7 +47,7 @@ if ($container instanceof \ElggObject) {
 	};
 }
 
-$values = string_to_tag_array($widget->tags);
+$values = is_array($widget->tags) ? $widget->tags : elgg_string_to_array((string) $widget->tags);
 if (!empty($values)) {
 	$options['metadata_name_value_pairs'] = [];
 	if ($tags_option === 'or') {
@@ -79,7 +78,7 @@ if (!empty($values)) {
 }
 
 // excluded tags
-$excluded_values = string_to_tag_array($widget->excluded_tags);
+$excluded_values = is_array($widget->excluded_tags) ? $widget->excluded_tags : elgg_string_to_array((string) $widget->excluded_tags);
 if ($excluded_values) {
 	$options['wheres'][] = function(QueryBuilder $qb, $main_alias) use ($tag_names, $excluded_values) {
 		$subquery = $qb->subquery('metadata', 'ex_tags');
@@ -93,7 +92,7 @@ if ($excluded_values) {
 
 // owner_guids
 if (!is_array($widget->owner_guids)) {
-	$options['owner_guids'] = string_to_tag_array($widget->owner_guids);
+	$options['owner_guids'] = elgg_string_to_array((string) $widget->owner_guids);
 } else {
 	$options['owner_guids'] = $widget->owner_guids;
 }
@@ -107,10 +106,9 @@ if ($widget->context == 'groups') {
 }
 
 if ($widget->order_by == 'alpha') {
-	$options['order_by_metadata'] = [
-		'name' => 'title',
+	$options['sort_by'] = [
+		'property' => 'title',
 		'direction' => 'asc',
-		'as' => 'text',
 	];
 }
 
@@ -125,32 +123,18 @@ if (in_array($display_option, ['slim', 'simple'])) {
 	$options['item_class'] = "widgets-content-by-tag-{$display_option}";
 }
 
-$result = elgg_list_entities($options);
-
-if (empty($result)) {
-	echo elgg_echo('notfound');
-	return;
-}
-
-echo $result;
-
-if ($widget->show_search_link !== 'yes' || empty($widget->tags) || !elgg_is_active_plugin('search')) {
-	return;
-}
+if ($widget->show_search_link === 'yes' && !empty($widget->tags) && elgg_is_active_plugin('search')) {
+	$link_params = [
+		'q' => $widget->tags,
+	];
 	
-$link_params = [
-	'q' => $widget->tags,
-];
-
-if (count($object_subtypes) == 1) {
-	$link_params['entity_subtype'] = $object_subtypes[0];
-	$link_params['entity_type'] = 'object';
-	$link_params['search_type'] = 'entities';
+	if (count($object_subtypes) == 1) {
+		$link_params['entity_subtype'] = $object_subtypes[0];
+		$link_params['entity_type'] = 'object';
+		$link_params['search_type'] = 'entities';
+	}
+	
+	$options['widget_more'] = elgg_view_url(elgg_http_add_url_query_elements('search', $link_params), elgg_echo('searchtitle', [$link_params['q']]));
 }
 
-$search_link = elgg_view('output/url', [
-	'text' => elgg_echo('searchtitle', [$link_params['q']]),
-	'href' => elgg_http_add_url_query_elements('search', $link_params),
-]);
-
-echo elgg_format_element('div', ['class' => 'elgg-widget-more'], $search_link);
+echo elgg_list_entities($options);

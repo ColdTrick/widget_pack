@@ -60,7 +60,7 @@ for ($i = 1; $i <= $max_slider_options; $i++) {
 	echo elgg_view_module('info', elgg_echo('widgets:image_slider:title') . ' - ' . $i, $slider_settings, [
 		'menu' => elgg_view('output/url', [
 			'href' => false,
-			'rel' => 'toggle',
+			'class' => 'elgg-toggle',
 			'text' => elgg_echo('show'),
 			'data-toggle-selector' => "#{$id} .elgg-body",
 		]),

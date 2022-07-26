@@ -54,7 +54,7 @@ class Widgets {
 			
 		$advanced_context = elgg_trigger_plugin_hook('advanced_context', 'widget_manager', ['entity' => $widget], ['index']);
 		if (is_array($advanced_context) && in_array($widget->context, $advanced_context)) {
-			elgg_unregister_plugin_hook_handler('validate', 'input', \Elgg\Input\ValidateInputHandler::class);
+			elgg_unregister_plugin_hook_handler('sanitize', 'input', \Elgg\Input\ValidateInputHandler::class);
 		}
 	}
 	

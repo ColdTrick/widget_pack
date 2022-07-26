@@ -18,6 +18,7 @@ $options = [
 	'limit' => $max_messages,
 	'item_view' => 'widgets/messages/item',
 	'no_results' => elgg_echo('messages:nomessages'),
+	'widget_more' => elgg_view_url(elgg_generate_url('add:object:messages'), elgg_echo('messages:add')),
 ];
 
 if ($widget->only_unread != 'no') {
@@ -25,8 +26,3 @@ if ($widget->only_unread != 'no') {
 }
 
 echo elgg_list_entities($options);
-
-echo elgg_format_element('div', ['class' => 'elgg-widget-more'], elgg_view('output/url', [
-	'href' => elgg_generate_url('add:object:messages'),
-	'text' => elgg_echo('messages:add'),
-]));
