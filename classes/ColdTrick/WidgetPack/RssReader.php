@@ -2,17 +2,17 @@
 
 namespace ColdTrick\WidgetPack;
 
-class RssReader {
+class RssReader extends \SimplePie {
 	
 	/**
-	 * @var \SimplePie
+	 * @var RssReader
 	 */
 	protected static $reader;
 	
 	/**
 	 * Get a serverside RSS reader
 	 *
-	 * @return \SimplePie
+	 * @return RssReader
 	 */
 	public static function getReader() {
 		
@@ -20,7 +20,7 @@ class RssReader {
 			return self::$reader;
 		}
 		
-		self::$reader = new \SimplePie();
+		self::$reader = new static();
 		
 		$proxy_config = elgg_get_config('proxy', []);
 		
@@ -56,5 +56,27 @@ class RssReader {
 		self::$reader->set_curl_options($curl_options);
 		
 		return self::$reader;
+	}
+	
+	/**
+	 * {@inheritdoc}
+	 */
+	function init() {
+		// need to set ini because of how SimplePie is checking the error level
+		$ini = ini_get('error_reporting');
+		
+		// disable setting
+		ini_set('error_reporting', 0);
+		try {
+			parent::init();
+		} catch (\Throwable $t) {
+			// restore setting
+			ini_set('error_reporting', $ini);
+			
+			throw $t;
+		}
+		
+		// restore setting
+		ini_set('error_reporting', $ini);
 	}
 }
