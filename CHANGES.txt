@@ -1,6 +1,10 @@
 Version history
 ===============
 
+5.0.1 (2022-11-16):
+
+- fixed: suppress errors from SimplePie
+
 5.0 (2022-08-24):
 
 - changed: updated for Elgg 4.3
