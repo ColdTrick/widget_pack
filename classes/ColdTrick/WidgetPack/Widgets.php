@@ -3,6 +3,8 @@
 namespace ColdTrick\WidgetPack;
 
 use Elgg\Hook;
+use Elgg\Http\OkResponse;
+use Elgg\Http\ErrorResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Widgets {
@@ -254,7 +256,7 @@ class Widgets {
 	 *
 	 * @param \Elgg\Hook $hook Hook 'entity:{$type}:sizes', 'object'
 	 *
-	 * @return void
+	 * @return array
 	 */
 	public static function getImageSliderIconSizes(\Elgg\Hook $hook) {
 		$result = $hook->getValue();
@@ -266,6 +268,112 @@ class Widgets {
 			'upscale' => false,
 			'crop' => false,
 		];
+		
+		return $result;
+	}
+	
+	/**
+	 * Return image_slider widget icon sizes
+	 *
+	 * @param \Elgg\Hook $hook Hook 'entity:{$type}:sizes', 'object'
+	 *
+	 * @return array
+	 */
+	public static function getSlideshowIconSizes(\Elgg\Hook $hook) {
+		if (!preg_match('/^entity:slider_image_[\d]+:sizes$/', $hook->getName())) {
+			return;
+		}
+		
+		$result = $hook->getValue();
+		
+		$result['landscape'] = [
+			'w' => 400,
+			'h' => 225,
+			'square' => false,
+			'upscale' => true,
+			'crop' => true,
+		];
+		$result['portrait'] = [
+			'w' => 400,
+			'h' => 530,
+			'square' => false,
+			'upscale' => true,
+			'crop' => true,
+		];
+		
+		return $result;
+	}
+	
+	/**
+	 * Saves the slideshow config
+	 *
+	 * @param \Elgg\Hook $hook 'response', 'action:widgets/save'
+	 *
+	 * @return void|OkResponse
+	 */
+	public static function saveSlideshowConfig(\Elgg\Hook $hook) {
+		
+		$result = $hook->getValue();
+		if ($result instanceof ErrorResponse) {
+			return;
+		}
+		
+		$widget = get_entity((int) get_input('guid'));
+		if (!$widget instanceof \ElggWidget) {
+			return;
+		}
+		
+		if ($widget->handler !== 'image_slideshow') {
+			return;
+		}
+		
+		$old_config = $widget->slides_config ?: [];
+		if (is_string($old_config)) {
+			$old_config = json_decode($old_config, true);
+		}
+		
+		$slides_input = get_input('slides');
+		$files = _elgg_services()->request->files;
+		
+		$slide_texts = elgg_extract('slider_text', $slides_input);
+		$slide_urls = elgg_extract('slider_url', $slides_input);
+		
+		$slides_config = [];
+		$valid_images = [];
+		$index = -1; // keep track of the index to get slide config
+		foreach ($files as $image_input_name => $slide_image) {
+			$index++;
+			if (!$widget->hasIcon('master', $image_input_name) && (!$slide_image instanceof UploadedFile || !$slide_image->isValid())) {
+				// no existing icon and invalid upload
+				continue;
+			}
+			
+			if ($slide_image instanceof UploadedFile && $slide_image->isValid()) {
+				$widget->saveIconFromUploadedFile($image_input_name, $image_input_name);
+			}
+			
+			$valid_images[] = $image_input_name;
+			
+			$slides_config[] = [
+				'image' => $image_input_name,
+				'text' => elgg_extract($index, $slide_texts),
+				'url' => elgg_extract($index, $slide_urls),
+			];
+		}
+		
+		$widget->slides_config = json_encode($slides_config);
+		
+		foreach ($old_config as $old_slide) {
+			$image = elgg_extract('image', $old_slide);
+			if (!in_array($image, $valid_images)) {
+				$widget->deleteIcon($image);
+			}
+		}
+		
+		$content = $result->getContent();
+		$content['content'] = elgg_view('object/widget/elements/content', ['entity' => $widget]);
+		
+		$result->setContent($content);
 		
 		return $result;
 	}

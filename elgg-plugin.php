@@ -36,6 +36,11 @@ return [
 				'ColdTrick\WidgetPack\Widgets::disableFreeHTMLInputFilter' => [],
 			],
 		],
+		'all' => [
+			'object' => [
+				'ColdTrick\WidgetPack\Widgets::getSlideshowIconSizes' => [],
+			],
+		],
 		'cacheable_handlers' => [
 			'widget_manager' =>[
 				'ColdTrick\WidgetPack\Widgets::getCacheableWidgets' => [],
@@ -81,6 +86,11 @@ return [
 				'ColdTrick\WidgetPack\Widgets::rssFriendlyTime' => [],
 			],
 		],
+		'response' => [
+			'action:widgets/save' => [
+				'ColdTrick\WidgetPack\Widgets::saveSlideshowConfig' => [],
+			],
+		],
 		'search:fields' => [
 			'user' => [
 				'ColdTrick\WidgetPack\Widgets::userSearchByEmail' => [],
@@ -123,6 +133,10 @@ return [
 			'multiple' => true,
 		],
 		'image_slider' => [
+			'context' => ['index', 'groups'],
+			'multiple' => true,
+		],
+		'image_slideshow' => [
 			'context' => ['index', 'groups'],
 			'multiple' => true,
 		],

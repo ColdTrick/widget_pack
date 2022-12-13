@@ -28,6 +28,18 @@ return [
 	'widgets:index_activity:name' => "Activity",
 	'widgets:index_activity:description' => "Show the latest activity on your site",
 
+	// image_slideshow
+	'widgets:image_slideshow:name' => "Image Slideshow",
+	'widgets:image_slideshow:description' => "Show multiple images and rotate them every few seconds",
+	'widgets:image_slideshow:slide' => "Slide",
+	'widgets:image_slideshow:caption' => "Caption",
+	'widgets:image_slideshow:url' => "Link",
+	'widgets:image_slideshow:add_slide' => "Add slide",
+	'widgets:image_slideshow:orientation' => "Orientation",
+	'widgets:image_slideshow:orientation:help' => "If you change the orientation you will also need to check your slides",
+	'widgets:image_slideshow:orientation:landscape' => "Landscape",
+	'widgets:image_slideshow:orientation:portrait' => "Portrait",
+
 	// image_slider
 	'widgets:image_slider:name' => "Image Slider",
 	'widgets:image_slider:description' => "Show an Image Slider",

@@ -1,0 +1,69 @@
+/* Slideshow container */
+.widget-slideshow-container {
+	position: relative;
+	
+	> div {
+		position: relative;
+	}
+	
+	img {
+		display: block;
+		width: 100%;
+	}
+	
+	.slide-text {
+		color: white;
+		background: rgba(0, 0, 0, 0.5);
+		font-size: 1rem;
+		padding: 1rem 1rem;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		text-align: center;
+	}
+	
+	/* Next & previous buttons */
+	.slide-next, .slide-previous {
+		display: none;
+		cursor: pointer;
+		position: absolute;
+		top: 50%;
+		width: auto;
+		margin-top: -22px;
+		padding: 16px;
+		color: white;
+		font-weight: bold;
+		font-size: 18px;
+		transition: 0.6s ease;
+		border-radius: 0 3px 3px 0;
+		user-select: none;
+	}
+	
+	/* Position the "next button" to the right */
+	.slide-next {
+		right: 0;
+		border-radius: 3px 0 0 3px;
+	}
+	
+	/* On hover, add a black background color with a little bit see-through */
+	.slide-previous:hover, .slide-next:hover {
+		background-color: rgba(0,0,0,0.5);
+	}
+	
+	&:hover {
+		.slide-next, .slide-previous {
+			display: block;
+		}
+	}	  
+}
+
+/* Fading animation */
+.slide-fade {
+  animation-name: slide-fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes slide-fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
