@@ -1,50 +1,53 @@
 define(['jquery'], function ($) {
-	var slideshow = {
-		$container: null,
-		container: null,
-		totalSlides: 1,
-		currentSlide: 1,
-		timeoutId: null,
-		slideTimeout: 5000,
-		init: function(selector) {
-			slideshow.$container = $(selector);
-			slideshow.container = $(selector);
+
+	function SlideShow(selector) {
+		var SlideShow = this;
+		this.$container = $(selector);
+		this.totalSlides = this.$container.find('> .slide-fade').length;
+		this.currentSlide = 1;
+		this.slideTimeout = 5000;
+		
+		this.$container.on('click', '.slide-next', function() {
+			SlideShow.moveNext();
+		});	
+		this.$container.on('click', '.slide-previous', function() {
+			SlideShow.movePrevious();
+		});
+		
+		this.timeoutId = setTimeout(function() {
+			SlideShow.moveNext();	
+		}, this.slideTimeout);		
+	}
+	
+	SlideShow.prototype = {		
+		showSlide: function(index) {
+			clearTimeout(this.timeoutId);
 			
-			slideshow.$container.on('click', '.slide-next', slideshow.moveNext);	
-			slideshow.$container.on('click', '.slide-previous', slideshow.movePrevious);
+			this.$container.find('> .slide-fade:not(.hidden)').addClass('hidden');
 			
-			slideshow.totalSlides = slideshow.$container.find('> .slide-fade').length;
+			this.$container.find('> .slide-fade').eq(index - 1).removeClass('hidden');
 			
-			slideshow.timeoutId = setTimeout(slideshow.moveNext, slideshow.slideTimeout);
+			this.timeoutId = setTimeout(this.moveNext.bind(this), this.slideTimeout);
 		},
 		moveNext: function() {
-			if (slideshow.currentSlide === slideshow.totalSlides) {
-				slideshow.currentSlide = 1;
+			if (this.currentSlide >= this.totalSlides) {
+				this.currentSlide = 1;
 			} else {
-				slideshow.currentSlide++;
+				this.currentSlide++;
 			}
 			
-			slideshow.showSlide(slideshow.currentSlide);
+			this.showSlide(this.currentSlide);
 		},
 		movePrevious: function() {
-			if (slideshow.currentSlide === 1) {
-				slideshow.currentSlide = slideshow.totalSlides;
+			if (this.currentSlide <= 1) {
+				this.currentSlide = this.totalSlides;
 			} else {
-				slideshow.currentSlide--;
+				this.currentSlide--;
 			}
 			
-			slideshow.showSlide(slideshow.currentSlide);
-		},
-		showSlide: function(index) {
-			clearTimeout(slideshow.timeoutId);
-			
-			slideshow.$container.find('> .slide-fade:not(.hidden)').addClass('hidden');
-			
-			slideshow.$container.find('> .slide-fade').eq(index - 1).removeClass('hidden');
-			
-			slideshow.timeoutId = setTimeout(slideshow.moveNext, slideshow.slideTimeout);
-		}
+			this.showSlide(this.currentSlide);
+		}		
 	};
 	
-	return slideshow;
+	return SlideShow;
 });

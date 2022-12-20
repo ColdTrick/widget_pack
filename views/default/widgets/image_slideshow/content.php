@@ -60,7 +60,7 @@ $id = "slideshow_{$widget->guid}";
 echo elgg_format_element('div', ['id' => $id, 'class' => 'widget-slideshow-container'], $slides);
 ?>
 <script>
-require(['widgets/image_slideshow/content'], function(slideshow) {
-	slideshow.init('#<?php echo $id; ?>');
+require(['widgets/image_slideshow/content'], function(SlideShow) {
+	new SlideShow('#<?php echo $id; ?>');
 });
 </script>
