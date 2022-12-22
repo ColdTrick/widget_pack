@@ -1,6 +1,10 @@
 Version history
 ===============
 
+5.1 (2022-12-22):
+
+- added: new image slideshow widget with cropping capabilities
+
 5.0.1 (2022-11-16):
 
 - fixed: suppress errors from SimplePie
