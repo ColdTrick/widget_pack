@@ -36,7 +36,7 @@ if ($widget->context == 'groups') {
 		'value' => 'yes',
 		'switch' => true,
 	]);
-} elseif(elgg_view_exists('input/grouppicker')) {
+} elseif (elgg_view_exists('input/grouppicker')) {
 	$container_guids = elgg_echo('widgets:content_by_tag:container_guids') . '<br />';
 	$container_guids .= elgg_view('input/hidden', ['name' => 'params[container_guids]', 'value' => 0]);
 	$container_guids .= elgg_view('input/grouppicker', ['name' => 'params[container_guids]', 'values' => $widget->container_guids]);

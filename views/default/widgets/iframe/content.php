@@ -1,4 +1,5 @@
 <?php
+
 $widget = elgg_extract('entity', $vars);
 
 $url = $widget->iframe_url;

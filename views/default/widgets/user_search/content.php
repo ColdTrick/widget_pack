@@ -3,12 +3,9 @@
 $widget = elgg_extract('entity', $vars);
 
 if (empty($widget)) {
-	$guid = (int) get_input('guid');
-	if ($guid) {
-		$widget = get_entity($guid);
-		if (!($widget instanceof ElggWidget)) {
-			return;
-		}
+	$widget = get_entity((int) get_input('guid'));
+	if (!$widget instanceof \ElggWidget) {
+		return;
 	}
 }
 
@@ -43,7 +40,7 @@ $entities = elgg_call(ELGG_SHOW_DISABLED_ENTITIES, function() use ($q) {
 		],
 		'partial_match' => true,
 		'query' => $q,
-		'widget' => 'user_search', // used to get info into hook to determine if email is searchable
+		'widget' => 'user_search', // used to get info into event params to determine if email is searchable
 	]);
 });
 
@@ -56,7 +53,7 @@ $result = [];
 foreach ($entities as $entity) {
 	$entity_data = [];
 	
-	$entity_data[] = elgg_view('output/url', ['text' => $entity->name, 'href' => $entity->getURL()]);
+	$entity_data[] = elgg_view_entity_url($entity);
 	
 	$entity_data[] = $entity->username;
 	$entity_data[] = $entity->email;
@@ -74,13 +71,13 @@ foreach ($entities as $entity) {
 	$result[] = '<td>' . implode('</td><td>', $entity_data) . '</td>';
 }
 
-echo '<table class="elgg-table mtm"><tr>';
+echo '<table class="elgg-table mtm"><thead><tr>';
 echo '<th>' . elgg_echo('name') . '</th>';
 echo '<th>' . elgg_echo('username') . '</th>';
 echo '<th>' . elgg_echo('email') . '</th>';
 echo '<th>' . elgg_echo('widgets:user_search:validated') . '</th>';
 echo '<th>' . elgg_echo('status:enabled') . '</th>';
 echo '<th>' . elgg_echo('table_columns:fromView:time_created') . '</th>';
-echo '</tr><tr>';
+echo '</tr></thead><tbody><tr>';
 echo implode('</tr><tr>', $result);
-echo '</tr></table>';
+echo '</tr></tbody></table>';

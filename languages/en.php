@@ -147,5 +147,4 @@ return [
 	
 	'widgets:start_discussion:quick_start:group' => "Select a group for this discussion",
 	'widgets:start_discussion:quick_start:group:required' => "Please select a group",
-	
 ];

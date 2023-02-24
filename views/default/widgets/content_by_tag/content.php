@@ -20,7 +20,7 @@ if (empty($object_subtypes)) {
 }
 
 $tags_option = $widget->tags_option;
-if (!in_array($tags_option,['and', 'or'])) {
+if (!in_array($tags_option, ['and', 'or'])) {
 	$tags_option = 'and';
 }
 
@@ -57,11 +57,11 @@ if (!empty($values)) {
 			'case_sensitive' => false,
 		];
 	} else {
-		foreach($values as $index => $value) {
+		foreach ($values as $index => $value) {
 			$alias = "tag_where_{$index}";
 			
 			$on = function (QueryBuilder $qb, $joined_alias, $main_alias) {
-				return $qb->compare("$joined_alias.entity_guid", '=', "$main_alias.guid");
+				return $qb->compare("{$joined_alias}.entity_guid", '=', "{$main_alias}.guid");
 			};
 			
 			$options['joins'][] = new JoinClause(QueryBuilder::TABLE_METADATA, $alias, $on);
@@ -97,7 +97,7 @@ if (!is_array($widget->owner_guids)) {
 	$options['owner_guids'] = $widget->owner_guids;
 }
 
-if ($widget->context == 'groups') {
+if ($widget->context === 'groups') {
 	if ($widget->group_only !== 'no') {
 		$options['container_guids'] = [$widget->getContainerGUID()];
 	}
@@ -105,7 +105,7 @@ if ($widget->context == 'groups') {
 	$options['container_guids'] = $widget->container_guids;
 }
 
-if ($widget->order_by == 'alpha') {
+if ($widget->order_by === 'alpha') {
 	$options['sort_by'] = [
 		'property' => 'title',
 		'direction' => 'asc',
@@ -134,7 +134,7 @@ if ($widget->show_search_link === 'yes' && !empty($widget->tags) && elgg_is_acti
 		$link_params['search_type'] = 'entities';
 	}
 	
-	$options['widget_more'] = elgg_view_url(elgg_http_add_url_query_elements('search', $link_params), elgg_echo('searchtitle', [$link_params['q']]));
+	$options['widget_more'] = elgg_view_url(elgg_http_add_url_query_elements('search', $link_params), elgg_echo('more'));
 }
 
 echo elgg_list_entities($options);

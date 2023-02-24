@@ -1,6 +1,6 @@
 <?php
 $entity = elgg_extract('entity', $vars);
-if (!$entity instanceof ElggMessage) {
+if (!$entity instanceof \ElggMessage) {
 	return;
 }
 
@@ -24,7 +24,7 @@ if ($user) {
 	$byline = elgg_echo('email:from') . ' ' . $user_link;
 }
 
-$class[] = $entity->readYet ? 'read': 'unread';
+$class[] = $entity->readYet ? 'read' : 'unread';
 
 $params = [
 	'access' => false,

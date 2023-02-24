@@ -16,6 +16,7 @@ if (empty($user)) {
 			'value' => elgg_echo('widgets:start_discussion:login_required'),
 		]);
 	}
+	
 	return;
 }
 
@@ -31,12 +32,12 @@ if (empty($group_membership->count())) {
 		$url = elgg_generate_url('collection:group:group:all');
 		$link_start = "<a href='{$url}'>";
 		$link_end = '</a>';
-	
-		$text = elgg_echo('widgets:start_discussion:membership_required', [$link_start, $link_end]);
+		
 		echo elgg_view('output/longtext', [
-			'value' => $text,
+			'value' => elgg_echo('widgets:start_discussion:membership_required', [$link_start, $link_end]),
 		]);
 	}
+	
 	return;
 }
 
@@ -52,7 +53,6 @@ $group_access_options = [];
 
 /* @var $group ElggGroup */
 foreach ($group_membership as $group) {
-	
 	// does the group have discussions disabled
 	if (!$group->isToolEnabled('forum')) {
 		continue;
@@ -77,6 +77,7 @@ if (empty($group_selection_options)) {
 			'value' => elgg_echo('widgets:start_discussion:not_enabled'),
 		]);
 	}
+	
 	return;
 }
 

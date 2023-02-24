@@ -2,6 +2,9 @@
 
 namespace ColdTrick\WidgetPack;
 
+/**
+ * Rss Reader
+ */
 class RssReader extends \SimplePie {
 	
 	/**
@@ -61,7 +64,7 @@ class RssReader extends \SimplePie {
 	/**
 	 * {@inheritdoc}
 	 */
-	function init() {
+	public function init() {
 		// need to set ini because of how SimplePie is checking the error level
 		$ini = ini_get('error_reporting');
 		

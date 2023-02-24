@@ -30,10 +30,11 @@ return [
 	'view_options' => [
 		'widgets/image_slider/flexslider.css' => ['simplecache' => true],
 	],
-	'hooks' => [
+	'events' => [
 		'action:validate' => [
-			'widgets/save' =>[
+			'widgets/save' => [
 				'ColdTrick\WidgetPack\Widgets::disableFreeHTMLInputFilter' => [],
+				'ColdTrick\WidgetPack\Widgets::twitterSearchGetWidgetID' => [],
 			],
 		],
 		'all' => [
@@ -42,7 +43,7 @@ return [
 			],
 		],
 		'cacheable_handlers' => [
-			'widget_manager' =>[
+			'widget_manager' => [
 				'ColdTrick\WidgetPack\Widgets::getCacheableWidgets' => [],
 			],
 		],
@@ -96,6 +97,11 @@ return [
 				'ColdTrick\WidgetPack\Widgets::userSearchByEmail' => [],
 			],
 		],
+		'update:after' => [
+			'object' => [
+				'ColdTrick\WidgetPack\Widgets::rssServerInvalidateCache' => [],
+			],
+		],
 		'view_vars' => [
 			'widgets/content_by_tag/display/simple' => [
 				'ColdTrick\WidgetPack\Bookmarks::changeEntityURL' => [],
@@ -107,12 +113,6 @@ return [
 		'widget_settings' => [
 			'image_slider' => [
 				'ColdTrick\WidgetPack\Widgets::saveImageSliderImages' => [],
-			],
-			'rss_server' => [
-				'ColdTrick\WidgetPack\Widgets::rssServerInvalidateCache' => [],
-			],
-			'twitter_search' => [
-				'ColdTrick\WidgetPack\Widgets::twitterSearchGetWidgetID' => [],
 			],
 		],
 	],

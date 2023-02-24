@@ -4,7 +4,7 @@ $widget = elgg_extract('entity', $vars);
 
 $contents = [];
 
-$registered_entities = elgg_entity_types_with_capability('searchable');;
+$registered_entities = elgg_entity_types_with_capability('searchable');
 
 if (!empty($registered_entities)) {
 	foreach ($registered_entities as $type => $ar) {

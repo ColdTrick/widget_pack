@@ -1,4 +1,5 @@
 <?php
+
 $widget = elgg_extract('entity', $vars);
 
 if (empty($widget->html_content)) {

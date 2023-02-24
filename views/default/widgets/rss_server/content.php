@@ -90,6 +90,7 @@ if (empty($feed_data)) {
 			if (empty($author)) {
 				$author = $authors[0]->link;
 			}
+			
 			if (empty($author)) {
 				$author = $authors[0]->email;
 			}
@@ -133,7 +134,7 @@ $show_author = ($widget->show_author === 'yes');
 // proccess data
 if ($show_feed_title) {
 	$feed_title = elgg_extract('title_text', $feed_data);
-	$feed_url= elgg_extract('title_href', $feed_data);
+	$feed_url = elgg_extract('title_href', $feed_data);
 	
 	if (!empty($feed_title) && !empty($feed_url)) {
 		echo elgg_format_element('h3', [], elgg_view('output/url', [
@@ -184,7 +185,6 @@ foreach ($feed_data['items'] as $index => $item) {
 	}
 	
 	if ($show_in_lightbox) {
-		
 		// lightbox title
 		$module_title = elgg_view('output/url', [
 			'text' => $title_text,
@@ -208,7 +208,7 @@ foreach ($feed_data['items'] as $index => $item) {
 		
 		// lightbox
 		$lightbox_content = elgg_view_module('rss-popup', $module_title, $module_text, [
-			'class' => ['elgg-module-info', 'clearfix'],
+			'class' => ['elgg-module-info'],
 		]);
 		
 		$title = elgg_view('output/url', [
@@ -221,7 +221,6 @@ foreach ($feed_data['items'] as $index => $item) {
 				'fastIframe' => false,
 			]),
 		]);
-		
 	} else {
 		$title = elgg_view('output/url', [
 			'text' => $title_text,
@@ -234,9 +233,8 @@ foreach ($feed_data['items'] as $index => $item) {
 		$content .= elgg_format_element('div', [
 			'class' => 'elgg-content',
 		], $icon . elgg_view('output/longtext', [
-				'value' => elgg_extract('excerpt', $item),
-			])
-		);
+			'value' => elgg_extract('excerpt', $item),
+		]));
 	}
 	
 	if ($post_date) {

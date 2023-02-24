@@ -9,17 +9,17 @@ define(['jquery'], function ($) {
 		
 		this.$container.on('click', '.slide-next', function() {
 			SlideShow.moveNext();
-		});	
+		});
 		this.$container.on('click', '.slide-previous', function() {
 			SlideShow.movePrevious();
 		});
 		
 		this.timeoutId = setTimeout(function() {
-			SlideShow.moveNext();	
-		}, this.slideTimeout);		
+			SlideShow.moveNext();
+		}, this.slideTimeout);
 	}
 	
-	SlideShow.prototype = {		
+	SlideShow.prototype = {
 		showSlide: function(index) {
 			clearTimeout(this.timeoutId);
 			
@@ -46,7 +46,7 @@ define(['jquery'], function ($) {
 			}
 			
 			this.showSlide(this.currentSlide);
-		}		
+		}
 	};
 	
 	return SlideShow;

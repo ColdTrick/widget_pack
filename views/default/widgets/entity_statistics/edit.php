@@ -8,7 +8,7 @@ $options_values = [];
 foreach ($entity_stats as $k => $entry) {
 	arsort($entry);
 	foreach ($entry as $a => $b) {
-		$key = $k . "|" . $a;
+		$key = $k . '|' . $a;
 		
 		if ($a == '__base__') {
 			$a = elgg_echo("item:{$k}");

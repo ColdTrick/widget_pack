@@ -2,16 +2,19 @@
 
 namespace ColdTrick\WidgetPack;
 
+/**
+ * Cron jobs
+ */
 class Cron {
 	
 	/**
 	 * Fetch RSS server widget feeds to reduce performance impact on users
 	 *
-	 * @param \Elgg\Hook $hook 'cron', 'fiveminute'
+	 * @param \Elgg\Event $event 'cron', 'fiveminute'
 	 *
 	 * @return void
 	 */
-	public static function fetchRssServerWidgets(\Elgg\Hook $hook) {
+	public static function fetchRssServerWidgets(\Elgg\Event $event) {
 		
 		if (elgg_get_plugin_setting('rss_cron', 'widget_pack') !== 'yes') {
 			return;
@@ -35,7 +38,7 @@ class Cron {
 				'subtype' => 'widget',
 				'limit' => false,
 				'batch' => true,
-				'private_setting_name_value_pairs' => [
+				'metadata_name_value_pairs' => [
 					[
 						'name' => 'handler',
 						'value' => 'rss_server',

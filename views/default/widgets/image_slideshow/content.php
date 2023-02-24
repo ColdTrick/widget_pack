@@ -28,6 +28,7 @@ foreach ($config as $index => $slide) {
 	$image = elgg_extract('image', $slide);
 	$content = elgg_view('output/img', [
 		'src' => $widget->getIconUrl(['type' => $image, 'size' => $orientation]),
+		'alt' => "slide_{$index}",
 	]);
 	
 	$text = elgg_extract('text', $slide);
@@ -38,10 +39,7 @@ foreach ($config as $index => $slide) {
 	$url = elgg_extract('url', $slide);
 	
 	if (!empty($url)) {
-		$content = elgg_view('output/url', [
-			'href' =>  $url,
-			'text' => $content,
-		]);
+		$content = elgg_view_url($url, $content);
 	}
 	
 	$classes = ['slide-fade'];

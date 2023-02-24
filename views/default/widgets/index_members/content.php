@@ -2,21 +2,14 @@
 
 $widget = elgg_extract('entity', $vars);
 
-$count = (int) $widget->member_count ?: 8;
-
-$options = [
+echo elgg_list_entities([
 	'type' => 'user',
-	'limit' => $count,
+	'limit' => (int) $widget->member_count ?: 8,
 	'full_view' => false,
 	'pagination' => false,
 	'list_type' => 'gallery',
 	'gallery_class' => 'elgg-gallery-users',
 	'size' => 'small',
 	'no_results' => elgg_echo('widgets:index_members:no_result'),
-];
-
-if ($widget->user_icon == 'yes') {
-	$options['metadata_name'] = 'icontime';
-}
-
-echo elgg_list_entities($options);
+	'metadata_name' => $widget->user_icon === 'yes' ? 'icontime' : null,
+]);

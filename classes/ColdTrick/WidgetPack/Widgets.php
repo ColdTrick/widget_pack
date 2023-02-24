@@ -2,22 +2,24 @@
 
 namespace ColdTrick\WidgetPack;
 
-use Elgg\Hook;
 use Elgg\Http\OkResponse;
 use Elgg\Http\ErrorResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+/**
+ * Widgets
+ */
 class Widgets {
 		
 	/**
 	 * Returns an array of cacheable widget handlers
 	 *
-	 * @param \Elgg\Hook $hook 'cacheable_handlers', 'widget_manager'
+	 * @param \Elgg\Event $event 'cacheable_handlers', 'widget_manager'
 	 *
 	 * @return bool
 	 */
-	public static function getCacheableWidgets(\Elgg\Hook $hook) {
-		$return_value = $hook->getValue();
+	public static function getCacheableWidgets(\Elgg\Event $event) {
+		$return_value = $event->getValue();
 		if (!is_array($return_value)) {
 			return $return_value;
 		}
@@ -32,20 +34,20 @@ class Widgets {
 	/**
 	 * Function that unregisters html validation for admins to be able to save freehtml widgets with special html
 	 *
-	 * @param \Elgg\Hook $hook 'action:validate', 'widgets/save'
+	 * @param \Elgg\Event $event 'action:validate', 'widgets/save'
 	 *
 	 * @return void
 	 */
-	public static function disableFreeHTMLInputFilter(\Elgg\Hook $hook) {
+	public static function disableFreeHTMLInputFilter(\Elgg\Event $event) {
 		if (!elgg_is_admin_logged_in()) {
 			return;
 		}
 		
-		if (elgg_get_plugin_setting('disable_free_html_filter', 'widget_pack') == 'no') {
+		if (elgg_get_plugin_setting('disable_free_html_filter', 'widget_pack') === 'no') {
 			return;
 		}
 		
-		$widget = get_entity(get_input('guid'));
+		$widget = get_entity((int) get_input('guid'));
 		if (!$widget instanceof \ElggWidget) {
 			return;
 		}
@@ -54,21 +56,21 @@ class Widgets {
 			return;
 		}
 			
-		$advanced_context = elgg_trigger_plugin_hook('advanced_context', 'widget_manager', ['entity' => $widget], ['index']);
+		$advanced_context = elgg_trigger_event_results('advanced_context', 'widget_manager', ['entity' => $widget], ['index']);
 		if (is_array($advanced_context) && in_array($widget->context, $advanced_context)) {
-			elgg_unregister_plugin_hook_handler('sanitize', 'input', \Elgg\Input\ValidateInputHandler::class);
+			elgg_unregister_event_handler('sanitize', 'input', \Elgg\Input\ValidateInputHandler::class);
 		}
 	}
 	
 	/**
 	 * Returns a rss widget specific date_time notation
 	 *
-	 * @param \Elgg\Hook $hook 'format', 'friendly:time'
+	 * @param \Elgg\Event $event 'format', 'friendly:time'
 	 *
 	 * @return string
 	 */
-	public static function rssFriendlyTime(\Elgg\Hook $hook) {
-		if (empty($hook->getParam('time'))) {
+	public static function rssFriendlyTime(\Elgg\Event $event) {
+		if (empty($event->getParam('time'))) {
 			return;
 		}
 	
@@ -76,7 +78,7 @@ class Widgets {
 			return;
 		}
 	
-		$date_info = getdate($hook->getParam('time'));
+		$date_info = getdate($event->getParam('time'));
 	
 		$date_array = [
 			elgg_echo('date:weekday:' . $date_info['wday']),
@@ -90,24 +92,24 @@ class Widgets {
 	/**
 	 * Returns urls for widget titles
 	 *
-	 * @param \Elgg\Hook $hook 'entity:url', 'object'
+	 * @param \Elgg\Event $event 'entity:url', 'object'
 	 *
 	 * @return string
 	 */
-	public static function getTitleURLs(\Elgg\Hook $hook) {
-		$return = $hook->getValue();
+	public static function getTitleURLs(\Elgg\Event $event) {
+		$return = $event->getValue();
 		if ($return) {
 			// someone else provided already a result
 			return;
 		}
 		
-		$widget = $hook->getEntityParam();
+		$widget = $event->getEntityParam();
 		if (!$widget instanceof \ElggWidget) {
 			// not a widget
 			return;
 		}
 		
-		switch($widget->handler) {
+		switch ($widget->handler) {
 			case 'index_activity':
 				return elgg_generate_url('default:river');
 			case 'messages':
@@ -117,6 +119,7 @@ class Widgets {
 						'username' => $user->username,
 					]);
 				}
+				break;
 			case 'index_members_online':
 			case 'index_members':
 				return elgg_generate_url('collection:user:user');
@@ -127,26 +130,26 @@ class Widgets {
 						'guid' => $owner->guid,
 					]);
 				}
+				break;
 		}
 	}
 	
 	/**
 	 * Strips data-widget-id from submitted script code and saves that
 	 *
-	 * @param \Elgg\Hook $hook 'widget_settings', 'twitter_search'
+	 * @param \Elgg\Event $event 'action:validate', 'widgets/save'
 	 *
 	 * @return void
 	 */
-	public static function twitterSearchGetWidgetID(\Elgg\Hook $hook) {
+	public static function twitterSearchGetWidgetID(\Elgg\Event $event) {
 		
-		$widget = $hook->getParam('widget');
-		if (!$widget instanceof \ElggWidget) {
+		$widget = get_entity((int) get_input('guid'));
+		if (!$widget instanceof \ElggWidget || $widget->handler !== 'twitter_search') {
 			return;
 		}
-		
+				
 		// get embed code
-		$embed_code = elgg_extract('embed_code', get_input('params', [], false)); // do not strip code
-	
+		$embed_code = get_input('embed_code', [], false); // do not strip code
 		if (empty($embed_code)) {
 			return;
 		}
@@ -176,16 +179,16 @@ class Widgets {
 	/**
 	 * Expands the allowable searchable fields for the user search widget
 	 *
-	 * @param \Elgg\Hook $hook Hook
+	 * @param \Elgg\Event $event 'search:fields', 'user'
 	 *
 	 * @return array
 	 */
-	public static function userSearchByEmail(\Elgg\Hook $hook) {
-		if ($hook->getParam('widget') !== 'user_search') {
+	public static function userSearchByEmail(\Elgg\Event $event) {
+		if ($event->getParam('widget') !== 'user_search') {
 			return;
 		}
 		
-		$value = (array) $hook->getValue();
+		$value = (array) $event->getValue();
 		
 		$defaults = [
 			'metadata' => [],
@@ -201,13 +204,13 @@ class Widgets {
 	/**
 	 * Invalidate cached data from the rss feed
 	 *
-	 * @param \Elgg\Hook $hook Hook 'widget_settings', 'rss_server'
+	 * @param \Elgg\Event $event 'update:after', 'object'
 	 *
 	 * @return void
 	 */
-	public static function rssServerInvalidateCache(\Elgg\Hook $hook) {
+	public static function rssServerInvalidateCache(\Elgg\Event $event) {
 		
-		$widget = $hook->getParam('widget');
+		$widget = $event->getObject();
 		if (!$widget instanceof \ElggWidget || $widget->handler !== 'rss_server') {
 			return;
 		}
@@ -218,12 +221,12 @@ class Widgets {
 	/**
 	 * Saves images uploaded by the image_slider widget
 	 *
-	 * @param \Elgg\Hook $hook Hook 'widget_settings', 'image_slider'
+	 * @param \Elgg\Event $event 'widget_settings', 'image_slider'
 	 *
 	 * @return void
 	 */
-	public static function saveImageSliderImages(\Elgg\Hook $hook) {
-		$widget = $hook->getParam('widget');
+	public static function saveImageSliderImages(\Elgg\Event $event) {
+		$widget = $event->getParam('widget');
 		if (!$widget instanceof \ElggWidget || $widget->handler !== 'image_slider') {
 			return;
 		}
@@ -254,12 +257,12 @@ class Widgets {
 	/**
 	 * Return image_slider widget icon sizes
 	 *
-	 * @param \Elgg\Hook $hook Hook 'entity:{$type}:sizes', 'object'
+	 * @param \Elgg\Event $event 'entity:{$type}:sizes', 'object'
 	 *
 	 * @return array
 	 */
-	public static function getImageSliderIconSizes(\Elgg\Hook $hook) {
-		$result = $hook->getValue();
+	public static function getImageSliderIconSizes(\Elgg\Event $event) {
+		$result = $event->getValue();
 		
 		$result['widget'] = [
 			'w' => 500,
@@ -275,16 +278,16 @@ class Widgets {
 	/**
 	 * Return image_slider widget icon sizes
 	 *
-	 * @param \Elgg\Hook $hook Hook 'entity:{$type}:sizes', 'object'
+	 * @param \Elgg\Event $event 'entity:{$type}:sizes', 'object'
 	 *
 	 * @return array
 	 */
-	public static function getSlideshowIconSizes(\Elgg\Hook $hook) {
-		if (!preg_match('/^entity:slider_image_[\d]+:sizes$/', $hook->getName())) {
+	public static function getSlideshowIconSizes(\Elgg\Event $event) {
+		if (!preg_match('/^entity:slider_image_[\d]+:sizes$/', $event->getName())) {
 			return;
 		}
 		
-		$result = $hook->getValue();
+		$result = $event->getValue();
 		
 		$result['landscape'] = [
 			'w' => 400,
@@ -293,6 +296,7 @@ class Widgets {
 			'upscale' => true,
 			'crop' => true,
 		];
+		
 		$result['portrait'] = [
 			'w' => 400,
 			'h' => 530,
@@ -307,13 +311,13 @@ class Widgets {
 	/**
 	 * Saves the slideshow config
 	 *
-	 * @param \Elgg\Hook $hook 'response', 'action:widgets/save'
+	 * @param \Elgg\Event $event 'response', 'action:widgets/save'
 	 *
 	 * @return void|OkResponse
 	 */
-	public static function saveSlideshowConfig(\Elgg\Hook $hook) {
+	public static function saveSlideshowConfig(\Elgg\Event $event) {
 		
-		$result = $hook->getValue();
+		$result = $event->getValue();
 		if ($result instanceof ErrorResponse) {
 			return;
 		}

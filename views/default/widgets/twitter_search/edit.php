@@ -10,7 +10,7 @@ echo elgg_view_field([
 		'target' => '_blank',
 		'text' => elgg_echo('widgets:twitter_search:embed_code:help'),
 	]),
-	'name' => 'params[embed_code]',
+	'name' => 'embed_code',
 	
 ]);
 

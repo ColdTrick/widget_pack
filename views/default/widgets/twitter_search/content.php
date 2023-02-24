@@ -12,18 +12,13 @@ if (empty($widget_id) && empty($embed_href)) {
 	return;
 }
 
-$options = [
+echo elgg_view('output/url', [
 	'class' => 'twitter-timeline',
 	'data-dnt' => 'true',
 	'data-widget-id' => $widget_id,
 	'href' => $embed_href,
-];
-
-if ($height) {
-	$options['height'] = $height;
-}
-
-echo elgg_view('output/url', $options);
+	'height' => $height ?: null,
+]);
 
 echo elgg_format_element('script', [
 	'async' => true,

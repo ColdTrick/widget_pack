@@ -2,6 +2,9 @@
 
 namespace ColdTrick\WidgetPack;
 
+/**
+ * Content By Tag widget helpers
+ */
 class ContentByTag {
 	
 	/**
@@ -16,7 +19,6 @@ class ContentByTag {
 			'pages' => 'page',
 			'bookmarks' => 'bookmarks',
 			'thewire' => 'thewire',
-			'videolist' => 'videolist_item',
 			'event_manager' => 'event',
 			'tasks' => 'task_top',
 			'discussions' => 'discussion',
@@ -33,6 +35,6 @@ class ContentByTag {
 			unset($result[$plugin]);
 		}
 		
-		return elgg_trigger_plugin_hook('supported_content', 'widgets:content_by_tag', $result, $result);
+		return elgg_trigger_event_results('supported_content', 'widgets:content_by_tag', $result, $result);
 	}
 }

@@ -41,10 +41,12 @@ foreach ($entity_stats as $k => $entry) {
 			}
 
 			if (empty($a)) {
-				$a = "$k $a";
+				$a = "{$k} {$a}";
 			}
 		}
+		
 		$result .= "<tr><td>{$a}:</td><td>{$b}</td></tr>";
 	}
 }
+
 echo elgg_format_element('table', ['class' => 'elgg-table'], $result);
