@@ -40,15 +40,6 @@ return [
 	'widgets:image_slideshow:orientation:landscape' => "Landscape",
 	'widgets:image_slideshow:orientation:portrait' => "Portrait",
 
-	// image_slider
-	'widgets:image_slider:name' => "Image Slider",
-	'widgets:image_slider:description' => "Show an Image Slider",
-	'widgets:image_slider:title' => "Slide",
-	'widgets:image_slider:label:url' => "Image url",
-	'widgets:image_slider:label:text' => "Text",
-	'widgets:image_slider:label:link' => "Link",
-	'widgets:image_slider:label:file' => "or file",
-
 	// twitter_search
 	'widgets:twitter_search:name' => "Twitter search",
 	'widgets:twitter_search:description' => "Display a custom search from Twitter",

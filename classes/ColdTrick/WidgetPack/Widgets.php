@@ -219,64 +219,7 @@ class Widgets {
 	}
 	
 	/**
-	 * Saves images uploaded by the image_slider widget
-	 *
-	 * @param \Elgg\Event $event 'widget_settings', 'image_slider'
-	 *
-	 * @return void
-	 */
-	public static function saveImageSliderImages(\Elgg\Event $event) {
-		$widget = $event->getParam('widget');
-		if (!$widget instanceof \ElggWidget || $widget->handler !== 'image_slider') {
-			return;
-		}
-		
-		$files = _elgg_services()->request->files->all();
-		foreach ($files as $name => $file) {
-			if (!$file instanceof UploadedFile || !$file->isValid()) {
-				continue;
-			}
-			
-			if (stristr($name, 'slider_image_') === false) {
-				continue;
-			}
-			
-			$widget->saveIconFromUploadedFile($name, $name);
-		}
-		
-		foreach (_elgg_services()->request->getParams(false) as $name => $value) {
-			if ((stristr($name, 'slider_image_') === false) || empty($value)) {
-				continue;
-			}
-						
-			$icon_name = str_ireplace('_remove', '', $name);
-			$widget->deleteIcon($icon_name);
-		}
-	}
-	
-	/**
-	 * Return image_slider widget icon sizes
-	 *
-	 * @param \Elgg\Event $event 'entity:{$type}:sizes', 'object'
-	 *
-	 * @return array
-	 */
-	public static function getImageSliderIconSizes(\Elgg\Event $event) {
-		$result = $event->getValue();
-		
-		$result['widget'] = [
-			'w' => 500,
-			'h' => 500,
-			'square' => false,
-			'upscale' => false,
-			'crop' => false,
-		];
-		
-		return $result;
-	}
-	
-	/**
-	 * Return image_slider widget icon sizes
+	 * Return image_slideshow widget icon sizes
 	 *
 	 * @param \Elgg\Event $event 'entity:{$type}:sizes', 'object'
 	 *

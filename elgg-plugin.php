@@ -16,19 +16,10 @@ return [
 		'disable_free_html_filter' => 'no',
 		'rss_cron' => 'no',
 	],
-	'views' => [
-		'default' => [
-			'flexslider/' => $composer_path . 'vendor/bower-asset/flexslider-customized',
-			'widgets/image_slider/fonts/' => $composer_path . 'vendor/bower-asset/flexslider-customized/fonts',
-		],
-	],
 	'view_extensions' => [
 		'elgg.css' => [
 			'widgets/rss_server/content.css' => [],
 		],
-	],
-	'view_options' => [
-		'widgets/image_slider/flexslider.css' => ['simplecache' => true],
 	],
 	'events' => [
 		'action:validate' => [
@@ -55,31 +46,6 @@ return [
 		'entity:url' => [
 			'object' => [
 				'ColdTrick\WidgetPack\Widgets::getTitleURLs' => [],
-			],
-		],
-		'entity:slider_image_1:sizes' => [
-			'object' => [
-				'ColdTrick\WidgetPack\Widgets::getImageSliderIconSizes' => [],
-			],
-		],
-		'entity:slider_image_2:sizes' => [
-			'object' => [
-				'ColdTrick\WidgetPack\Widgets::getImageSliderIconSizes' => [],
-			],
-		],
-		'entity:slider_image_3:sizes' => [
-			'object' => [
-				'ColdTrick\WidgetPack\Widgets::getImageSliderIconSizes' => [],
-			],
-		],
-		'entity:slider_image_4:sizes' => [
-			'object' => [
-				'ColdTrick\WidgetPack\Widgets::getImageSliderIconSizes' => [],
-			],
-		],
-		'entity:slider_image_5:sizes' => [
-			'object' => [
-				'ColdTrick\WidgetPack\Widgets::getImageSliderIconSizes' => [],
 			],
 		],
 		'format' => [
@@ -110,11 +76,6 @@ return [
 				'ColdTrick\WidgetPack\Bookmarks::changeEntityURL' => [],
 			],
 		],
-		'widget_settings' => [
-			'image_slider' => [
-				'ColdTrick\WidgetPack\Widgets::saveImageSliderImages' => [],
-			],
-		],
 	],
 	'widgets' => [
 		'content_by_tag' => [
@@ -130,10 +91,6 @@ return [
 		],
 		'iframe' => [
 			'context' => ['profile', 'dashboard', 'index', 'groups'],
-			'multiple' => true,
-		],
-		'image_slider' => [
-			'context' => ['index', 'groups'],
 			'multiple' => true,
 		],
 		'image_slideshow' => [

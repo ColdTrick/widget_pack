@@ -4,47 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c589c45b1c19f15c655b7e44f3d08116",
+    "content-hash": "e9ad8538aa358a3c270db23f3e55a977",
     "packages": [
-        {
-            "name": "bower-asset/flexslider-customized",
-            "version": "2.6.4",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:CPekko/FlexSlider.git",
-                "reference": "415a129020afc132c261056f6546b752ec3e003a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/CPekko/FlexSlider/zipball/415a129020afc132c261056f6546b752ec3e003a",
-                "reference": "415a129020afc132c261056f6546b752ec3e003a"
-            },
-            "require": {
-                "bower-asset/jquery": ">=1.11.3"
-            },
-            "type": "bower-asset",
-            "license": [
-                "GPLv2 and later"
-            ]
-        },
-        {
-            "name": "bower-asset/jquery",
-            "version": "3.6.0",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:jquery/jquery-dist.git",
-                "reference": "e786e3d9707ffd9b0dd330ca135b66344dcef85a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/e786e3d9707ffd9b0dd330ca135b66344dcef85a",
-                "reference": "e786e3d9707ffd9b0dd330ca135b66344dcef85a"
-            },
-            "type": "bower-asset",
-            "license": [
-                "MIT"
-            ]
-        },
         {
             "name": "composer/installers",
             "version": "v1.12.0",
