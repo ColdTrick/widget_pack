@@ -128,8 +128,8 @@ if ($widget->show_search_link === 'yes' && !empty($widget->tags) && elgg_is_acti
 		'q' => $widget->tags,
 	];
 	
-	if (count($object_subtypes) == 1) {
-		$link_params['entity_subtype'] = $object_subtypes[0];
+	if (is_string($object_subtypes)) {
+		$link_params['entity_subtype'] = $object_subtypes;
 		$link_params['entity_type'] = 'object';
 		$link_params['search_type'] = 'entities';
 	}
