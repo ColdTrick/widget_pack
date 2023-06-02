@@ -1,6 +1,12 @@
 Version history
 ===============
 
+6.0 (2023-06-02):
+
+- changed: conflict with Elgg < 5.0
+- changed: updated for Elgg 5
+- removed: image slider widget
+
 5.1 (2022-12-22):
 
 - added: new image slideshow widget with cropping capabilities
