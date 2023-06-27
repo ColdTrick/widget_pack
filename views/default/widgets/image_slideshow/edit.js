@@ -37,6 +37,8 @@ define(['jquery', 'entity/edit/icon/crop'], function ($, Cropper) {
 		$(this).closest('form').find('img[data-icon-cropper]').each(function() {
 			var config = $(this).data('iconCropper');
 			config.aspectRatio = aspect_ratio;
+			config.initialAspectRatio = aspect_ratio;
+			
 			// update config of all (including the template)
 			$(this).attr('data-icon-cropper', JSON.stringify(config));
 
