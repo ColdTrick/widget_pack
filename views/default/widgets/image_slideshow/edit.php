@@ -81,7 +81,7 @@ foreach ($slides_config as $slide_config) {
 		'value' => elgg_extract('url', $slide_config),
 	]);
 	
-	echo elgg_view_module('info', elgg_echo('widgets:image_slideshow:slide'), $slide, ['menu' => $menu]);
+	echo elgg_view_module('info', elgg_view_icon('arrows-alt', ['class' => 'link']) . ' ' . elgg_echo('widgets:image_slideshow:slide'), $slide, ['menu' => $menu]);
 }
 
 $slide_template = elgg_view('entity/edit/icon', [
@@ -105,7 +105,7 @@ $slide_template .= elgg_view_field([
 	'name' => 'slides[slider_url][]',
 ]);
 
-echo elgg_view_module('info', elgg_echo('widgets:image_slideshow:slide'), $slide_template, ['id' => 'slide-template', 'class' => 'hidden', 'menu' => $menu]);
+echo elgg_view_module('info', elgg_view_icon('arrows-alt', ['class' => 'link']) . ' ' . elgg_echo('widgets:image_slideshow:slide'), $slide_template, ['id' => 'slide-template', 'class' => 'hidden', 'menu' => $menu]);
 
 echo elgg_view_field([
 	'#type' => 'button',
@@ -121,3 +121,6 @@ echo elgg_view_field([
 	'name' => 'params[new_slide_index]',
 	'value' => $widget->new_slide_index ?: 2,
 ]);
+
+$init_js = '$(".elgg-form-widgets-save-image-slideshow .elgg-content").sortable({ items: ".elgg-module-info", handle: ".elgg-head > h3 > .elgg-icon-arrows-alt", containment: "parent" });';
+echo elgg_format_element('script', [], 'require(["jquery", "jquery-ui/widgets/sortable"], function($) { ' . $init_js . ' });');
