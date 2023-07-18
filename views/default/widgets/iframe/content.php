@@ -8,15 +8,16 @@ if (empty($url)) {
 	return;
 }
 
+$style = 'width: 100%;';
+
 $height = (int) $widget->iframe_height;
 if (empty($height)) {
-	$height = '100%';
+	$style .= 'height: 100%;';
 } else {
-	$height .= 'px';
+	$style .= "height: {$height}px;";
 }
 
 echo elgg_view('output/iframe', [
 	'src' => $url,
-	'width' => '100%',
-	'height' => $height,
+	'style' => $style,
 ]);
