@@ -112,7 +112,7 @@ echo elgg_view_field([
 	'id' => 'slide-template-add',
 	'icon' => 'plus',
 	'class' => ['elgg-button', 'elgg-button-action'],
-	'value' => elgg_echo('widgets:image_slideshow:add_slide'),
+	'text' => elgg_echo('widgets:image_slideshow:add_slide'),
 ]);
 
 // keep track of new image index

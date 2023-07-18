@@ -75,7 +75,7 @@ $form_data .= elgg_view_field([
 
 $form_data .= elgg_format_element('div', ['class' => 'elgg-foot elgg-form-footer'], elgg_view_field([
 	'#type' => 'submit',
-	'value' => elgg_echo('save'),
+	'text' => elgg_echo('save'),
 ]));
 
 // render wrapper
