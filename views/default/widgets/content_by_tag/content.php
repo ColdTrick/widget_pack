@@ -24,8 +24,6 @@ if (!in_array($tags_option, ['and', 'or'])) {
 	$tags_option = 'and';
 }
 
-$tag_names = elgg_extract('tag_names', $vars, ['tags', 'universal_categories']);
-
 $options = [
 	'type' => 'object',
 	'subtypes' => $object_subtypes,
@@ -52,7 +50,7 @@ if (!empty($values)) {
 	$options['metadata_name_value_pairs'] = [];
 	if ($tags_option === 'or') {
 		$options['metadata_name_value_pairs'][] = [
-			'name' => $tag_names,
+			'name' => 'tags',
 			'value' => $values,
 			'case_sensitive' => false,
 		];
@@ -66,9 +64,9 @@ if (!empty($values)) {
 			
 			$options['joins'][] = new JoinClause(QueryBuilder::TABLE_METADATA, $alias, $on);
 			
-			$options['wheres'][] = function(QueryBuilder $qb) use ($alias, $value, $tag_names) {
+			$options['wheres'][] = function(QueryBuilder $qb) use ($alias, $value) {
 				$md = new MetadataWhereClause();
-				$md->names = $tag_names;
+				$md->names = 'tags';
 				$md->values = $value;
 				$md->case_sensitive = false;
 				return $md->prepare($qb, $alias);
@@ -80,14 +78,16 @@ if (!empty($values)) {
 // excluded tags
 $excluded_values = is_array($widget->excluded_tags) ? $widget->excluded_tags : elgg_string_to_array((string) $widget->excluded_tags);
 if ($excluded_values) {
-	$options['wheres'][] = function(QueryBuilder $qb, $main_alias) use ($tag_names, $excluded_values) {
-		$subquery = $qb->subquery('metadata', 'ex_tags');
-		$subquery->select('DISTINCT entity_guid')
-			->where($qb->compare('ex_tags.name', 'IN', $tag_names, ELGG_VALUE_STRING))
-			->andWhere($qb->compare('ex_tags.value', 'IN', $excluded_values, ELGG_VALUE_STRING));
-
-		return $qb->compare("{$main_alias}.guid", 'NOT IN', $subquery->getSQL());
-	};
+	foreach ($excluded_values as $value) {
+		$options['wheres'][] = function(QueryBuilder $qb, $main_alias) use ($value) {
+			$subquery = $qb->subquery('metadata');
+			$subquery->select('entity_guid')
+				->where($qb->compare('name', '=', 'tags', ELGG_VALUE_STRING))
+				->andWhere($qb->compare('value', '=', $value, ELGG_VALUE_STRING));
+	
+			return $qb->compare("{$main_alias}.guid", 'NOT IN', $subquery->getSQL());
+		};
+	}
 }
 
 // owner_guids
