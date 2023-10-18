@@ -1,6 +1,10 @@
 Version history
 ===============
 
+6.1.2 (2023-10-18):
+
+- changed: content_by_tag exluded tags optimization
+
 6.1.1 (2023-07-26):
 
 - fixed: buttons have a discernible text
