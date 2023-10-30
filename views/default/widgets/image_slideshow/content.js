@@ -13,10 +13,15 @@ define(['jquery'], function ($) {
 		this.$container.on('click', '.slide-previous', function() {
 			SlideShow.movePrevious();
 		});
+		this.$container.on('click', '.slide-startstop', function() {
+			SlideShow.startStop();
+		});
 		
-		this.timeoutId = setTimeout(function() {
-			SlideShow.moveNext();
-		}, this.slideTimeout);
+		if (this.$container.hasClass('slideshow-autoplay')) {
+			this.timeoutId = setTimeout(function() {
+				SlideShow.moveNext();
+			}, this.slideTimeout);
+		}
 	}
 	
 	SlideShow.prototype = {
@@ -27,7 +32,9 @@ define(['jquery'], function ($) {
 			
 			this.$container.find('> .slide-fade').eq(index - 1).removeClass('hidden');
 			
-			this.timeoutId = setTimeout(this.moveNext.bind(this), this.slideTimeout);
+			if (this.$container.hasClass('slideshow-autoplay')) {
+				this.timeoutId = setTimeout(this.moveNext.bind(this), this.slideTimeout);
+			}
 		},
 		moveNext: function() {
 			if (this.currentSlide >= this.totalSlides) {
@@ -46,6 +53,15 @@ define(['jquery'], function ($) {
 			}
 			
 			this.showSlide(this.currentSlide);
+		},
+		startStop: function() {
+			this.$container.toggleClass('slideshow-autoplay');
+			
+			if (this.$container.hasClass('slideshow-autoplay')) {
+				this.timeoutId = setTimeout(this.moveNext.bind(this), this.slideTimeout);
+			} else {
+				clearTimeout(this.timeoutId);
+			}
 		}
 	};
 	

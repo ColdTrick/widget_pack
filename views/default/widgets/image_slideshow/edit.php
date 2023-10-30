@@ -38,6 +38,16 @@ echo elgg_view_field([
 	],
 ]);
 
+echo elgg_view_field([
+	'#type' => 'checkbox',
+	'#label' => elgg_echo('widgets:image_slideshow:autoplay'),
+	'name' => 'params[autoplay]',
+	'checked' => (bool) $widget->autoplay,
+	'default' => 0,
+	'value' => 1,
+	'switch' => true,
+]);
+
 $menu = elgg_view_menu('slide_menu', [
 	'class' => 'elgg-menu-hz',
 	'items' => [

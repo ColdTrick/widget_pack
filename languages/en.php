@@ -39,6 +39,7 @@ return [
 	'widgets:image_slideshow:orientation:help' => "If you change the orientation you will also need to check your slides",
 	'widgets:image_slideshow:orientation:landscape' => "Landscape",
 	'widgets:image_slideshow:orientation:portrait' => "Portrait",
+	'widgets:image_slideshow:autoplay' => "Auto Play Slideshow",
 
 	// twitter_search
 	'widgets:twitter_search:name' => "Twitter search",

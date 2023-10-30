@@ -23,7 +23,7 @@
 	}
 	
 	/* Next & previous buttons */
-	.slide-next, .slide-previous {
+	.slide-next, .slide-previous, .slide-startstop {
 		display: none;
 		cursor: pointer;
 		position: absolute;
@@ -37,6 +37,7 @@
 		transition: 0.6s ease;
 		border-radius: 0 3px 3px 0;
 		user-select: none;
+		line-height: 1rem;
 	}
 	
 	/* Position the "next button" to the right */
@@ -45,13 +46,37 @@
 		border-radius: 3px 0 0 3px;
 	}
 	
+	/* Position the "startstop button" in the center*/
+	.slide-startstop {
+		left: calc(50% - 1.5rem);
+		width: 3rem;
+		text-align: center;
+		border-radius: 3px;
+		
+		.elgg-icon-play {
+			display: block;
+		}
+		.elgg-icon-pause {
+			display: none;
+		}
+	}
+	
+	&.slideshow-autoplay {
+		.elgg-icon-play {
+			display: none;
+		}
+		.elgg-icon-pause {
+			display: block;
+		}
+	}
+	
 	/* On hover, add a black background color with a little bit see-through */
-	.slide-previous:hover, .slide-next:hover {
+	.slide-previous:hover, .slide-next:hover, .slide-startstop:hover {
 		background-color: rgba(0,0,0,0.5);
 	}
 	
 	&:hover {
-		.slide-next, .slide-previous {
+		.slide-next, .slide-previous, .slide-startstop {
 			display: block;
 		}
 	}

@@ -51,11 +51,17 @@ foreach ($config as $index => $slide) {
 }
 
 $slides .= elgg_format_element('div', ['class' => 'slide-next'], elgg_view_icon('angle-right'));
+$slides .= elgg_format_element('div', ['class' => 'slide-startstop'], elgg_view_icon('play') . elgg_view_icon('pause'));
 $slides .= elgg_format_element('div', ['class' => 'slide-previous'], elgg_view_icon('angle-left'));
 
 $id = "slideshow_{$widget->guid}";
 
-echo elgg_format_element('div', ['id' => $id, 'class' => 'widget-slideshow-container'], $slides);
+$container_class = ['widget-slideshow-container'];
+if ((bool) $widget->autoplay) {
+	$container_class[] = 'slideshow-autoplay';
+}
+
+echo elgg_format_element('div', ['id' => $id, 'class' => $container_class], $slides);
 ?>
 <script>
 require(['widgets/image_slideshow/content'], function(SlideShow) {
