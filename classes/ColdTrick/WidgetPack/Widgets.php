@@ -233,16 +233,16 @@ class Widgets {
 		$result = $event->getValue();
 		
 		$result['landscape'] = [
-			'w' => 400,
-			'h' => 225,
+			'w' => 800,
+			'h' => 450,
 			'square' => false,
 			'upscale' => true,
 			'crop' => true,
 		];
 		
 		$result['portrait'] = [
-			'w' => 400,
-			'h' => 530,
+			'w' => 800,
+			'h' => 1060,
 			'square' => false,
 			'upscale' => true,
 			'crop' => true,
