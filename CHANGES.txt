@@ -1,6 +1,11 @@
 Version history
 ===============
 
+6.2 (2023-11-02):
+
+- changed: added start/stop capabilities to slideshow
+- fixed: increased quality of slideshow thumbnails
+
 6.1.2 (2023-10-18):
 
 - changed: content_by_tag exluded tags optimization
