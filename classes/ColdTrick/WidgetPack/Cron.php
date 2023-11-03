@@ -20,9 +20,6 @@ class Cron {
 			return;
 		}
 		
-		echo 'Starting WidgetPack RSS server fetch' . PHP_EOL;
-		elgg_log('Starting WidgetPack RSS server fetch', 'NOTICE');
-		
 		elgg_call(ELGG_IGNORE_ACCESS, function() {
 			// all rss calls could take a while
 			set_time_limit(0);
@@ -73,8 +70,5 @@ class Cron {
 				$feed->init();
 			}
 		});
-		
-		echo 'Done with WidgetPack RSS server fetch' . PHP_EOL;
-		elgg_log('Done with WidgetPack RSS server fetch', 'NOTICE');
 	}
 }

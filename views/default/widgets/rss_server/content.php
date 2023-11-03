@@ -78,7 +78,7 @@ if (empty($feed_data)) {
 		if (!empty($source)) {
 			$feed_item['source'] = $source->get_title();
 		} else {
-			$source_tags = $item->get_item_tags(SIMPLEPIE_NAMESPACE_RSS_20, 'source');
+			$source_tags = $item->get_item_tags(\SimplePie\SimplePie::NAMESPACE_RSS_20, 'source');
 			if (!empty($source_tags)) {
 				$feed_item['source'] = $item->sanitize($source_tags[0]['data'], SIMPLEPIE_CONSTRUCT_TEXT);
 			}
@@ -158,14 +158,10 @@ foreach ($feed_data['items'] as $index => $item) {
 	if ($show_item_icon) {
 		$icon_url = elgg_extract('icon_url', $item);
 		if (!empty($icon_url)) {
-			$icon = elgg_view('output/url', [
-				'text' => elgg_view('output/img', [
-					'src' => $icon_url,
-					'alt' => $title_text,
-					'class' => 'widgets-rss-server-feed-item-image',
-				]),
-				'href' => $href,
-				'target' => '_blank',
+			$icon = elgg_view('output/img', [
+				'src' => $icon_url,
+				'alt' => $title_text,
+				'class' => 'widgets-rss-server-feed-item-image',
 			]);
 		}
 	}

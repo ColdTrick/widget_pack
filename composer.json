@@ -10,21 +10,9 @@
 		"issues": "https://github.com/ColdTrick/widget_pack/issues"
 	},
 	"require": {
-		"composer/installers": "^1.0.8",
-		"simplepie/simplepie": "~1.5.0"
+		"simplepie/simplepie": "~1.8.0"
 	},
 	"conflict": {
-		"elgg/elgg": "<5.0"
-	},
-	"repositories": [
-		{
-			"type": "composer",
-			"url": "https://asset-packagist.org"
-		}
-	],
-	"config": {
-		"allow-plugins": {
-			"composer/installers": true
-		}
+		"elgg/elgg": "<5.1"
 	}
 }

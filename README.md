@@ -1,7 +1,7 @@
 Widget Pack
 ===========
 
-![Elgg 5.0](https://img.shields.io/badge/Elgg-5.0-green.svg)
+![Elgg 5.1](https://img.shields.io/badge/Elgg-5.1-green.svg)
 ![Lint Checks](https://github.com/ColdTrick/widget_pack/actions/workflows/lint.yml/badge.svg?event=push)
 [![Latest Stable Version](https://poser.pugx.org/coldtrick/widget_pack/v/stable.svg)](https://packagist.org/packages/coldtrick/widget_pack)
 [![License](https://poser.pugx.org/coldtrick/widget_pack/license.svg)](https://packagist.org/packages/coldtrick/widget_pack)

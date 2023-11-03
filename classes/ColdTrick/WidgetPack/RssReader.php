@@ -2,10 +2,12 @@
 
 namespace ColdTrick\WidgetPack;
 
+use SimplePie\SimplePie;
+
 /**
  * Rss Reader
  */
-class RssReader extends \SimplePie {
+class RssReader extends Simplepie {
 	
 	/**
 	 * @var RssReader
