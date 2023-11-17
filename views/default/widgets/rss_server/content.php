@@ -80,7 +80,7 @@ if (empty($feed_data)) {
 		} else {
 			$source_tags = $item->get_item_tags(\SimplePie\SimplePie::NAMESPACE_RSS_20, 'source');
 			if (!empty($source_tags)) {
-				$feed_item['source'] = $item->sanitize($source_tags[0]['data'], SIMPLEPIE_CONSTRUCT_TEXT);
+				$feed_item['source'] = $item->sanitize($source_tags[0]['data'], \SimplePie\SimplePie::CONSTRUCT_TEXT);
 			}
 		}
 		
