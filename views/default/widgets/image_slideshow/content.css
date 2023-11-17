@@ -48,8 +48,8 @@
 	
 	/* Position the "startstop button" in the center*/
 	.slide-startstop {
-		left: calc(50% - 1.5rem);
-		width: 3rem;
+		left: calc(50% - 1.75rem);
+		width: 3.5rem;
 		text-align: center;
 		border-radius: 3px;
 		
