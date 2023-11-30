@@ -1,6 +1,11 @@
 Version history
 ===============
 
+7.0 (2023-11-30):
+
+- changed: slideshow will now default to autoplay
+- changed: updated for Elgg 5.1
+
 6.2 (2023-11-02):
 
 - changed: added start/stop capabilities to slideshow
