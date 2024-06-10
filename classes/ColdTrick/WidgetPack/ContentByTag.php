@@ -12,7 +12,7 @@ class ContentByTag {
 	 *
 	 * @return array
 	 */
-	public static function getSupportedContent() {
+	public static function getSupportedContent(): array {
 		$result = [
 			'blog' => 'blog',
 			'file' => 'file',
@@ -20,7 +20,6 @@ class ContentByTag {
 			'bookmarks' => 'bookmarks',
 			'thewire' => 'thewire',
 			'event_manager' => 'event',
-			'tasks' => 'task_top',
 			'discussions' => 'discussion',
 			'poll' => 'poll',
 			'questions' => 'question',
@@ -35,6 +34,6 @@ class ContentByTag {
 			unset($result[$plugin]);
 		}
 		
-		return elgg_trigger_event_results('supported_content', 'widgets:content_by_tag', $result, $result);
+		return (array) elgg_trigger_event_results('supported_content', 'widgets:content_by_tag', $result, $result);
 	}
 }

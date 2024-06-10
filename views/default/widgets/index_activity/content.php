@@ -4,11 +4,6 @@ $widget = elgg_extract('entity', $vars);
 $count = (int) $widget->activity_count ?: 10;
 
 $activity_content = (array) $widget->activity_content;
-if ($activity_content === 'all') {
-	unset($activity_content);
-}
-
-$activity_content = (array) $activity_content;
 
 $river_options = [
 	'pagination' => false,

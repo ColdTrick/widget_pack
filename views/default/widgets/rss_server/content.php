@@ -145,7 +145,7 @@ if ($show_feed_title) {
 	}
 }
 
-// proccess items
+// process items
 $lis = [];
 foreach ($feed_data['items'] as $index => $item) {
 	$title_text = elgg_extract('title', $item);

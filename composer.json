@@ -13,6 +13,6 @@
 		"simplepie/simplepie": "~1.8.0"
 	},
 	"conflict": {
-		"elgg/elgg": "<5.1"
+		"elgg/elgg": "<6.0"
 	}
 }

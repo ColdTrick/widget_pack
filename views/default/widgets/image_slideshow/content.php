@@ -63,8 +63,8 @@ if ($widget->autoplay !== '0') { // null == autplay
 
 echo elgg_format_element('div', ['id' => $id, 'class' => $container_class], $slides);
 ?>
-<script>
-require(['widgets/image_slideshow/content'], function(SlideShow) {
+<script type='module'>
+	import SlideShow from 'widgets/image_slideshow/content';
+	
 	new SlideShow('#<?php echo $id; ?>');
-});
 </script>

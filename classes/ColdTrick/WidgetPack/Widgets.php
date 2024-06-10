@@ -16,7 +16,7 @@ class Widgets {
 	 *
 	 * @param \Elgg\Event $event 'cacheable_handlers', 'widget_manager'
 	 *
-	 * @return bool
+	 * @return array
 	 */
 	public static function getCacheableWidgets(\Elgg\Event $event) {
 		$return_value = $event->getValue();
@@ -38,7 +38,7 @@ class Widgets {
 	 *
 	 * @return void
 	 */
-	public static function disableFreeHTMLInputFilter(\Elgg\Event $event) {
+	public static function disableFreeHTMLInputFilter(\Elgg\Event $event): void {
 		if (!elgg_is_admin_logged_in()) {
 			return;
 		}
@@ -67,15 +67,15 @@ class Widgets {
 	 *
 	 * @param \Elgg\Event $event 'format', 'friendly:time'
 	 *
-	 * @return string
+	 * @return null|string
 	 */
-	public static function rssFriendlyTime(\Elgg\Event $event) {
+	public static function rssFriendlyTime(\Elgg\Event $event): ?string {
 		if (empty($event->getParam('time'))) {
-			return;
+			return null;
 		}
 	
 		if (!elgg_in_context('rss_date')) {
-			return;
+			return null;
 		}
 	
 		$date_info = getdate($event->getParam('time'));
@@ -94,19 +94,19 @@ class Widgets {
 	 *
 	 * @param \Elgg\Event $event 'entity:url', 'object'
 	 *
-	 * @return string
+	 * @return null|string
 	 */
-	public static function getTitleURLs(\Elgg\Event $event) {
+	public static function getTitleURLs(\Elgg\Event $event): ?string {
 		$return = $event->getValue();
 		if ($return) {
 			// someone else provided already a result
-			return;
+			return null;
 		}
 		
 		$widget = $event->getEntityParam();
 		if (!$widget instanceof \ElggWidget) {
 			// not a widget
-			return;
+			return null;
 		}
 		
 		switch ($widget->handler) {
@@ -132,6 +132,8 @@ class Widgets {
 				}
 				break;
 		}
+		
+		return null;
 	}
 	
 	/**
@@ -141,14 +143,13 @@ class Widgets {
 	 *
 	 * @return void
 	 */
-	public static function twitterSearchGetWidgetID(\Elgg\Event $event) {
+	public static function twitterSearchGetWidgetID(\Elgg\Event $event): void {
 		
 		$widget = get_entity((int) get_input('guid'));
 		if (!$widget instanceof \ElggWidget || $widget->handler !== 'twitter_search') {
 			return;
 		}
-				
-		// get embed code
+		
 		$embed_code = get_input('embed_code', [], false); // do not strip code
 		if (empty($embed_code)) {
 			return;
@@ -181,11 +182,11 @@ class Widgets {
 	 *
 	 * @param \Elgg\Event $event 'search:fields', 'user'
 	 *
-	 * @return array
+	 * @return null|array
 	 */
-	public static function userSearchByEmail(\Elgg\Event $event) {
+	public static function userSearchByEmail(\Elgg\Event $event): ?array {
 		if ($event->getParam('widget') !== 'user_search') {
-			return;
+			return null;
 		}
 		
 		$value = (array) $event->getValue();
@@ -208,7 +209,7 @@ class Widgets {
 	 *
 	 * @return void
 	 */
-	public static function rssServerInvalidateCache(\Elgg\Event $event) {
+	public static function rssServerInvalidateCache(\Elgg\Event $event): void {
 		
 		$widget = $event->getObject();
 		if (!$widget instanceof \ElggWidget || $widget->handler !== 'rss_server') {
@@ -223,11 +224,11 @@ class Widgets {
 	 *
 	 * @param \Elgg\Event $event 'entity:{$type}:sizes', 'object'
 	 *
-	 * @return array
+	 * @return null|array
 	 */
-	public static function getSlideshowIconSizes(\Elgg\Event $event) {
+	public static function getSlideshowIconSizes(\Elgg\Event $event): ?array {
 		if (!preg_match('/^entity:slider_image_[\d]+:sizes$/', $event->getName())) {
-			return;
+			return null;
 		}
 		
 		$result = $event->getValue();
@@ -256,22 +257,22 @@ class Widgets {
 	 *
 	 * @param \Elgg\Event $event 'response', 'action:widgets/save'
 	 *
-	 * @return void|OkResponse
+	 * @return null|OkResponse
 	 */
-	public static function saveSlideshowConfig(\Elgg\Event $event) {
+	public static function saveSlideshowConfig(\Elgg\Event $event): ?OkResponse {
 		
 		$result = $event->getValue();
 		if ($result instanceof ErrorResponse) {
-			return;
+			return null;
 		}
 		
 		$widget = get_entity((int) get_input('guid'));
 		if (!$widget instanceof \ElggWidget) {
-			return;
+			return null;
 		}
 		
 		if ($widget->handler !== 'image_slideshow') {
-			return;
+			return null;
 		}
 		
 		$old_config = $widget->slides_config ?: [];

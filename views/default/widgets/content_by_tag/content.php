@@ -62,7 +62,7 @@ if (!empty($values)) {
 				return $qb->compare("{$joined_alias}.entity_guid", '=', "{$main_alias}.guid");
 			};
 			
-			$options['joins'][] = new JoinClause(QueryBuilder::TABLE_METADATA, $alias, $on);
+			$options['joins'][] = new JoinClause(\Elgg\Database\MetadataTable::TABLE_NAME, $alias, $on);
 			
 			$options['wheres'][] = function(QueryBuilder $qb) use ($alias, $value) {
 				$md = new MetadataWhereClause();

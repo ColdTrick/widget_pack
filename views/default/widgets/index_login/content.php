@@ -5,6 +5,7 @@ if (elgg_is_logged_in()) {
 		elgg_get_logged_in_user_entity()->name,
 		elgg_get_site_entity()->name,
 	]);
+	
 	return;
 }
 

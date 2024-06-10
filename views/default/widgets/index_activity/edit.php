@@ -6,12 +6,9 @@ $contents = [];
 
 $registered_entities = elgg_entity_types_with_capability('searchable');
 
-if (!empty($registered_entities)) {
-	foreach ($registered_entities as $type => $ar) {
-		foreach ($ar as $subtype) {
-			$keyname = 'item:' . $type . ':' . $subtype;
-			$contents[elgg_echo($keyname)] = "{$type},{$subtype}";
-		}
+foreach ($registered_entities as $type => $subtypes) {
+	foreach ($subtypes as $subtype) {
+		$contents[elgg_echo("item:{$type}:{$subtype}")] = "{$type},{$subtype}";
 	}
 }
 

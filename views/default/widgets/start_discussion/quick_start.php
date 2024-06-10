@@ -6,7 +6,7 @@ $selected_group = elgg_extract('container_guid', $vars, ELGG_ENTITIES_ANY_VALUE)
 
 $wrapper_id = uniqid();
 
-elgg_require_js('widgets/start_discussion/quick_start');
+elgg_import_esm('widgets/start_discussion/quick_start');
 
 // show a button to expend the form
 echo elgg_view('output/url', [

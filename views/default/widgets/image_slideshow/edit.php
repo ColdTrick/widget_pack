@@ -1,6 +1,6 @@
 <?php
 
-elgg_require_js('widgets/image_slideshow/edit');
+elgg_import_esm('widgets/image_slideshow/edit');
 
 $widget = elgg_extract('entity', $vars);
 $orientation = $widget->orientation ?: 'landscape';
@@ -132,5 +132,14 @@ echo elgg_view_field([
 	'value' => $widget->new_slide_index ?: 2,
 ]);
 
-$init_js = '$(".elgg-form-widgets-save-image-slideshow .elgg-content").sortable({ items: ".elgg-module-info", handle: ".elgg-head > h3 > .elgg-icon-arrows-alt", containment: "parent" });';
-echo elgg_format_element('script', [], 'require(["jquery", "jquery-ui/widgets/sortable"], function($) { ' . $init_js . ' });');
+?>
+<script type='module'>
+	import 'jquery';
+	import 'jquery-ui';
+	
+	$(".elgg-form-widgets-save-image-slideshow .elgg-form-body").sortable({
+		items: ".elgg-module-info",
+		handle: ".elgg-head > h2 > .elgg-icon-arrows-alt",
+		containment: "parent"
+	});
+</script>

@@ -10,24 +10,15 @@ foreach ($entity_stats as $k => $entry) {
 	foreach ($entry as $a => $b) {
 		$key = $k . '|' . $a;
 		
-		if ($a == '__base__') {
-			$a = elgg_echo("item:{$k}");
-			if (empty($a)) {
-				$a = $k;
-			}
+		if (elgg_language_key_exists("collection:{$k}:{$a}")) {
+			$text = elgg_echo("collection:{$k}:{$a}");
+		} elseif (elgg_language_key_exists("item:{$k}:{$a}")) {
+			$text = elgg_echo("item:{$k}:{$a}");
 		} else {
-			if (empty($a)) {
-				$a = elgg_echo("item:{$k}");
-			} else {
-				$a = elgg_echo("item:{$k}:{$a}");
-			}
-
-			if (empty($a)) {
-				$a = "$k $a";
-			}
+			$text = "{$k} {$a}";
 		}
 		
-		$options_values[$key] = $a;
+		$options_values[$key] = $text;
 	}
 }
 

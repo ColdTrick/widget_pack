@@ -18,5 +18,5 @@ echo elgg_list_entities([
 	'gallery_class' => 'elgg-gallery-users',
 	'size' => 'small',
 	'no_results' => elgg_echo('widgets:index_members_online:no_result'),
-	'metadata_name' => $widget->user_icon === 'yes' ? 'icontime' : null,
+	'metadata_name' => $widget->user_icon === 'yes' ? 'icon_coords' : null,
 ]);

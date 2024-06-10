@@ -17,6 +17,8 @@ if (empty($content_type) && !empty($content_options_values)) {
 	$content_type = $keys[0];
 }
 
+elgg_import_esm('widgets/content_by_tag/edit');
+
 echo elgg_view_field([
 	'#type' => 'userpicker',
 	'#label' => elgg_echo('widgets:content_by_tag:owner_guids'),
@@ -36,12 +38,14 @@ if ($widget->context == 'groups') {
 		'value' => 'yes',
 		'switch' => true,
 	]);
-} elseif (elgg_view_exists('input/grouppicker')) {
-	$container_guids = elgg_echo('widgets:content_by_tag:container_guids') . '<br />';
-	$container_guids .= elgg_view('input/hidden', ['name' => 'params[container_guids]', 'value' => 0]);
-	$container_guids .= elgg_view('input/grouppicker', ['name' => 'params[container_guids]', 'values' => $widget->container_guids]);
-	$container_guids .= elgg_format_element('div', ['class' => 'elgg-subtext'], elgg_echo('widgets:content_by_tag:container_guids:description'));
-	echo elgg_format_element('div', [], $container_guids);
+} else {
+	echo elgg_view_field([
+		'#type' => 'grouppicker',
+		'#label' => elgg_echo('widgets:content_by_tag:container_guids'),
+		'#help' => elgg_echo('widgets:content_by_tag:container_guids:description'),
+		'name' => 'params[container_guids]',
+		'values' => $widget->container_guids,
+	]);
 }
 
 echo elgg_view('object/widget/edit/num_display', [
@@ -106,33 +110,39 @@ echo elgg_view_field([
 	],
 ]);
 
-$display_options = '';
-
-$content = elgg_view_field([
-	'#type' => 'checkbox',
-	'#label' => elgg_echo('widgets:content_by_tag:show_avatar'),
-	'name' => 'params[show_avatar]',
-	'checked' => $widget->show_avatar !== 'no',
-	'default' => 'no',
-	'value' => 'yes',
-	'switch' => true,
+echo elgg_view_field([
+	'#type' => 'fieldset',
+	'class' => 'widgets-content-by-tag-display-options',
+	'fields' => [
+		[
+			'#type' => 'checkbox',
+			'#label' => elgg_echo('widgets:content_by_tag:show_avatar'),
+			'#class' => [
+				'widgets-content-by-tag-display-options-simple',
+				$widget->display_option !== 'simple' ? 'hidden' : null,
+			],
+			'name' => 'params[show_avatar]',
+			'checked' => $widget->show_avatar !== 'no',
+			'default' => 'no',
+			'value' => 'yes',
+			'switch' => true,
+		],
+		[
+			'#type' => 'checkbox',
+			'#label' => elgg_echo('widgets:content_by_tag:show_timestamp'),
+			'#class' => [
+				'widgets-content-by-tag-display-options-simple',
+				'widgets-content-by-tag-display-options-slim',
+				!in_array($widget->display_option, ['simple', 'slim']) ? 'hidden' : null,
+			],
+			'name' => 'params[show_timestamp]',
+			'checked' => $widget->show_timestamp !== 'no',
+			'default' => 'no',
+			'value' => 'yes',
+			'switch' => true,
+		],
+	],
 ]);
-
-$display_options .= elgg_format_element('div', ['class' => 'widgets-content-by-tag-display-options-simple'], $content);
-
-$content = elgg_view_field([
-	'#type' => 'checkbox',
-	'#label' => elgg_echo('widgets:content_by_tag:show_timestamp'),
-	'name' => 'params[show_timestamp]',
-	'checked' => $widget->show_timestamp !== 'no',
-	'default' => 'no',
-	'value' => 'yes',
-	'switch' => true,
-]);
-
-$display_options .= elgg_format_element('div', ['class' => 'widgets-content-by-tag-display-options-simple widgets-content-by-tag-display-options-slim'], $content);
-
-echo elgg_format_element('div', ['class' => 'widgets-content-by-tag-display-options'], $display_options);
 
 echo elgg_view_field([
 	'#type' => 'select',
@@ -144,5 +154,3 @@ echo elgg_view_field([
 		'alpha' => elgg_echo('widgets:content_by_tag:order_by:alpha'),
 	],
 ]);
-
-echo elgg_format_element('script', [], 'require(["widgets/content_by_tag/edit"], function() { init(); })');

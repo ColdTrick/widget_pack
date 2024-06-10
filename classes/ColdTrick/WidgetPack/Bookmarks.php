@@ -12,13 +12,13 @@ class Bookmarks {
 	 *
 	 * @param \Elgg\Event $event 'view_vars', 'widgets/content_by_tag/display/[simple|slim]'
 	 *
-	 * @return void|array
+	 * @return null|array
 	 */
-	public static function changeEntityURL(\Elgg\Event $event) {
+	public static function changeEntityURL(\Elgg\Event $event): ?array {
 
 		$entity = $event->getEntityParam();
 		if (!$entity instanceof \ElggBookmark) {
-			return;
+			return null;
 		}
 		
 		$return_value = $event->getValue();

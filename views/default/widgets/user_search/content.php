@@ -9,7 +9,7 @@ if (empty($widget)) {
 	}
 }
 
-elgg_require_js('widgets/user_search/content');
+elgg_import_esm('widgets/user_search/content');
 
 $q = get_input('q');
 

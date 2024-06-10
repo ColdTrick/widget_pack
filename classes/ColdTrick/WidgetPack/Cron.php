@@ -14,7 +14,7 @@ class Cron {
 	 *
 	 * @return void
 	 */
-	public static function fetchRssServerWidgets(\Elgg\Event $event) {
+	public static function fetchRssServerWidgets(\Elgg\Event $event): void {
 		
 		if (elgg_get_plugin_setting('rss_cron', 'widget_pack') !== 'yes') {
 			return;
