@@ -8,3 +8,4 @@ jobs:
     uses: ColdTrick/.github/.github/workflows/phpunit.yml@master
     with:
       elgg_major_version: 6
+      extra_composer_dependencies: 'coldtrick/widget_manager:dev-master'

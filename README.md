@@ -8,8 +8,7 @@ Widget Pack
 
 A plugin for Elgg that adds various widgets.
 
-Widgets
--------	
+## Widgets
 
 ### General widgets
 
