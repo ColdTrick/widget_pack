@@ -2,7 +2,7 @@
 
 return [
 	'plugin' => [
-		'version' => '7.0',
+		'version' => '8.0',
 		'dependencies' => [
 			'widget_manager' => [],
 		],
