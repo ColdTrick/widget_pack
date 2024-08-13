@@ -1,10 +1,11 @@
 <?php
 /**
- * This file was created by Translation Editor v11.1
- * On 2023-05-17 15:31
+ * This file was created by Translation Editor v14.0
+ * On 2024-08-13 12:11
  */
 
 return array (
+  'widgets:image_slideshow:autoplay' => 'Diashow automatisch afspelen',
   'widgets:image_slideshow:name' => 'Diashow',
   'widgets:image_slideshow:description' => 'Toon meerdere dia\'s die elkaar afwisselen',
   'widgets:image_slideshow:slide' => 'Dia',
