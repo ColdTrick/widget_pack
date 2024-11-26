@@ -15,7 +15,6 @@ class Cron {
 	 * @return void
 	 */
 	public static function fetchRssServerWidgets(\Elgg\Event $event): void {
-		
 		if (elgg_get_plugin_setting('rss_cron', 'widget_pack') !== 'yes') {
 			return;
 		}
@@ -45,6 +44,11 @@ class Cron {
 						'value' => '',
 						'operand' => '!=',
 					],
+					[
+						'name' => 'context',
+						'value' => ['admin', 'dashboard'],
+						'operand' => '!=',
+					],
 				],
 			]);
 			
@@ -59,6 +63,14 @@ class Cron {
 				$rss_cachetimeout = $timeout - 1799;
 				if ($rss_cachetimeout < 1800) {
 					$rss_cachetimeout = 1799;
+				}
+				
+				// check local cached data
+				$feed_data = elgg_load_system_cache("rss_cache_{$widget->guid}");
+				
+				$cache_ts = elgg_extract('cache_ts', $feed_data, 0);
+				if (($cache_ts + $rss_cachetimeout) > time()) {
+					continue;
 				}
 				
 				// read the rss from the source
