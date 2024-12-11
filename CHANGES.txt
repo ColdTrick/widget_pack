@@ -1,6 +1,10 @@
 Version history
 ===============
 
+8.1 (2024-12-11):
+
+- changed: only prefetch useful rss widgets during cron
+
 8.0.1 (2024-10-10):
 
 - several small chores/fixes
