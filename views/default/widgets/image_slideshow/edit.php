@@ -42,7 +42,7 @@ echo elgg_view_field([
 	'#type' => 'checkbox',
 	'#label' => elgg_echo('widgets:image_slideshow:autoplay'),
 	'name' => 'params[autoplay]',
-	'checked' => $widget->autoplay !== '0', // null == autplay
+	'checked' => (bool) $widget->autoplay, // null !== autoplay
 	'default' => 0,
 	'value' => 1,
 	'switch' => true,

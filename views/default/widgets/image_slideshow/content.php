@@ -57,7 +57,7 @@ $slides .= elgg_format_element('div', ['class' => 'slide-previous'], elgg_view_i
 $id = "slideshow_{$widget->guid}";
 
 $container_class = ['widget-slideshow-container'];
-if ($widget->autoplay !== '0') { // null == autplay
+if ((bool) $widget->autoplay) { // null !== autoplay
 	$container_class[] = 'slideshow-autoplay';
 }
 
