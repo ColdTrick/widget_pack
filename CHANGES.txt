@@ -1,6 +1,10 @@
 Version history
 ===============
 
+8.2 (2025-02-12):
+
+- changed: slideshow by default will not autoplay
+
 8.1 (2024-12-11):
 
 - changed: only prefetch useful rss widgets during cron
