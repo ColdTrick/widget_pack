@@ -12,8 +12,7 @@ A plugin for Elgg that adds various widgets.
 
 ### General widgets
 
- - Twitter widget (paste your widget code)
- - Content (blog, file, pages, bookmarks) by tag
+ - content (blog, file, pages, bookmarks) by tag
  - rss
  - free html
  - iframe

@@ -2,8 +2,8 @@
 
 namespace ColdTrick\WidgetPack;
 
-use Elgg\Http\OkResponse;
 use Elgg\Http\ErrorResponse;
+use Elgg\Http\OkResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -26,7 +26,6 @@ class Widgets {
 	
 		$return_value[] = 'iframe';
 		$return_value[] = 'free_html';
-		$return_value[] = 'twitter_search';
 	
 		return $return_value;
 	}
@@ -135,48 +134,7 @@ class Widgets {
 		
 		return null;
 	}
-	
-	/**
-	 * Strips data-widget-id from submitted script code and saves that
-	 *
-	 * @param \Elgg\Event $event 'action:validate', 'widgets/save'
-	 *
-	 * @return void
-	 */
-	public static function twitterSearchGetWidgetID(\Elgg\Event $event): void {
-		
-		$widget = get_entity((int) get_input('guid'));
-		if (!$widget instanceof \ElggWidget || $widget->handler !== 'twitter_search') {
-			return;
-		}
-		
-		$embed_code = get_input('embed_code', [], false); // do not strip code
-		if (empty($embed_code)) {
-			return;
-		}
-	
-		$data_found = false;
-		
-		// look for data-widget-id in embed code
-		$pattern = '/data-widget-id=\"(\d+)\"/i';
-		$matches = [];
-		if (preg_match($pattern, $embed_code, $matches)) {
-			$widget->widget_id = $matches[1];
-			$data_found = true;
-		}
-		
-		$pattern = '/href=["\']?([^"\'>]+)["\']?/i';
-		$matches = [];
-		if (preg_match($pattern, $embed_code, $matches)) {
-			$widget->embed_href = $matches[1];
-			$data_found = true;
-		}
-		
-		if (!$data_found) {
-			elgg_register_error_message(elgg_echo('widgets:twitter_search:embed_code:error'));
-		}
-	}
-	
+
 	/**
 	 * Expands the allowable searchable fields for the user search widget
 	 *

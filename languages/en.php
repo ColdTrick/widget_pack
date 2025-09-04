@@ -41,15 +41,6 @@ return [
 	'widgets:image_slideshow:orientation:portrait' => "Portrait",
 	'widgets:image_slideshow:autoplay' => "Auto Play Slideshow",
 
-	// twitter_search
-	'widgets:twitter_search:name' => "Twitter search",
-	'widgets:twitter_search:description' => "Display a custom search from Twitter",
-
-	'widgets:twitter_search:embed_code' => "Twitter Widget Embed Code",
-	'widgets:twitter_search:embed_code:help' => "Create a widget on Twitter.com and paste your embed code here",
-	'widgets:twitter_search:embed_code:error' => "Could not extract the widget id from the embed code",
-	'widgets:twitter_search:height' => "Widget height (pixels)",
-
 	// content_by_tag
 	'widgets:content_by_tag:name' => "Content by tag",
 	'widgets:content_by_tag:description' => "Find content by a tag",

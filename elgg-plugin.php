@@ -20,7 +20,6 @@ return [
 		'action:validate' => [
 			'widgets/save' => [
 				'ColdTrick\WidgetPack\Widgets::disableFreeHTMLInputFilter' => [],
-				'ColdTrick\WidgetPack\Widgets::twitterSearchGetWidgetID' => [],
 			],
 		],
 		'all' => [
@@ -120,10 +119,6 @@ return [
 		],
 		'start_discussion' => [
 			'context' => ['index', 'dashboard', 'groups'],
-		],
-		'twitter_search' => [
-			'context' => ['profile', 'dashboard', 'index', 'groups'],
-			'multiple' => true,
 		],
 		'user_search' => [
 			'context' => ['admin'],
