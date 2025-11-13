@@ -1,6 +1,10 @@
 Version history
 ===============
 
+8.3 (2025-11-13):
+
+- removed: twitter_search widget has been removed
+
 8.2 (2025-02-12):
 
 - changed: slideshow by default will not autoplay
