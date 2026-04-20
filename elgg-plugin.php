@@ -94,6 +94,7 @@ return [
 		'index_activity' => [
 			'context' => ['index'],
 			'multiple' => true,
+			'required_plugin' => ['activity'],
 		],
 		'index_login' => [
 			'context' => ['index'],
@@ -101,10 +102,12 @@ return [
 		'index_members' => [
 			'context' => ['index'],
 			'multiple' => true,
+			'required_plugin' => ['members'],
 		],
 		'index_members_online' => [
 			'context' => ['index'],
 			'multiple' => true,
+			'required_plugin' => ['members'],
 		],
 		'messages' => [
 			'context' => ['dashboard', 'index'],
@@ -119,6 +122,7 @@ return [
 		],
 		'start_discussion' => [
 			'context' => ['index', 'dashboard', 'groups'],
+			'required_plugin' => ['discussions'],
 		],
 		'user_search' => [
 			'context' => ['admin'],

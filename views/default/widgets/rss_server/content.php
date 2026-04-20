@@ -131,7 +131,7 @@ if ($widget->show_in_lightbox === 'yes') {
 $show_source = ($widget->show_source === 'yes');
 $show_author = ($widget->show_author === 'yes');
 
-// proccess data
+// process data
 if ($show_feed_title) {
 	$feed_title = elgg_extract('title_text', $feed_data);
 	$feed_url = elgg_extract('title_href', $feed_data);
@@ -197,9 +197,10 @@ foreach ($feed_data['items'] as $index => $item) {
 			'class' => 'mls',
 		]);
 		
-		$module_text = $icon;
-		$module_text .= elgg_view('output/longtext', [
+		$module_text = elgg_view_image_block('', elgg_view('output/longtext', [
 			'value' => $module_content,
+		]), [
+			'image_alt' => $icon,
 		]);
 		
 		// lightbox
@@ -226,11 +227,15 @@ foreach ($feed_data['items'] as $index => $item) {
 	}
 	
 	if ($excerpt) {
+		$excerpt_content = elgg_view_image_block('', elgg_view('output/longtext', [
+			'value' => elgg_extract('excerpt', $item),
+		]), [
+			'image_alt' => $icon,
+		]);
+		
 		$content .= elgg_format_element('div', [
 			'class' => 'elgg-content',
-		], $icon . elgg_view('output/longtext', [
-			'value' => elgg_extract('excerpt', $item),
-		]));
+		], $excerpt_content);
 	}
 	
 	if ($post_date) {

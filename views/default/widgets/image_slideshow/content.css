@@ -82,10 +82,6 @@
 	}
 }
 
-.elgg-form-widgets-save-image-slideshow .elgg-content > .elgg-module-info > .elgg-body {
-	background: white;
-}
-
 /* Fading animation */
 .slide-fade {
   animation-name: slide-fade;

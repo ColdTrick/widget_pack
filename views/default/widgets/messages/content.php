@@ -15,7 +15,7 @@ $options = [
 	'full_view' => false,
 	'limit' => (int) $widget->max_messages ?: 5,
 	'item_view' => 'widgets/messages/item',
-	'no_results' => elgg_echo('messages:nomessages'),
+	'no_results' => true,
 	'widget_more' => elgg_view_url(elgg_generate_url('add:object:messages'), elgg_echo('messages:add')),
 ];
 
