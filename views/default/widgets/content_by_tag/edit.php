@@ -30,13 +30,15 @@ echo elgg_view_field([
 
 if ($widget->context == 'groups') {
 	echo elgg_view_field([
-		'#type' => 'checkbox',
+		'#type' => 'select',
 		'#label' => elgg_echo('widgets:content_by_tag:group_only'),
 		'name' => 'params[group_only]',
-		'checked' => $widget->group_only !== 'no',
-		'default' => 'no',
-		'value' => 'yes',
-		'switch' => true,
+		'value' => $widget->group_only,
+		'options_values' => [
+			'yes' => elgg_echo('widgets:content_by_tag:group_only:yes'),
+			'no' => elgg_echo('widgets:content_by_tag:group_only:no'),
+			'outside' => elgg_echo('widgets:content_by_tag:group_only:outside'),
+		],
 	]);
 } else {
 	echo elgg_view_field([
