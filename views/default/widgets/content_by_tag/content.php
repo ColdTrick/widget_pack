@@ -1,9 +1,9 @@
 <?php
 
-use Elgg\Database\QueryBuilder;
+use ColdTrick\WidgetPack\ContentByTag;
 use Elgg\Database\Clauses\JoinClause;
 use Elgg\Database\Clauses\MetadataWhereClause;
-use ColdTrick\WidgetPack\ContentByTag;
+use Elgg\Database\QueryBuilder;
 
 /* @var $widget ElggWidget */
 $widget = elgg_extract('entity', $vars);
@@ -98,8 +98,13 @@ if (!is_array($widget->owner_guids)) {
 }
 
 if ($widget->context === 'groups') {
-	if ($widget->group_only !== 'no') {
+	$group_only = $widget->group_only ?? 'yes';
+	if ($group_only === 'yes') {
 		$options['container_guids'] = [$widget->getContainerGUID()];
+	} elseif ($group_only === 'outside') {
+		$options['wheres'][] = function(QueryBuilder $qb, $main_alias) use ($widget) {
+			return $qb->compare("{$main_alias}.container_guid", '<>', $widget->getContainerGUID(), ELGG_VALUE_GUID);
+		};
 	}
 } elseif (elgg_view_exists('input/grouppicker')) {
 	$options['container_guids'] = $widget->container_guids;
