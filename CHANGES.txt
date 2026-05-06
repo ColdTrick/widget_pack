@@ -1,6 +1,10 @@
 Version history
 ===============
 
+8.4 (2026-05-06):
+
+- added: option to only show content from outside a group
+
 8.3 (2025-11-13):
 
 - removed: twitter_search widget has been removed
