@@ -7,5 +7,5 @@ jobs:
     name: Run PHPUnit test suites
     uses: ColdTrick/.github/.github/workflows/phpunit.yml@master
     with:
-      elgg_major_version: 6
+      elgg_major_version: 7
       extra_composer_dependencies: 'coldtrick/widget_manager:dev-master'
