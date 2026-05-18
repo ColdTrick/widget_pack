@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fa6864587e24e40388314facf1bd4e96",
+    "content-hash": "4a0c26484b084ce86e25a9832f6a3458",
     "packages": [
         {
             "name": "simplepie/simplepie",
