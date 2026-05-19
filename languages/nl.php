@@ -1,7 +1,7 @@
 <?php
 /**
- * This file was created by Translation Editor v14.0
- * On 2024-08-13 12:11
+ * This file was created by Translation Editor v14.0.4
+ * On 2026-05-19 14:47
  */
 
 return array (
@@ -46,9 +46,6 @@ return array (
   'widgets:content_by_tag:show_avatar' => 'Toon avatar van gebruiker',
   'widgets:content_by_tag:show_timestamp' => 'Toon tijdstip van content',
   'widgets:content_by_tag:excluded_tags' => 'Uit te sluiten tags',
-  'widgets:twitter_search:embed_code' => 'Twitter Widget Embed Code',
-  'widgets:twitter_search:embed_code:help' => 'Maak een widget op Twitter.com en plak de embed code hier',
-  'widgets:twitter_search:embed_code:error' => 'Kon geen widget id uit de embed code halen',
   'widgets:messages:settings:only_unread' => 'Toon enkel ongelezen berichten',
   'widgets:messages:description' => 'Toon je laatste berichten',
   'widgets:messages:not_logged_in' => 'Je moet zijn aangemeld om deze widget te kunnen gebruiken',
@@ -88,9 +85,6 @@ return array (
   'widgets:content_by_tag:tags_option:or' => 'OF',
   'widgets:user_search:name' => 'Gebruikers zoeken',
   'widgets:user_search:description' => 'Zoek alle gebruikers (inclusief geblokkeerde of ongevalideerde)',
-  'widgets:twitter_search:name' => 'Twitter zoekopdracht',
-  'widgets:twitter_search:description' => 'Toon een zoekopdracht op Twitter',
-  'widgets:twitter_search:height' => 'Widget hoogte (pixels)',
   'widgets:index_login:name' => 'Aanmelden',
   'widgets:index_login:description' => 'Toon een aanmeldscherm',
   'widgets:index_login:welcome' => '<b>%s</b> welkom bij de <b>%s</b> community',
