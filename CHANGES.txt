@@ -1,6 +1,10 @@
 Version history
 ===============
 
+9.0 (2026-05-29):
+
+- changed: updated for Elgg 7
+
 8.4 (2026-05-06):
 
 - added: option to only show content from outside a group
