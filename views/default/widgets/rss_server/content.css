@@ -1,8 +1,6 @@
 .widgets-rss-server-feed-item-image {
 	max-height: 60px;
 	max-width: 60px;
-	border: 1px solid var(--elgg-border-color-strong);
-	padding: 4px;
 }
 
 .elgg-module-rss-popup .widgets-rss-server-feed-item-image {
