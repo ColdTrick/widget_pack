@@ -62,33 +62,6 @@ class Widgets {
 	}
 	
 	/**
-	 * Returns a rss widget specific date_time notation
-	 *
-	 * @param \Elgg\Event $event 'format', 'friendly:time'
-	 *
-	 * @return null|string
-	 */
-	public static function rssFriendlyTime(\Elgg\Event $event): ?string {
-		if (empty($event->getParam('time'))) {
-			return null;
-		}
-	
-		if (!elgg_in_context('rss_date')) {
-			return null;
-		}
-	
-		$date_info = getdate($event->getParam('time'));
-	
-		$date_array = [
-			elgg_echo('date:weekday:' . $date_info['wday']),
-			elgg_echo('date:month:' . str_pad($date_info['mon'], 2, '0', STR_PAD_LEFT), [$date_info['mday']]),
-			$date_info['year'],
-		];
-	
-		return implode(' ', $date_array);
-	}
-
-	/**
 	 * Returns urls for widget titles
 	 *
 	 * @param \Elgg\Event $event 'entity:url', 'object'

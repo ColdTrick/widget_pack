@@ -42,11 +42,6 @@ return [
 				'ColdTrick\WidgetPack\Widgets::getTitleURLs' => [],
 			],
 		],
-		'format' => [
-			'friendly:time' => [
-				'ColdTrick\WidgetPack\Widgets::rssFriendlyTime' => [],
-			],
-		],
 		'response' => [
 			'action:widgets/save' => [
 				'ColdTrick\WidgetPack\Widgets::saveSlideshowConfig' => [],

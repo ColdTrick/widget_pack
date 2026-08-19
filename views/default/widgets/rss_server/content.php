@@ -131,20 +131,6 @@ if ($widget->show_in_lightbox === 'yes') {
 $show_source = ($widget->show_source === 'yes');
 $show_author = ($widget->show_author === 'yes');
 
-// process data
-if ($show_feed_title) {
-	$feed_title = elgg_extract('title_text', $feed_data);
-	$feed_url = elgg_extract('title_href', $feed_data);
-	
-	if (!empty($feed_title) && !empty($feed_url)) {
-		echo elgg_format_element('h3', [], elgg_view('output/url', [
-			'text' => $feed_title,
-			'href' => $feed_url,
-			'target' => '_blank',
-		]));
-	}
-}
-
 // process items
 $lis = [];
 foreach ($feed_data['items'] as $index => $item) {
@@ -152,7 +138,7 @@ foreach ($feed_data['items'] as $index => $item) {
 	$href = elgg_extract('href', $item);
 	
 	$title = '';
-	$content = '';
+	$result = '';
 	$icon = '';
 	
 	if ($show_item_icon) {
@@ -204,16 +190,14 @@ foreach ($feed_data['items'] as $index => $item) {
 		]);
 		
 		// lightbox
-		$lightbox_content = elgg_view_module('rss-popup', $module_title, $module_text, [
-			'class' => ['elgg-module-info'],
-		]);
-		
 		$title = elgg_view('output/url', [
 			'text' => $title_text,
 			'href' => false,
 			'class' => 'elgg-lightbox',
 			'data-colorbox-opts' => json_encode([
-				'html' => $lightbox_content,
+				'html' => elgg_view_module('rss-popup', $module_title, $module_text, [
+					'class' => ['elgg-module-info'],
+				]),
 				'innerWidth' => 600,
 				'fastIframe' => false,
 			]),
@@ -226,27 +210,27 @@ foreach ($feed_data['items'] as $index => $item) {
 		]);
 	}
 	
-	if ($excerpt) {
-		$excerpt_content = elgg_view_image_block('', elgg_view('output/longtext', [
-			'value' => elgg_extract('excerpt', $item),
-		]), [
-			'image_alt' => $icon,
-		]);
-		
-		$content .= elgg_format_element('div', [
-			'class' => 'elgg-content',
-		], $excerpt_content);
-	}
-	
+	$result = elgg_format_element('div', ['class' => 'elgg-listing-summary-title'], $title);
+
 	if ($post_date) {
-		elgg_push_context('rss_date');
 		$time = elgg_view_friendly_time(elgg_extract('timestamp', $item));
-		elgg_pop_context();
+
+		$time = elgg_format_element('span', ['class' => 'elgg-listing-time'], $time);
+		$time = elgg_format_element('div', ['class' => 'elgg-listing-imprint'], $time);
 		
-		$content .= elgg_format_element('div', ['class' => 'elgg-subtext'], $time);
+		$result .= elgg_format_element('div', ['class' => ['elgg-listing-summary-subtitle', 'elgg-subtext']], $time);
 	}
 	
-	$lis[] = elgg_format_element('li', ['class' => 'elgg-item'], $title . $content);
+	if ($excerpt) {
+		$excerpt_content = elgg_view('output/longtext', ['value' => elgg_extract('excerpt', $item)]);
+
+		$result .= elgg_format_element('div', ['class' => 'elgg-listing-summary-content'], $excerpt_content);
+	}
+		
+	$lis[] = elgg_format_element('li', ['class' => ['elgg-item', 'elgg-item-object']], elgg_view_image_block('', $result, [
+		'image_alt' => $icon,
+		'class' => 'elgg-object-summary',
+	]));
 }
 
 if (empty($lis)) {
@@ -254,4 +238,17 @@ if (empty($lis)) {
 	return;
 }
 
-echo elgg_format_element('ul', ['class' => ['elgg-list', 'widget-rss-server-result']], implode(PHP_EOL, $lis));
+echo elgg_format_element('ul', ['class' => ['elgg-list', 'elgg-list-entity']], implode(PHP_EOL, $lis));
+
+if ($show_feed_title) {
+	$feed_title = elgg_extract('title_text', $feed_data);
+	$feed_url = elgg_extract('title_href', $feed_data);
+
+	if (!empty($feed_title) && !empty($feed_url)) {
+		echo elgg_format_element('div', ['class' => 'elgg-widget-more'], elgg_view('output/url', [
+			'text' => $feed_title,
+			'href' => $feed_url,
+			'target' => '_blank',
+		]));
+	}
+}
