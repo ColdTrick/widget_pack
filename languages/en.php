@@ -107,11 +107,6 @@ return [
 	"widgets:messages:not_logged_in" => "You need to be logged in to use this widget",
 	"widgets:messages:settings:only_unread" => "Only show unread messages",
 
-	// user search widget
-	"widgets:user_search:name" => "User Search",
-	"widgets:user_search:description" => "Search all user on your site (including disabled and unvalidated users)",
-	"widgets:user_search:validated" => "Validated",
-
 	// iframe widget
 	"widgets:iframe:name" => "Iframe",
 	"widgets:iframe:description" => "Show an url in an iframe",

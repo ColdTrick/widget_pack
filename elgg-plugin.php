@@ -47,11 +47,6 @@ return [
 				'ColdTrick\WidgetPack\Widgets::saveSlideshowConfig' => [],
 			],
 		],
-		'search:fields' => [
-			'user' => [
-				'ColdTrick\WidgetPack\Widgets::userSearchByEmail' => [],
-			],
-		],
 		'update:after' => [
 			'object' => [
 				'ColdTrick\WidgetPack\Widgets::rssServerInvalidateCache' => [],
@@ -118,9 +113,6 @@ return [
 		'start_discussion' => [
 			'context' => ['index', 'dashboard', 'groups'],
 			'required_plugin' => ['discussions'],
-		],
-		'user_search' => [
-			'context' => ['admin'],
 		],
 	],
 ];

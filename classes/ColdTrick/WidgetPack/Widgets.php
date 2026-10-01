@@ -107,31 +107,6 @@ class Widgets {
 		
 		return null;
 	}
-
-	/**
-	 * Expands the allowable searchable fields for the user search widget
-	 *
-	 * @param \Elgg\Event $event 'search:fields', 'user'
-	 *
-	 * @return null|array
-	 */
-	public static function userSearchByEmail(\Elgg\Event $event): ?array {
-		if ($event->getParam('widget') !== 'user_search') {
-			return null;
-		}
-		
-		$value = (array) $event->getValue();
-		
-		$defaults = [
-			'metadata' => [],
-		];
-		
-		$value = array_merge($defaults, $value);
-		
-		$value['metadata'][] = 'email';
-		
-		return $value;
-	}
 	
 	/**
 	 * Invalidate cached data from the rss feed
