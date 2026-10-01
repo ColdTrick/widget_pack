@@ -8,7 +8,6 @@ return [
 		],
 	],
 	'settings' => [
-		'disable_free_html_filter' => 'no',
 		'rss_cron' => 'no',
 	],
 	'view_extensions' => [
@@ -17,11 +16,6 @@ return [
 		],
 	],
 	'events' => [
-		'action:validate' => [
-			'widgets/save' => [
-				'ColdTrick\WidgetPack\Widgets::disableFreeHTMLInputFilter' => [],
-			],
-		],
 		'all' => [
 			'object' => [
 				'ColdTrick\WidgetPack\Widgets::getSlideshowIconSizes' => [],

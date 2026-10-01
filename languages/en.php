@@ -3,7 +3,6 @@
 return [
 	
 	// plugin settings
-	'widget_pack:settings:disable_free_html_filter' => "Disable HTML filtering for Free HTML widgets on index (ADMIN ONLY)",
 	'widget_pack:settings:rss:cron' => "Use the cron to fetch RSS feeds periodically",
 	'widget_pack:settings:rss:cron:help' => "If your users experience reduced performance while looking at widget pages with RSS widgets, this setting could help reduce the effect on your users.",
 	

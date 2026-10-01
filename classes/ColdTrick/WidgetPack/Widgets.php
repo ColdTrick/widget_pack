@@ -29,37 +29,6 @@ class Widgets {
 	
 		return $return_value;
 	}
-
-	/**
-	 * Function that unregisters html validation for admins to be able to save freehtml widgets with special html
-	 *
-	 * @param \Elgg\Event $event 'action:validate', 'widgets/save'
-	 *
-	 * @return void
-	 */
-	public static function disableFreeHTMLInputFilter(\Elgg\Event $event): void {
-		if (!elgg_is_admin_logged_in()) {
-			return;
-		}
-		
-		if (elgg_get_plugin_setting('disable_free_html_filter', 'widget_pack') === 'no') {
-			return;
-		}
-		
-		$widget = get_entity((int) get_input('guid'));
-		if (!$widget instanceof \ElggWidget) {
-			return;
-		}
-		
-		if ($widget->handler !== 'free_html') {
-			return;
-		}
-			
-		$advanced_context = elgg_trigger_event_results('advanced_context', 'widget_manager', ['entity' => $widget], ['index']);
-		if (is_array($advanced_context) && in_array($widget->context, $advanced_context)) {
-			elgg_unregister_event_handler('sanitize', 'input', \Elgg\Input\ValidateInputHandler::class);
-		}
-	}
 	
 	/**
 	 * Returns urls for widget titles

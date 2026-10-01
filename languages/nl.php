@@ -29,7 +29,6 @@ return array (
   'widgets:register:name' => 'Registreren',
   'widgets:register:description' => 'Toont een registratie formulier',
   'widgets:register:loggedout' => 'Je moet zijn uitgelogd om deze widget te kunnen gebruiken',
-  'widget_pack:settings:disable_free_html_filter' => 'Schakel HTML filtering voor vrije HTML widgets uit op de voorpagina (ADMIN ONLY)',
   'widgets:rss_server:name' => 'RSS Feed',
   'widgets:rss_server:description' => 'Toon een RSS feed (server side ophalen)',
   'widgets:rss_server:settings:show_author' => 'Toon auteur voor item',
