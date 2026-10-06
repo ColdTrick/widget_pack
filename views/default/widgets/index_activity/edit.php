@@ -4,11 +4,16 @@ $widget = elgg_extract('entity', $vars);
 
 $contents = [];
 
-$registered_entities = elgg_entity_types_with_capability('searchable');
+$registered_entities = elgg_entity_types_with_capability('river_emittable');
 
 foreach ($registered_entities as $type => $subtypes) {
 	foreach ($subtypes as $subtype) {
-		$contents[elgg_echo("item:{$type}:{$subtype}")] = "{$type},{$subtype}";
+		$keyname = "collection:{$type}:{$subtype}";
+		if (!elgg_language_key_exists($keyname)) {
+			$keyname = "item:{$type}:{$subtype}";
+		}
+		
+		$contents[elgg_echo($keyname)] = "{$type},{$subtype}";
 	}
 }
 
