@@ -1,6 +1,12 @@
 Version history
 ===============
 
+9.2 (2026-11-12):
+
+- fixed: use correct entity types for river filter
+- removed: setting for disabling admin input filtering in free html widget
+- removed: user search widgets obsolete by better admin/users pages
+
 9.1 (2026-08-19):
 
 - changed: rss widget feed items are styled as entity lists
